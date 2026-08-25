@@ -25,11 +25,15 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .meta{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
 .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#334155;font-size:13px;box-shadow:0 8px 24px rgba(30,41,59,.06)}
 .controls{position:sticky;top:0;z-index:5;background:rgba(247,251,255,.9);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px}
-.tool-btn{border:1px solid var(--line);background:#fff;color:#243044;border-radius:8px;padding:11px 12px}
+.tool-btn{border:1px solid var(--line);background:#fff;color:#243044;border-radius:8px;padding:11px 12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.06);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
 .tool-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;text-decoration:none}
 .tool-btn svg{width:17px;height:17px}
+.tool-btn:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(15,23,42,.12);filter:saturate(1.08)}
+.tool-btn.sheet{background:linear-gradient(135deg,#16a34a,#0f766e);color:#fff;border-color:#0d9488}
 .tool-btn.primary{background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;border-color:#1d77a8}
+.tool-btn.tool-analysis{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border-color:#6d28d9}
+.tool-btn.docx{background:linear-gradient(135deg,#f97316,#e11d48);color:#fff;border-color:#fb7185}
 .pct-badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 8px;font-weight:800;font-size:12px;white-space:nowrap}
 .pct-badge.big{font-size:clamp(20px,3vw,30px);padding:2px 0;background:transparent}
 .pct-red{background:#fee2e2;color:#991b1b}
@@ -58,12 +62,14 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .quarter-tab{border:1px solid var(--line);background:#f8fafc;color:#64748b;border-radius:999px;padding:9px 18px;font-weight:800;font-size:13px;box-shadow:inset 0 -1px 0 rgba(15,23,42,.06);cursor:pointer;white-space:nowrap}
 .quarter-tab.active{background:#3498db;color:#fff;border-color:#3498db;box-shadow:0 8px 18px rgba(52,152,219,.24)}
 .quarter-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}
+.quarter-cards.detail{grid-template-columns:repeat(3,1fr)}
 .quarter-card{border:1px solid #e6eef8;background:#f8fbff;border-radius:8px;padding:14px;text-align:center;box-shadow:0 8px 18px rgba(15,23,42,.05);border-top:3px solid var(--qcolor)}
 .quarter-card.dim{opacity:.46}
 .quarter-card b{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px}
 .quarter-card strong{display:block;color:var(--qcolor);font-size:18px;line-height:1.2}
 .quarter-card span{display:block;color:#94a3b8;font-size:11px;margin-top:3px}
 .quarter-chart,.compare-inner{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;min-height:205px}
+.quarter-detail-shell{display:block;min-height:205px}
 .chart-y{display:grid;grid-template-rows:repeat(5,1fr);align-items:start;color:#64748b;font-size:11px;text-align:right;padding-top:8px}
 .chart-plot,.compare-plot{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:end;padding:18px 18px 24px;background:repeating-linear-gradient(to bottom,#edf2f7 0,#edf2f7 1px,transparent 1px,transparent 34px);border-bottom:1px solid #cbd5e1;min-width:620px}
 .quarter-col{height:170px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative;opacity:1}
@@ -71,11 +77,27 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .quarter-bar{width:min(82%,220px);min-height:2px;border:1px solid var(--qcolor);border-radius:8px 8px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0)),var(--qcolor);box-shadow:0 8px 18px rgba(15,23,42,.14)}
 .quarter-rate{position:absolute;top:0;font-size:12px;font-weight:900;color:#334155}
 .quarter-x{font-size:12px;font-weight:800;color:#64748b;margin-top:8px}
-.donut-wrap{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:center}
-svg.donut{width:240px;height:240px;filter:drop-shadow(0 12px 18px rgba(37,99,235,.12));overflow:visible}
-.legend{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:8px}
-.legend-item{display:inline-flex;gap:7px;align-items:center;font-size:12px;color:#475569}
-.legend-item b{font-weight:900;color:#172033}
+.quarter-detail{overflow:auto}
+.quarter-detail-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:0 0 12px}
+.quarter-detail-body{display:grid;gap:10px;min-width:720px}
+.detail-row-chart{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;align-items:center}
+.detail-name{font-size:12px;font-weight:800;color:#475569;text-align:right;line-height:1.25}
+.detail-bars{display:grid;gap:5px;padding:3px 0;background:repeating-linear-gradient(to right,transparent 0,transparent calc(20% - 1px),#edf2f7 calc(20% - 1px),#edf2f7 20%)}
+.detail-track-row{height:15px;display:flex;align-items:center;gap:8px}
+.detail-bar{height:10px;border-radius:999px;border:1px solid;min-width:2px}
+.detail-plan{background:#eef2f7;border-color:#cbd5e1}
+.detail-used{background:linear-gradient(90deg,var(--selected,#60a5fa),#3498db);border-color:var(--selected,#3498db)}
+.detail-percent{font-size:11px;font-weight:900;color:#334155;white-space:nowrap}
+.detail-axis{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;color:#64748b;font-size:11px}
+.detail-ticks{display:flex;justify-content:space-between;border-top:1px solid #cbd5e1;padding-top:5px}
+.category-rate-wrap{display:block}
+.category-rate-list{display:grid;gap:12px}
+.category-meter{border:1px solid #e6eef8;background:linear-gradient(180deg,#fff,#f8fbff);border-radius:8px;padding:12px;box-shadow:0 8px 18px rgba(15,23,42,.05)}
+.category-meter-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}
+.category-meter-name{display:flex;align-items:center;gap:8px;font-weight:900;color:#172033;line-height:1.25}
+.category-track{height:14px;background:#edf4fb;border:1px solid #d8e6f5;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
+.category-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cat),#60a5fa);box-shadow:0 8px 18px rgba(37,99,235,.14)}
+.category-meter small{display:block;color:#64748b;font-size:11px;margin-top:7px;line-height:1.35}
 .compare-chart{overflow:auto}
 .compare-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:-2px 0 8px}
 .legend-pill{display:inline-flex;align-items:center;gap:6px}
@@ -127,9 +149,9 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   .kpis{grid-template-columns:repeat(2,1fr)}
   .grid{grid-template-columns:1fr}
   .quarter-cards{grid-template-columns:repeat(2,1fr)}
+  .quarter-cards.detail{grid-template-columns:1fr}
   .quarter-chart,.compare-inner{overflow:auto}
   .analysis-grid{grid-template-columns:1fr}
-  .donut-wrap{grid-template-columns:1fr;justify-items:center}
 }
 @media (max-width:560px){
   h1{font-size:24px}
@@ -138,6 +160,9 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   .kpis{grid-template-columns:1fr}
   .quarter-cards{grid-template-columns:1fr}
   .quarter-chart,.compare-inner{grid-template-columns:34px minmax(560px,1fr)}
+  .quarter-detail-body{min-width:620px}
+  .detail-row-chart,.detail-axis{grid-template-columns:120px minmax(0,1fr)}
+  .category-meter-head{align-items:flex-start}
   .bar-row{grid-template-columns:1fr;gap:6px}
   .bar-val{text-align:left;white-space:normal}
   .bar-name{overflow-wrap:anywhere}
@@ -163,7 +188,7 @@ tr.total-row td{font-weight:900;background:#eef6ff}
 
   <section class="controls">
     <div class="actions">
-      <a class="tool-btn" id="openSheet" href="https://docs.google.com/spreadsheets/d/1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU/edit?gid=482273770#gid=482273770" target="_blank" rel="noopener">
+      <a class="tool-btn sheet" id="openSheet" href="https://docs.google.com/spreadsheets/d/1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU/edit?gid=482273770#gid=482273770" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
         เปิด Google Sheet
       </a>
@@ -171,11 +196,11 @@ tr.total-row td{font-weight:900;background:#eef6ff}
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
         ส่งออก Excel
       </button>
-      <button class="tool-btn" id="toggleAnalysis" type="button">
+      <button class="tool-btn tool-analysis" id="toggleAnalysis" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-8"/></svg>
         วิเคราะห์ข้อมูลผู้บริหาร
       </button>
-      <button class="tool-btn" id="exportDocx" type="button">
+      <button class="tool-btn docx" id="exportDocx" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         ส่งออก Docx
       </button>
@@ -198,10 +223,9 @@ tr.total-row td{font-weight:900;background:#eef6ff}
 
   <section class="grid">
     <article class="panel">
-      <h2>สัดส่วนงบประมาณแต่ละหมวด</h2>
-      <div class="donut-wrap">
-        <svg class="donut" id="donut" viewBox="0 0 200 200"></svg>
-        <div class="legend" id="legend"></div>
+      <h2>ร้อยละการใช้ของทั้ง 5 หมวด</h2>
+      <div class="category-rate-wrap">
+        <div class="category-rate-list" id="donut"></div>
       </div>
     </article>
     <article class="panel">
@@ -253,6 +277,7 @@ const pct = n => `${(Number(n||0)*100).toFixed(2)}%`;
 const LIVE_SHEET_ID = '1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU';
 const LIVE_GID = '482273770';
 const LIVE_REFRESH_MS = 60000;
+const QUARTER_KEYS = ['Q1','Q2','Q3','Q4'];
 const MAIN_CATEGORIES = new Set(['รายจ่ายบุคลากร','รายจ่ายจากการดำเนินงาน','รายจ่ายลงทุน','รายจ่ายสนับสนุน','งบกลาง']);
 const MAIN_CATEGORY_ORDER = {'รายจ่ายบุคลากร':'1','รายจ่ายจากการดำเนินงาน':'2','รายจ่ายลงทุน':'3','รายจ่ายสนับสนุน':'4','งบกลาง':'5'};
 function asText(value){
@@ -367,7 +392,8 @@ function getTotalRow(data){
 }
 let rows = normalizeRows(embeddedRows);
 let total = getTotalRow(rows);
-const state = {sort:'SourceRow', dir:1, quarterView:'all'};
+const requestedQuarter = new URLSearchParams(location.search).get('quarter') || location.hash.replace('#','');
+const state = {sort:'SourceRow', dir:1, quarterView:QUARTER_KEYS.includes(requestedQuarter) ? requestedQuarter : 'all'};
 function chartColor(i){ return colors[i % colors.length]; }
 function chartFill(i){ return `linear-gradient(90deg, ${chartColor(i)}, ${colors[(i+1) % colors.length]})`; }
 function rateClass(n){
@@ -421,7 +447,7 @@ function axisMillion(value){
 }
 function quarterMetrics(){
   const palette = ['#3498db','#a879e8','#f08b3e','#44b97a'];
-  return ['Q1','Q2','Q3','Q4'].map((key,index) => {
+  return QUARTER_KEYS.map((key,index) => {
     const value = Number(total[key] || 0);
     return {
       key,
@@ -484,25 +510,19 @@ function renderBars(){
     </div>`;
 }
 function renderDonut(){
-  const main = rows.filter(r => r.IsMain && !r.IsTotal && Number(r.Plan)>0);
-  const svg = document.getElementById('donut');
-  const sum = main.reduce((acc,row) => acc + Number(row.Plan || 0), 0) || 1;
-  const circumference = 439.82;
-  let offset = 0;
-  svg.innerHTML = `<circle cx="100" cy="100" r="70" fill="none" stroke="#e8edf5" stroke-width="28"></circle>`;
-  main.forEach((row,index) => {
-    const frac = Number(row.Plan || 0) / sum;
-    const dash = `${frac * circumference} ${circumference - (frac * circumference)}`;
-    const angle = (offset + frac / 2) * Math.PI * 2 - Math.PI / 2;
-    const labelX = 100 + Math.cos(angle) * 63;
-    const labelY = 100 + Math.sin(angle) * 63;
-    svg.innerHTML += `<circle cx="100" cy="100" r="70" fill="none" stroke="${colors[index % colors.length]}" stroke-width="28" stroke-dasharray="${dash}" stroke-dashoffset="${-offset * circumference}" transform="rotate(-90 100 100)"></circle>`;
-    if(frac > 0.02) svg.innerHTML += `<text x="${labelX}" y="${labelY}" text-anchor="middle" dominant-baseline="middle" style="font:800 10px Tahoma;fill:#fff">${pct(frac)}</text>`;
-    offset += frac;
-  });
-  svg.innerHTML += `<circle cx="100" cy="100" r="41" fill="#fff"></circle>`;
-  document.getElementById('legend').innerHTML = main.map((r,i)=>`
-    <div class="legend-item"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${r.Item}</span><b>${pct(r.Share)}</b></div>`).join('');
+  const main = rows.filter(r => r.IsMain && !r.IsTotal);
+  document.getElementById('donut').innerHTML = main.map((r,i)=>{
+    const rate = Math.max(0, Math.min(1, Number(r.Rate || 0)));
+    const width = rate > 0 ? Math.max(1.5, rate * 100) : 0;
+    return `<article class="category-meter">
+      <div class="category-meter-head">
+        <div class="category-meter-name"><span class="swatch" style="background:${colors[i%colors.length]}"></span>${r.Item}</div>
+        ${rateBadge(r.Rate)}
+      </div>
+      <div class="category-track"><div class="category-fill" style="--cat:${rateColor(r.Rate)};width:${width}%"></div></div>
+      <small>ใช้จ่าย ${moneyDash(r.Used)} จากแผน ${moneyDash(r.Plan)} · คงเหลือ ${moneyDash(r.Remaining)}</small>
+    </article>`;
+  }).join('');
 }
 function renderQuarters(){
   const qs = quarterMetrics();
@@ -514,20 +534,75 @@ function renderQuarters(){
     renderQuarters();
   }));
   const selectedIndex = state.quarterView === 'all' ? -1 : qs.findIndex(q => q.key === state.quarterView);
-  document.getElementById('quarterCards').innerHTML = qs.map(q => `
-    <article class="quarter-card ${selectedIndex >= 0 && selectedIndex !== q.index ? 'dim' : ''}" style="--qcolor:${q.color}">
+  const cards = document.getElementById('quarterCards');
+  const chart = document.getElementById('quarters');
+  const selected = selectedIndex >= 0 ? qs[selectedIndex] : null;
+  if(selected){
+    cards.className = 'quarter-cards detail';
+    chart.className = 'quarter-detail-shell';
+    cards.innerHTML = [
+      ['งบรวม', millionText(total.Plan), `${money.format(total.Plan)} บ.`, '#3498db'],
+      [`ใช้ใน${selected.name}`, millionText(selected.value), `${money.format(selected.value)} บ.`, selected.color],
+      ['สัดส่วน', pct(selected.rate), 'ของแผน', '#a879e8']
+    ].map(([label,value,note,color]) => `
+      <article class="quarter-card" style="--qcolor:${color}">
+        <b>${label}</b>
+        <strong>${value}</strong>
+        <span>${note}</span>
+      </article>`).join('');
+    const main = rows.filter(r => r.IsMain && !r.IsTotal);
+    const max = Math.max(...main.flatMap(r => [Number(r.Plan || 0), Number(r[selected.key] || 0)]), 1);
+    const ticks = [0, max * .25, max * .5, max * .75, max];
+    const quarterTotal = selected.value || 0;
+    chart.innerHTML = `
+      <div class="quarter-detail">
+        <div class="quarter-detail-head">
+          <span class="legend-pill"><span class="legend-box" style="background:#eef2f7;border-color:#cbd5e1"></span>แผน</span>
+          <span class="legend-pill"><span class="legend-box" style="background:${selected.color};border-color:${selected.color}"></span>${selected.name}</span>
+        </div>
+        <div class="quarter-detail-body">
+          ${main.map(r => {
+            const plan = Number(r.Plan || 0);
+            const used = Number(r[selected.key] || 0);
+            const planWidth = plan > 0 ? Math.max(1.5, plan / max * 100) : 0;
+            const usedWidth = used > 0 ? Math.max(1.5, used / max * 100) : 0;
+            const planShare = total.Plan ? plan / total.Plan : 0;
+            const quarterShare = quarterTotal ? used / quarterTotal : 0;
+            return `<div class="detail-row-chart">
+              <div class="detail-name">${r.Item}</div>
+              <div class="detail-bars">
+                <div class="detail-track-row">
+                  <div class="detail-bar detail-plan" style="width:${planWidth}%;${plan ? '' : 'display:none'}"></div>
+                  <span class="detail-percent">${pct(planShare)}</span>
+                </div>
+                <div class="detail-track-row">
+                  <div class="detail-bar detail-used" style="--selected:${selected.color};width:${usedWidth}%;${used ? '' : 'display:none'}"></div>
+                  <span class="detail-percent">${pct(quarterShare)}</span>
+                </div>
+              </div>
+            </div>`;
+          }).join('')}
+          <div class="detail-axis"><span></span><div class="detail-ticks">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div></div>
+        </div>
+      </div>`;
+    return;
+  }
+  cards.className = 'quarter-cards';
+  chart.className = 'quarter-chart';
+  cards.innerHTML = qs.map(q => `
+    <article class="quarter-card" style="--qcolor:${q.color}">
       <b>${q.name}</b>
       <strong>${millionText(q.value)}</strong>
       <span>${pct(q.rate)} ของแผน</span>
     </article>`).join('');
   const max = Math.max(...qs.map(q => Number(q.value || 0)), 1);
   const ticks = [max, max * .75, max * .5, max * .25, 0];
-  document.getElementById('quarters').innerHTML = `
+  chart.innerHTML = `
     <div class="chart-y">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div>
     <div class="chart-plot">
       ${qs.map(q => {
         const height = q.value > 0 ? Math.max(2, Number(q.value || 0) / max * 100) : 0;
-        return `<div class="quarter-col ${selectedIndex >= 0 && selectedIndex !== q.index ? 'dim' : ''}">
+        return `<div class="quarter-col">
           <div class="quarter-rate">${pct(q.rate)}</div>
           <div class="quarter-bar" style="--qcolor:${q.color};height:${height}%;${q.value ? '' : 'display:none'}"></div>
           <div class="quarter-x">${q.name}</div>
