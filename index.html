@@ -73,7 +73,9 @@ th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font
 th{position:sticky;top:0;background:#f8fafc;color:#334155;font-weight:800;cursor:pointer;z-index:1}
 td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;background:#f1f5f9;color:#334155;white-space:nowrap}
+.status.danger{background:#fee2e2;color:#991b1b}
 .status.warn{background:#fff7ed;color:#9a3412}
+.status.ok{background:#dcfce7;color:#166534}
 .status.zero{background:#eef2ff;color:#3730a3}
 .foot{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.5}
 @media (max-width:900px){
@@ -110,7 +112,8 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
       <p class="sub">แหล่งข้อมูล: ชีต “รายจ่าย (สรุป)”</p>
     </div>
     <div class="meta">
-      <span class="pill">สถานะข้อมูล: พร้อมวิเคราะห์</span>
+      <span class="pill" id="dataStatus">สถานะข้อมูล: กำลังเชื่อมต่อข้อมูลสด</span>
+      <span class="pill" id="lastUpdated">อัปเดตล่าสุด: -</span>
       <span class="pill">Standalone HTML</span>
     </div>
   </header>
@@ -165,13 +168,14 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   </section>
 
   <section class="panel">
-    <h2>ตารางข้อมูลครบถ้วนจากชีต รายจ่าย (สรุป)</h2>
+    <h2>ตารางข้อมูลสดจากชีต รายจ่าย (สรุป)</h2>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
             <th data-sort="Item">รายการ</th>
-            <th data-sort="Level">ระดับ</th>
+            <th data-sort="Level">หมวดรายจ่าย</th>
+            <th data-sort="Parent">อยู่ภายใต้</th>
             <th data-sort="Plan">แผน 2570</th>
             <th data-sort="Q1">Q1</th>
             <th data-sort="Q2">Q2</th>
@@ -192,13 +196,134 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 </div>
 <script id="expense-data" type="application/json">[{"SourceRow":4,"Order":"1","Item":"รายจ่ายบุคลากร","Level":"หมวดหลัก","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":true,"IsTotal":false,"Share":0},{"SourceRow":5,"Order":"2","Item":"รายจ่ายจากการดำเนินงาน","Level":"หมวดหลัก","Plan":38623400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":38623400.42,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.97983175391367139},{"SourceRow":6,"Order":"","Item":"2.1ค่าตอบแทน","Level":"รายการย่อย","Plan":23997680.82,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":23997680.82,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.60879387708041344},{"SourceRow":7,"Order":"","Item":"2.2 ค่าใช้สอย","Level":"รายการย่อย","Plan":5195544,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5195544,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.131805043955155},{"SourceRow":8,"Order":"","Item":"2.3 ค่าวัสดุ","Level":"รายการย่อย","Plan":4168000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":4168000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.10573742099096571},{"SourceRow":9,"Order":"","Item":"2.4 ค่าสาธารณูปโภค","Level":"รายการย่อย","Plan":5248175.6,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5248175.6,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.13314024780511374},{"SourceRow":10,"Order":"","Item":"2.5 ค่าใช้จ่ายงบดำเนินงานอื่น","Level":"รายการย่อย","Plan":14000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":14000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.00035516408202339734},{"SourceRow":11,"Order":"3","Item":"รายจ่ายลงทุน","Level":"หมวดหลัก","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":12,"Order":"","Item":"3.1 ค่าครุภัณฑ์","Level":"รายการย่อย","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":13,"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":14,"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":15,"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Level":"รายการย่อย","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":16,"Order":"","Item":"3.2 ค่าที่ดินและสิ่งก่อสร้าง","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":17,"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":18,"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":19,"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":20,"Order":"4","Item":"รายจ่ายสนับสนุน","Level":"หมวดหลัก","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":true,"IsTotal":false,"Share":0},{"SourceRow":21,"Order":"5","Item":"งบกลาง","Level":"หมวดหลัก","Plan":500000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":500000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.012684431500835619},{"SourceRow":22,"Order":"รวมทั้งหมด","Item":"รวมทั้งหมด","Level":"รวม","Plan":39418400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":39418400.42,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":true,"Share":1}]</script>
 <script>
-const rows = JSON.parse(document.getElementById('expense-data').textContent);
+const embeddedRows = JSON.parse(document.getElementById('expense-data').textContent);
+const verifiedFallbackUpdates = {
+  'งบกลาง': {Q1:75000, Used:75000, Remaining:425000, Rate:0.15},
+  'รวมทั้งหมด': {Q1:75000, Used:75000, Remaining:39343400.42, Rate:0.001902664725125343}
+};
+embeddedRows.forEach(row => {
+  if(verifiedFallbackUpdates[row.Item]) Object.assign(row, verifiedFallbackUpdates[row.Item]);
+});
 const colors = ['#2563eb','#14b8a6','#f59e0b','#ec4899','#8b5cf6','#22c55e','#06b6d4','#f97316'];
 const money = new Intl.NumberFormat('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});
 const shortMoney = new Intl.NumberFormat('th-TH',{notation:'compact',maximumFractionDigits:2});
 const pct = n => `${(Number(n||0)*100).toFixed(2)}%`;
-const total = rows.find(r => r.IsTotal) || rows[rows.length-1];
-const state = {sort:'Plan', dir:-1};
+const LIVE_SHEET_ID = '1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU';
+const LIVE_GID = '482273770';
+const LIVE_REFRESH_MS = 60000;
+const MAIN_CATEGORIES = new Set(['รายจ่ายบุคลากร','รายจ่ายจากการดำเนินงาน','รายจ่ายลงทุน','รายจ่ายสนับสนุน','งบกลาง']);
+function asText(value){
+  return String(value ?? '').trim();
+}
+function asNumber(value){
+  if(typeof value === 'number') return Number.isFinite(value) ? value : 0;
+  const raw = String(value ?? '').trim();
+  const isPercent = /%$/.test(raw);
+  const cleaned = raw.replace(/,/g,'').replace('%','').trim();
+  const number = Number(cleaned);
+  if(!Number.isFinite(number)) return 0;
+  return isPercent ? number / 100 : number;
+}
+function orderText(value){
+  const text = asText(value);
+  if(!text) return '';
+  const number = Number(text);
+  return Number.isFinite(number) ? String(number).replace(/\.0$/,'') : text;
+}
+function inferMain(item){
+  const text = asText(item);
+  if(/^2\./.test(text)) return 'รายจ่ายจากการดำเนินงาน';
+  if(/^3\./.test(text)) return 'รายจ่ายลงทุน';
+  return '';
+}
+function statusFor(plan, used, rate){
+  if(plan <= 0) return 'ไม่มีวงเงินแผน';
+  const percent = rate * 100;
+  if(percent < 49) return 'ต่ำกว่า 49%';
+  if(percent < 75) return '50-74%';
+  return 'มากกว่า 75%';
+}
+function normalizeRows(rawRows){
+  const normalized = [];
+  let currentMain = '';
+  let currentSub = '';
+  rawRows.forEach((row, index) => {
+    const numeric = {
+      Plan: asNumber(row.Plan),
+      Q1: asNumber(row.Q1),
+      Q2: asNumber(row.Q2),
+      Q3: asNumber(row.Q3),
+      Q4: asNumber(row.Q4),
+      Used: asNumber(row.Used),
+      Remaining: asNumber(row.Remaining),
+      Rate: asNumber(row.Rate)
+    };
+    const hasNumber = Object.values(numeric).some(v => Math.abs(v) > 0);
+    const sourceItem = asText(row.Item);
+    const totalLike = /รวมทั้งหมด/.test(sourceItem) || (!sourceItem && hasNumber && index >= rawRows.length - 1);
+    const item = totalLike ? 'รวมทั้งหมด' : sourceItem;
+    if(!item && !hasNumber) return;
+
+    const isTotal = /รวมทั้งหมด/.test(item);
+    const isMain = !isTotal && MAIN_CATEGORIES.has(item);
+    const isSub = !isTotal && /^\d+\.\d/.test(item);
+    let level = 'รายการจำแนก';
+    let parent = '';
+
+    if(isTotal){
+      level = 'รวม';
+      currentSub = '';
+    }else if(isMain){
+      level = 'หมวดหลัก';
+      currentMain = item;
+      currentSub = '';
+    }else if(isSub){
+      level = 'หมวดย่อย';
+      const inferred = inferMain(item);
+      if(inferred && currentMain !== inferred) currentMain = inferred;
+      parent = currentMain || inferred;
+      currentSub = item;
+    }else{
+      parent = currentSub || currentMain || inferMain(item);
+    }
+
+    const qTotal = numeric.Q1 + numeric.Q2 + numeric.Q3 + numeric.Q4;
+    const used = numeric.Used || qTotal;
+    const remaining = numeric.Remaining || (numeric.Plan ? numeric.Plan - used : 0);
+    const rate = numeric.Rate || (numeric.Plan ? used / numeric.Plan : 0);
+    normalized.push({
+      ...row,
+      SourceRow: row.SourceRow || index + 1,
+      Order: orderText(row.Order),
+      Item: item,
+      Level: level,
+      Parent: parent,
+      Plan: numeric.Plan,
+      Q1: numeric.Q1,
+      Q2: numeric.Q2,
+      Q3: numeric.Q3,
+      Q4: numeric.Q4,
+      Used: used,
+      Remaining: remaining,
+      Rate: rate,
+      IsMain: isMain,
+      IsTotal: isTotal,
+      Status: statusFor(numeric.Plan, used, rate)
+    });
+  });
+  const totalRow = normalized.find(r => r.IsTotal);
+  const totalPlan = totalRow ? Number(totalRow.Plan || 0) : normalized.filter(r => r.IsMain).reduce((sum,r)=>sum + Number(r.Plan || 0),0);
+  normalized.forEach(row => {
+    row.Share = row.IsTotal ? 1 : (totalPlan ? Number(row.Plan || 0) / totalPlan : 0);
+  });
+  return normalized;
+}
+function getTotalRow(data){
+  return data.find(r => r.IsTotal) || data[data.length - 1] || {Plan:0,Q1:0,Q2:0,Q3:0,Q4:0,Used:0,Remaining:0,Rate:0,Share:0};
+}
+let rows = normalizeRows(embeddedRows);
+let total = getTotalRow(rows);
+const state = {sort:'SourceRow', dir:1};
 function chartColor(i){ return colors[i % colors.length]; }
 function chartFill(i){ return `linear-gradient(90deg, ${chartColor(i)}, ${colors[(i+1) % colors.length]})`; }
 function rateClass(n){
@@ -227,6 +352,9 @@ function downloadBlob(blob, filename){
 }
 
 function statusClass(s){
+  if(s === 'ต่ำกว่า 49%') return 'danger';
+  if(s === '50-74%') return 'warn';
+  if(s === 'มากกว่า 75%') return 'ok';
   if(s === 'ยังไม่มีการใช้จ่าย') return 'warn';
   if(s === 'ไม่มีวงเงินแผน') return 'zero';
   return '';
@@ -303,7 +431,7 @@ function renderTable(){
   const data = filtered();
   document.getElementById('tbody').innerHTML = data.map(r=>`
     <tr>
-      <td>${r.Item}</td><td>${r.Level}</td>
+      <td>${r.Item}</td><td>${r.Level}</td><td>${r.Parent || '-'}</td>
       <td class="num">${money.format(r.Plan)}</td>
       <td class="num">${money.format(r.Q1)}</td>
       <td class="num">${money.format(r.Q2)}</td>
@@ -328,7 +456,7 @@ function analysisData(){
     points: [
       `งบรายจ่ายรวม ${money.format(total.Plan)} บาท ใช้จ่ายแล้ว ${money.format(total.Used)} บาท คิดเป็น ${pct(total.Rate)}`,
       `หมวดหลักที่มีวงเงินสูงสุดคือ ${largestMain.Item || '-'} จำนวน ${money.format(largestMain.Plan || 0)} บาท หรือ ${pct(largestMain.Share || 0)} ของงบรวม`,
-      `รายการย่อยที่มีวงเงินสูงสุดคือ ${largestItem.Item || '-'} จำนวน ${money.format(largestItem.Plan || 0)} บาท`,
+      `หมวดย่อย/รายการจำแนกที่มีวงเงินสูงสุดคือ ${largestItem.Item || '-'} จำนวน ${money.format(largestItem.Plan || 0)} บาท`,
       `รายการที่มีวงเงินแผนแต่ยังไม่มีการใช้จ่ายมี ${zeroProgress.length} รายการ ควรติดตามรอบบันทึกผลใช้จ่ายรายเดือน`,
       `อัตราใช้จ่ายรวมอยู่ในเกณฑ์สี${rateClass(total.Rate)==='pct-red'?'แดง':rateClass(total.Rate)==='pct-yellow'?'เหลือง':'เขียว'} ตามเกณฑ์ที่กำหนด`
     ]
@@ -395,8 +523,8 @@ function colName(n){
   return s;
 }
 function exportExcel(){
-  const headers = ['รายการ','ระดับ','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'];
-  const data = rows.map(r => [r.Item,r.Level,money.format(r.Plan),money.format(r.Q1),money.format(r.Q2),money.format(r.Q3),money.format(r.Q4),money.format(r.Used),money.format(r.Remaining),pct(r.Rate),pct(r.Share),r.Status]);
+  const headers = ['รายการ','หมวดรายจ่าย','อยู่ภายใต้','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'];
+  const data = rows.map(r => [r.Item,r.Level,r.Parent || '',money.format(r.Plan),money.format(r.Q1),money.format(r.Q2),money.format(r.Q3),money.format(r.Q4),money.format(r.Used),money.format(r.Remaining),pct(r.Rate),pct(r.Share),r.Status]);
   const all = [headers, ...data];
   const sheetRows = all.map((row,ri)=>`<row r="${ri+1}">` + row.map((v,ci)=>`<c r="${colName(ci+1)}${ri+1}" t="inlineStr"><is><t>${xmlEscape(v)}</t></is></c>`).join('') + '</row>').join('');
   const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${sheetRows}</sheetData></worksheet>`;
@@ -433,7 +561,7 @@ function exportDocx(){
     ['อัตราใช้จ่าย', pct(total.Rate)]
   ];
   const mainRows = a.main.map(r=>[r.Item, money.format(r.Plan), pct(r.Rate), pct(r.Share), r.Status]);
-  const topRows = a.budgetRows.filter(r=>!r.IsMain).sort((x,y)=>y.Plan-x.Plan).slice(0,8).map(r=>[r.Item, money.format(r.Plan), pct(r.Rate), r.Status]);
+  const topRows = a.budgetRows.filter(r=>!r.IsMain).sort((x,y)=>y.Plan-x.Plan).slice(0,8).map(r=>[r.Item, r.Parent || '-', money.format(r.Plan), pct(r.Rate), r.Status]);
   const body = [
     wPara('วิเคราะห์ข้อมูลสำหรับผู้บริหาร', 36, true),
     wPara('Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570 โรงพยาบาลพรหมพิราม', 28, true),
@@ -444,8 +572,8 @@ function exportDocx(){
     ...a.points.map(p=>wPara(`• ${p}`)),
     wPara('โครงสร้างหมวดหลัก', 28, true),
     wTable(['หมวด','แผน 2570','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'], mainRows),
-    wPara('รายการย่อยวงเงินสูง', 28, true),
-    wTable(['รายการ','แผน 2570','ร้อยละใช้จ่าย','สถานะ'], topRows)
+    wPara('หมวดย่อยและรายการจำแนกวงเงินสูง', 28, true),
+    wTable(['รายการ','อยู่ภายใต้','แผน 2570','ร้อยละใช้จ่าย','สถานะ'], topRows)
   ].join('');
   const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
   const content = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>';
@@ -457,6 +585,86 @@ function exportDocx(){
   ], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
   downloadBlob(blob, 'Executive_Analysis_Expense_Dashboard_2570.docx');
 }
+function cellValue(row, index){
+  const cell = row.c && row.c[index];
+  return cell && cell.v !== null && cell.v !== undefined ? cell.v : '';
+}
+function rowsFromGviz(response){
+  if(!response || response.status !== 'ok' || !response.table) throw new Error('Google Sheet response ไม่พร้อม');
+  const out = [];
+  (response.table.rows || []).forEach((sheetRow, index) => {
+    const item = asText(cellValue(sheetRow, 1));
+    const row = {
+      SourceRow: index + 4,
+      Order: orderText(cellValue(sheetRow, 0)),
+      Item: item,
+      Plan: asNumber(cellValue(sheetRow, 2)),
+      Q1: asNumber(cellValue(sheetRow, 3)),
+      Q2: asNumber(cellValue(sheetRow, 4)),
+      Q3: asNumber(cellValue(sheetRow, 5)),
+      Q4: asNumber(cellValue(sheetRow, 6)),
+      Used: asNumber(cellValue(sheetRow, 7)),
+      Remaining: asNumber(cellValue(sheetRow, 8)),
+      Rate: asNumber(cellValue(sheetRow, 9))
+    };
+    const hasData = item || ['Plan','Q1','Q2','Q3','Q4','Used','Remaining','Rate'].some(key => Math.abs(row[key]) > 0);
+    if(hasData) out.push(row);
+  });
+  return out;
+}
+function setDataStatus(statusText, updatedText){
+  const status = document.getElementById('dataStatus');
+  const updated = document.getElementById('lastUpdated');
+  if(status) status.textContent = statusText;
+  if(updated && updatedText) updated.textContent = updatedText;
+}
+function applyRows(nextRows){
+  rows = normalizeRows(nextRows);
+  total = getTotalRow(rows);
+  renderAll();
+}
+function loadLiveData(){
+  const callback = `__expenseSheet_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    const cleanup = () => {
+      clearTimeout(timer);
+      if(script.parentNode) script.parentNode.removeChild(script);
+      try{ delete window[callback]; }catch(err){ window[callback] = undefined; }
+    };
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error('หมดเวลารอข้อมูลสด'));
+    }, 15000);
+    window[callback] = response => {
+      try{
+        const liveRows = rowsFromGviz(response);
+        cleanup();
+        resolve(liveRows);
+      }catch(err){
+        cleanup();
+        reject(err);
+      }
+    };
+    script.onerror = () => {
+      cleanup();
+      reject(new Error('โหลดข้อมูลสดไม่สำเร็จ'));
+    };
+    script.src = `https://docs.google.com/spreadsheets/d/${LIVE_SHEET_ID}/gviz/tq?gid=${LIVE_GID}&tqx=out:json;responseHandler:${callback}&cachebust=${Date.now()}`;
+    document.head.appendChild(script);
+  });
+}
+async function refreshLiveData(){
+  setDataStatus('สถานะข้อมูล: กำลังอัปเดตข้อมูลสด', '');
+  try{
+    const liveRows = await loadLiveData();
+    applyRows(liveRows);
+    setDataStatus('สถานะข้อมูล: สดจาก Google Sheet', `อัปเดตล่าสุด: ${new Date().toLocaleString('th-TH')}`);
+  }catch(err){
+    console.warn('Live data unavailable:', err);
+    setDataStatus('สถานะข้อมูล: ใช้ข้อมูลสำรองในไฟล์', `อัปเดตล่าสุด: ${new Date().toLocaleString('th-TH')}`);
+  }
+}
 function renderAll(){ renderKpis(); renderAnalysis(); renderBars(); renderDonut(); renderQuarters(); renderTop(); renderTable(); }
 document.getElementById('exportExcel').addEventListener('click', exportExcel);
 document.getElementById('exportDocx').addEventListener('click', exportDocx);
@@ -467,10 +675,12 @@ document.getElementById('toggleAnalysis').addEventListener('click', ()=>{
 });
 document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{
   const key = th.dataset.sort;
-  if(state.sort === key) state.dir *= -1; else { state.sort = key; state.dir = ['Item','Level','Status'].includes(key) ? 1 : -1; }
+  if(state.sort === key) state.dir *= -1; else { state.sort = key; state.dir = ['Item','Level','Parent','Status'].includes(key) ? 1 : -1; }
   renderTable();
 }));
 renderAll();
+refreshLiveData();
+setInterval(refreshLiveData, LIVE_REFRESH_MS);
 </script>
 </body>
 </html>
