@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="th">
 <head>
 <meta charset="utf-8">
@@ -6,175 +6,145 @@
 <title>Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570</title>
 <style>
 :root{
-  --ink:#172033; --muted:#64748b; --line:#d7e4f2; --panel:#ffffff; --bg:#f5f8fc;
-  --teal:#0f766e; --blue:#2563eb; --amber:#f59e0b; --rose:#e11d48; --green:#16a34a; --violet:#7c3aed;
-  --red:#dc2626; --yellow:#ca8a04; --ok:#16a34a;
-  --shadow:0 16px 42px rgba(20,31,55,.11);
+  --ink:#172033;--muted:#64748b;--line:#dbe6f3;--bg:#f5f8fc;--panel:#fff;
+  --blue:#3498db;--sky:#7dd3fc;--amber:#f59e0b;--green:#22c55e;--red:#ef4444;--violet:#a78bfa;--teal:#14b8a6;
+  --shadow:0 16px 40px rgba(27,43,76,.10);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;color:var(--ink);background:
-  linear-gradient(180deg,#edf7ff 0,#f7fbff 260px,#f5f8fc 100%);overflow-x:hidden}
-button,input,select,a{font:inherit}
-.shell{width:min(1240px,100%);margin:0 auto;padding:22px}
-.top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end;margin-bottom:18px}
-.eyebrow{font-size:13px;color:var(--teal);font-weight:700;letter-spacing:0}
-h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spacing:0;overflow-wrap:anywhere;word-break:break-word}
-.title-year{display:inline}
-.sub{margin:0;color:var(--muted);font-size:15px;line-height:1.55;max-width:100%;overflow-wrap:anywhere;word-break:break-word}
-.meta{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
-.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#334155;font-size:13px;box-shadow:0 8px 24px rgba(30,41,59,.06)}
-.controls{position:sticky;top:0;z-index:5;background:rgba(247,251,255,.9);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px}
-.tool-btn{border:1px solid var(--line);background:#fff;color:#243044;border-radius:8px;padding:11px 12px;font-weight:800;box-shadow:0 8px 18px rgba(15,23,42,.06);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease}
-.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.tool-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;text-decoration:none}
-.tool-btn svg{width:17px;height:17px}
-.tool-btn:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(15,23,42,.12);filter:saturate(1.08)}
-.tool-btn.sheet{background:linear-gradient(135deg,#16a34a,#0f766e);color:#fff;border-color:#0d9488}
-.tool-btn.primary{background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;border-color:#1d77a8}
-.tool-btn.tool-analysis{background:linear-gradient(135deg,#7c3aed,#2563eb);color:#fff;border-color:#6d28d9}
-.tool-btn.docx{background:linear-gradient(135deg,#f97316,#e11d48);color:#fff;border-color:#fb7185}
-.pct-badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 8px;font-weight:800;font-size:12px;white-space:nowrap}
-.pct-badge.big{font-size:clamp(20px,3vw,30px);padding:2px 0;background:transparent}
-.pct-red{background:#fee2e2;color:#991b1b}
-.pct-yellow{background:#fef3c7;color:#92400e}
-.pct-green{background:#dcfce7;color:#166534}
-.pct-badge.big.pct-red,.pct-badge.big.pct-yellow,.pct-badge.big.pct-green{background:transparent}
+body{
+  margin:0;color:var(--ink);font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;
+  background:linear-gradient(180deg,#eef5ff 0,#f7fbff 260px,#f5f8fc 100%);
+  overflow-x:hidden;
+}
+button{font:inherit}
+.shell{width:min(1320px,100%);margin:0 auto;padding:22px;min-width:0}
+.top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;margin-bottom:18px;min-width:0}
+.eyebrow{color:#0f766e;font-size:14px;font-weight:900;letter-spacing:0;margin-bottom:5px}
+h1{font-size:clamp(30px,5vw,62px);line-height:1.04;margin:0 0 8px;letter-spacing:0;color:#172033;overflow-wrap:anywhere}
+.title-year{white-space:nowrap}
+.sub{margin:0;color:var(--muted);font-size:16px;line-height:1.5;overflow-wrap:anywhere;min-width:0}
+.meta{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px;min-width:0;max-width:100%}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.86);padding:10px 14px;box-shadow:0 10px 25px rgba(30,41,59,.07);color:#334155;font-size:13px;white-space:nowrap;min-width:0;max-width:100%}
+.controls{position:sticky;top:0;z-index:10;margin-bottom:16px;padding:11px;border:1px solid var(--line);border-radius:8px;background:rgba(248,251,255,.9);backdrop-filter:blur(16px);box-shadow:0 12px 28px rgba(15,23,42,.06);min-width:0;max-width:100%}
+.actions{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;min-width:0;max-width:100%}
+.tool-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:8px;
+  min-height:44px;padding:10px 15px;color:#fff;font-weight:900;cursor:pointer;text-decoration:none;
+  box-shadow:0 12px 24px rgba(15,23,42,.14);transition:transform .18s ease,box-shadow .18s ease,filter .18s ease;min-width:0;max-width:100%;overflow-wrap:anywhere;
+}
+.tool-btn:hover{transform:translateY(-1px);filter:saturate(1.08);box-shadow:0 16px 30px rgba(15,23,42,.17)}
+.tool-btn svg{width:18px;height:18px;stroke-width:2.2;flex:0 0 auto}
+.tool-btn.sheet{background:linear-gradient(135deg,#0f766e,#14b8a6)}
+.tool-btn.primary{background:linear-gradient(135deg,#2563eb,#38bdf8)}
+.tool-btn.analysis{background:linear-gradient(135deg,#7c3aed,#ec4899)}
+.tool-btn.docx{background:linear-gradient(135deg,#1d4ed8,#6366f1)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.kpi,.panel,.quarter-card,.category-meter{background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow)}
+.kpi{padding:16px;min-width:0;border-top:4px solid var(--accent,#3498db)}
+.kpi .label{font-size:13px;color:var(--muted);font-weight:800;margin-bottom:7px}
+.kpi .value{font-size:clamp(22px,3vw,34px);font-weight:900;line-height:1.08;white-space:nowrap;color:var(--accent,#3498db)}
+.kpi .note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.35}
+.panel{padding:16px;min-width:0;margin-bottom:14px}
+.panel h2{font-size:19px;line-height:1.25;margin:0 0 12px;color:#172033}
 .analysis-panel[hidden]{display:none}
-.analysis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.analysis-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:linear-gradient(180deg,#ffffff,#f7fbff)}
-.analysis-card b{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-.analysis-card span{font-size:20px;font-weight:800}
-.analysis-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
-.analysis-list li{border-left:4px solid var(--blue);background:#f8fafc;border-radius:8px;padding:10px 12px;line-height:1.55}
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
-.kpi{position:relative;background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--line);border-radius:8px;padding:16px;box-shadow:var(--shadow);min-width:0;overflow:hidden}
-.kpi::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#14b8a6,#60a5fa,#f59e0b,#f472b6)}
-.kpi .label{font-size:13px;color:var(--muted);margin-bottom:8px}
-.kpi .value{font-size:clamp(21px,3vw,32px);font-weight:800;line-height:1.08;white-space:nowrap}
-.kpi .note{margin-top:8px;color:var(--muted);font-size:12px}
-.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:14px}
+.analysis-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.analysis-box{border:1px solid #e3ecf7;background:#f8fbff;border-radius:8px;padding:12px}
+.analysis-box b{display:block;font-size:13px;color:#64748b;margin-bottom:6px}
+.analysis-box strong{display:block;font-size:22px;color:#172033}
+.analysis-text{display:grid;gap:8px;color:#334155;line-height:1.55;font-size:13px}
+.chart-suite{overflow:hidden}
+.chart-title{display:flex;align-items:center;gap:8px}
+.chart-tabs{display:flex;gap:8px;overflow:auto;padding:0 0 10px;scrollbar-width:thin}
+.quarter-tab{border:1px solid var(--line);background:#f8fafc;color:#64748b;border-radius:999px;padding:9px 18px;font-weight:900;font-size:13px;box-shadow:inset 0 -1px 0 rgba(15,23,42,.06);cursor:pointer;white-space:nowrap}
+.quarter-tab.active{background:#3498db;color:#fff;border-color:#3498db;box-shadow:0 8px 18px rgba(52,152,219,.24)}
+.quarter-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:4px 0 14px}
+.quarter-cards.detail{grid-template-columns:repeat(3,minmax(0,1fr))}
+.quarter-card{padding:14px;text-align:center;border-top:4px solid var(--qcolor,#3498db)}
+.quarter-card.dim{opacity:.48}
+.quarter-card b{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px}
+.quarter-card strong{display:block;color:var(--qcolor,#3498db);font-size:19px;line-height:1.2}
+.quarter-card span{display:block;color:#94a3b8;font-size:11px;margin-top:3px}
+.quarter-chart,.compare-inner{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;min-height:220px}
+.chart-y{display:grid;grid-template-rows:repeat(5,1fr);align-items:start;color:#64748b;font-size:11px;text-align:right;padding-top:8px}
+.chart-plot,.compare-plot{
+  position:relative;display:grid;align-items:end;background:repeating-linear-gradient(to bottom,#edf2f7 0,#edf2f7 1px,transparent 1px,transparent 34px);
+  border-bottom:1px solid #cbd5e1;min-width:0;
+}
+.chart-plot{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;padding:24px 18px 26px}
+.quarter-col{height:172px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative}
+.quarter-col.dim{opacity:.38}
+.quarter-bar{position:relative;width:min(82%,220px);min-height:2px;border:1px solid var(--qcolor);border-radius:8px 8px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0)),var(--qcolor);box-shadow:0 8px 18px rgba(15,23,42,.14)}
+.quarter-value,.compare-value,.detail-value{
+  position:absolute;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.94);border:1px solid #e2e8f0;border-radius:999px;
+  padding:2px 6px;color:#172033;font-size:10.5px;font-weight:900;line-height:1.15;white-space:nowrap;box-shadow:0 5px 12px rgba(15,23,42,.08)
+}
+.quarter-value{top:-27px}
+.quarter-rate{position:absolute;top:-4px;font-size:12px;font-weight:900;color:#334155;border-radius:999px;padding:1px 6px}
+.quarter-x{font-size:12px;font-weight:900;color:#64748b;margin-top:8px}
+.quarter-detail-shell{display:block;min-height:220px;overflow:visible}
+.quarter-detail-head,.compare-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:0 0 12px}
+.legend-pill{display:inline-flex;align-items:center;gap:6px;font-weight:800}
+.legend-box{width:34px;height:13px;border-radius:3px;border:2px solid}
+.quarter-detail-body{display:grid;gap:10px;min-width:0}
+.detail-row-chart{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;align-items:center}
+.detail-name{font-size:12px;font-weight:900;color:#475569;text-align:right;line-height:1.25}
+.detail-bars{display:grid;gap:6px;padding:4px 0;background:repeating-linear-gradient(to right,transparent 0,transparent calc(20% - 1px),#edf2f7 calc(20% - 1px),#edf2f7 20%)}
+.detail-track-row{height:18px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:7px}
+.detail-bar{position:relative;height:11px;border-radius:999px;border:1px solid;min-width:2px}
+.detail-plan{background:#eef2f7;border-color:#cbd5e1}
+.detail-used{background:linear-gradient(90deg,var(--selected,#60a5fa),#3498db);border-color:var(--selected,#3498db)}
+.detail-percent{font-size:11px;font-weight:900;color:#334155;white-space:nowrap;min-width:90px;border-radius:999px;padding:1px 6px;text-align:center}
+.detail-value{top:-8px;font-size:9.5px;padding:1px 5px}
+.detail-axis{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;color:#64748b;font-size:11px}
+.detail-ticks{display:flex;justify-content:space-between;border-top:1px solid #cbd5e1;padding-top:5px}
 .chart-grid{display:grid;grid-template-columns:minmax(0,2.35fr) minmax(250px,.85fr);gap:14px;margin-bottom:14px;align-items:stretch}
 .compare-panel,.category-panel{min-width:0}
 .category-panel h2{font-size:16px}
-.panel{background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:16px;min-width:0}
-.panel h2{font-size:18px;margin:0 0 12px}
-.chart-suite{margin-bottom:14px;overflow:hidden}
-.chart-title{display:flex;align-items:center;gap:8px;margin-bottom:12px}
-.chart-tabs{display:flex;gap:8px;overflow:auto;padding:0 0 10px;scrollbar-width:thin}
-.quarter-tab{border:1px solid var(--line);background:#f8fafc;color:#64748b;border-radius:999px;padding:9px 18px;font-weight:800;font-size:13px;box-shadow:inset 0 -1px 0 rgba(15,23,42,.06);cursor:pointer;white-space:nowrap}
-.quarter-tab.active{background:#3498db;color:#fff;border-color:#3498db;box-shadow:0 8px 18px rgba(52,152,219,.24)}
-.quarter-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}
-.quarter-cards.detail{grid-template-columns:repeat(3,1fr)}
-.quarter-card{border:1px solid #e6eef8;background:#f8fbff;border-radius:8px;padding:14px;text-align:center;box-shadow:0 8px 18px rgba(15,23,42,.05);border-top:3px solid var(--qcolor)}
-.quarter-card.dim{opacity:.46}
-.quarter-card b{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px}
-.quarter-card strong{display:block;color:var(--qcolor);font-size:18px;line-height:1.2}
-.quarter-card span{display:block;color:#94a3b8;font-size:11px;margin-top:3px}
-.quarter-chart,.compare-inner{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;min-height:205px}
-.quarter-detail-shell{display:block;min-height:205px}
-.chart-y{display:grid;grid-template-rows:repeat(5,1fr);align-items:start;color:#64748b;font-size:11px;text-align:right;padding-top:8px}
-.chart-plot,.compare-plot{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:end;padding:18px 18px 24px;background:repeating-linear-gradient(to bottom,#edf2f7 0,#edf2f7 1px,transparent 1px,transparent 34px);border-bottom:1px solid #cbd5e1;min-width:0}
-.quarter-col{height:170px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative;opacity:1}
-.quarter-col.dim{opacity:.38}
-.quarter-bar{width:min(82%,220px);min-height:2px;border:1px solid var(--qcolor);border-radius:8px 8px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0)),var(--qcolor);box-shadow:0 8px 18px rgba(15,23,42,.14)}
-.quarter-rate{position:absolute;top:0;font-size:12px;font-weight:900;color:#334155}
-.quarter-x{font-size:12px;font-weight:800;color:#64748b;margin-top:8px}
-.quarter-detail{overflow:visible}
-.quarter-detail-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:0 0 12px}
-.quarter-detail-body{display:grid;gap:10px;min-width:0}
-.detail-row-chart{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;align-items:center}
-.detail-name{font-size:12px;font-weight:800;color:#475569;text-align:right;line-height:1.25}
-.detail-bars{display:grid;gap:5px;padding:3px 0;background:repeating-linear-gradient(to right,transparent 0,transparent calc(20% - 1px),#edf2f7 calc(20% - 1px),#edf2f7 20%)}
-.detail-track-row{height:15px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px}
-.detail-bar{height:10px;border-radius:999px;border:1px solid;min-width:2px}
-.detail-plan{background:#eef2f7;border-color:#cbd5e1}
-.detail-used{background:linear-gradient(90deg,var(--selected,#60a5fa),#3498db);border-color:var(--selected,#3498db)}
-.detail-percent{font-size:11px;font-weight:900;color:#334155;white-space:nowrap}
-.detail-axis{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;color:#64748b;font-size:11px}
-.detail-ticks{display:flex;justify-content:space-between;border-top:1px solid #cbd5e1;padding-top:5px}
-.category-rate-wrap{display:block}
+.compare-chart{overflow:visible}
+.compare-plot{grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(6px,1vw,18px);min-height:270px;padding:26px 6px 46px}
+.compare-group{height:215px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative}
+.compare-bars{height:178px;display:flex;gap:clamp(3px,.5vw,7px);align-items:end;justify-content:center}
+.compare-bar{position:relative;width:clamp(15px,2vw,30px);min-height:2px;border-radius:7px 7px 0 0;border:2px solid}
+.compare-value{top:-25px}
+.compare-used .compare-value{top:-42px;color:#92400e}
+.compare-plan{background:rgba(125,211,252,.45);border-color:#7dd3fc}
+.compare-used{background:rgba(251,191,36,.45);border-color:#f59e0b}
+.compare-rate{position:absolute;top:-2px;left:50%;transform:translateX(-50%);text-align:center;font-size:11px;font-weight:900;border-radius:999px;padding:2px 7px;white-space:nowrap}
+.compare-rate.red,.quarter-rate.red,.detail-percent.red,.pct-badge.red{color:#991b1b;background:#fee2e2}
+.compare-rate.yellow,.quarter-rate.yellow,.detail-percent.yellow,.pct-badge.yellow{color:#92400e;background:#fef3c7}
+.compare-rate.green,.quarter-rate.green,.detail-percent.green,.pct-badge.green{color:#166534;background:#dcfce7}
+.compare-name{position:absolute;bottom:-39px;left:0;right:0;text-align:center;color:#64748b;font-size:10.5px;line-height:1.22;overflow-wrap:anywhere}
 .category-rate-list{display:grid;gap:8px}
-.category-meter{border:1px solid #e6eef8;background:linear-gradient(180deg,#fff,#f8fbff);border-radius:8px;padding:9px 10px;box-shadow:0 8px 18px rgba(15,23,42,.05)}
+.category-meter{padding:9px 10px;box-shadow:0 8px 18px rgba(15,23,42,.05)}
 .category-meter-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:6px}
 .category-meter-name{display:flex;align-items:center;gap:8px;font-weight:900;color:#172033;line-height:1.25;font-size:13px}
-.category-meter .pct-badge{padding:3px 7px;font-size:11px}
+.swatch{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+.pct-badge{display:inline-flex;border-radius:999px;padding:3px 7px;font-size:11px;font-weight:900;white-space:nowrap}
 .category-track{height:10px;background:#edf4fb;border:1px solid #d8e6f5;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
 .category-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cat),#60a5fa);box-shadow:0 8px 18px rgba(37,99,235,.14)}
 .category-meter small{display:block;color:#64748b;font-size:10.5px;margin-top:5px;line-height:1.28}
-.compare-chart{overflow:visible}
-.compare-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:-2px 0 8px}
-.legend-pill{display:inline-flex;align-items:center;gap:6px}
-.legend-box{width:34px;height:13px;border-radius:2px;border:2px solid}
-.compare-plot{grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(6px,1vw,18px);min-height:255px;padding:20px 6px 42px}
-.compare-group{height:205px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative}
-.compare-bars{height:172px;display:flex;gap:clamp(3px,.5vw,7px);align-items:end;justify-content:center}
-.compare-bar{width:clamp(13px,1.9vw,28px);min-height:2px;border-radius:6px 6px 0 0;border:2px solid}
-.compare-plan{background:rgba(125,211,252,.45);border-color:#7dd3fc}
-.compare-used{background:rgba(251,191,36,.45);border-color:#f59e0b}
-.compare-rate{position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:900;color:#334155}
-.compare-name{position:absolute;bottom:-35px;left:0;right:0;text-align:center;color:#64748b;font-size:10.5px;line-height:1.22;overflow-wrap:anywhere}
-.bar-list{display:grid;gap:10px}
-.bar-row{display:grid;grid-template-columns:minmax(140px,1fr) 2.1fr auto;gap:12px;align-items:center}
-.bar-name{font-size:13px;line-height:1.3}
-.track{height:16px;background:linear-gradient(180deg,#eef4fb,#e4edf8);border:1px solid #d9e5f2;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
-.fill{height:100%;border-radius:999px;background:var(--blue);min-width:3px;box-shadow:0 5px 14px rgba(37,99,235,.28)}
-.bar-val{font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
-.swatch{width:12px;height:12px;border-radius:999px}
-.quarter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;height:210px;align-items:end;padding-top:16px}
-.q{display:grid;gap:8px;text-align:center;color:var(--muted);font-size:12px}
-.qbar{height:150px;background:linear-gradient(180deg,#f8fbff,#edf4fb);border:1px solid #d8e6f5;border-radius:8px;display:flex;align-items:end;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.06)}
-.qfill{width:100%;background:var(--teal);min-height:2px}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
-table{width:100%;border-collapse:collapse;min-width:1040px}
-th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:middle}
-th{position:sticky;top:0;background:#f8fafc;color:#334155;font-weight:800;cursor:pointer;z-index:1}
+table{width:100%;border-collapse:collapse;min-width:980px}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:middle}
+th{position:sticky;top:0;background:#f8fafc;color:#334155;font-weight:900;cursor:pointer;z-index:1}
 td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-td.order-cell{text-align:center;font-weight:800;white-space:nowrap}
-td.item-cell{min-width:230px}
-.item-label{display:inline-block;line-height:1.35}
-tr.main-row td{font-weight:800;background:#f8fbff}
-tr.sub-row .item-label{padding-left:16px}
-tr.detail-row .item-label{padding-left:32px;color:#334155}
+tr.main-row td{font-weight:900;background:#fbfdff}
 tr.total-row td{font-weight:900;background:#eef6ff}
-.status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;background:#f1f5f9;color:#334155;white-space:nowrap}
-.status.danger{background:#fee2e2;color:#991b1b}
+.status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;background:#f1f5f9;color:#334155;white-space:nowrap}
 .status.warn{background:#fff7ed;color:#9a3412}
-.status.ok{background:#dcfce7;color:#166534}
 .status.zero{background:#eef2ff;color:#3730a3}
-.foot{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.5}
+.foot{color:#64748b;font-size:12px;margin-top:10px;line-height:1.5}
 @media (max-width:900px){
-  .shell{padding:14px}
-  .top{grid-template-columns:1fr}
-  .meta{justify-content:flex-start}
-  .controls{display:block}
-  .actions{display:grid;grid-template-columns:1fr;justify-content:stretch;width:100%}
-  .tool-btn{justify-content:center;width:100%;white-space:normal}
-  .kpis{grid-template-columns:repeat(2,1fr)}
-  .grid,.chart-grid{grid-template-columns:1fr}
-  .quarter-cards{grid-template-columns:repeat(2,1fr)}
-  .quarter-cards.detail{grid-template-columns:1fr}
-  .quarter-chart,.compare-inner{overflow:visible}
-  .analysis-grid{grid-template-columns:1fr}
+  .shell{padding:14px}.top{grid-template-columns:1fr}.meta{justify-content:flex-start}.actions{display:grid;grid-template-columns:1fr;width:100%}.tool-btn{width:100%}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.chart-grid{grid-template-columns:1fr}.quarter-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.quarter-cards.detail{grid-template-columns:1fr}.analysis-grid{grid-template-columns:1fr}
 }
 @media (max-width:560px){
-  h1{font-size:24px}
-  .title-year{display:block}
-  .sub{font-size:13px}
-  .kpis{grid-template-columns:1fr}
-  .quarter-cards{grid-template-columns:1fr}
-  .quarter-chart,.compare-inner{grid-template-columns:34px minmax(0,1fr)}
-  .detail-row-chart,.detail-axis{grid-template-columns:108px minmax(0,1fr)}
-  .chart-plot{gap:8px;padding-left:6px;padding-right:6px}
-  .compare-plot{gap:4px;padding-left:2px;padding-right:2px}
-  .compare-head{font-size:11px}
-  .compare-name{font-size:9.5px}
-  .category-meter-head{align-items:flex-start}
-  .bar-row{grid-template-columns:1fr;gap:6px}
-  .bar-val{text-align:left;white-space:normal}
-  .bar-name{overflow-wrap:anywhere}
-  .quarter{height:170px}
-  .qbar{height:110px}
+  h1{font-size:27px}.title-year{display:block}.sub{font-size:13px}.kpis,.quarter-cards{grid-template-columns:1fr}
+  .meta{display:grid;grid-template-columns:1fr;width:100%}.pill{width:100%;justify-content:center;text-align:center;white-space:normal}.controls{overflow:hidden}.tool-btn{max-width:100%;white-space:normal;text-align:center}
+  .quarter-chart,.compare-inner{grid-template-columns:34px minmax(0,1fr)}.chart-y{font-size:10px}.chart-plot{gap:8px;padding-left:5px;padding-right:5px}
+  .compare-plot{gap:4px;padding-left:2px;padding-right:2px}.compare-head{font-size:11px}.compare-name{font-size:9.5px}.compare-rate{font-size:10px}.compare-value{font-size:9px;padding:1px 4px}
+  .detail-row-chart,.detail-axis{grid-template-columns:108px minmax(0,1fr)}.detail-name{font-size:11px}.detail-percent{font-size:10px;min-width:72px}.category-meter-head{align-items:flex-start}
 }
 </style>
 </head>
@@ -184,7 +154,7 @@ tr.total-row td{font-weight:900;background:#eef6ff}
     <div>
       <div class="eyebrow">โรงพยาบาลพรหมพิราม · ปีงบประมาณ 2570</div>
       <h1>Dashboard เงินบำรุง <span class="title-year">ปีงบประมาณ พ.ศ.2570</span></h1>
-      <p class="sub">แหล่งข้อมูล: ชีต “รายจ่าย (สรุป)”</p>
+      <p class="sub">แหล่งข้อมูล: ชีต “รายจ่าย (สรุป)” จากไฟล์แผนรายรับ-รายจ่ายเงินบำรุง</p>
     </div>
     <div class="meta">
       <span class="pill" id="dataStatus">สถานะข้อมูล: กำลังเชื่อมต่อข้อมูลสด</span>
@@ -196,19 +166,19 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   <section class="controls">
     <div class="actions">
       <a class="tool-btn sheet" id="openSheet" href="https://docs.google.com/spreadsheets/d/1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU/edit?gid=482273770#gid=482273770" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
         เปิด Google Sheet
       </a>
       <button class="tool-btn primary" id="exportExcel" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
         ส่งออก Excel
       </button>
-      <button class="tool-btn tool-analysis" id="toggleAnalysis" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-8"/></svg>
-        วิเคราะห์ข้อมูลผู้บริหาร
+      <button class="tool-btn analysis" id="toggleAnalysis" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 6"/></svg>
+        วิเคราะห์ผู้บริหาร
       </button>
       <button class="tool-btn docx" id="exportDocx" type="button">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
         ส่งออก Docx
       </button>
     </div>
@@ -235,9 +205,7 @@ tr.total-row td{font-weight:900;background:#eef6ff}
     </article>
     <article class="panel category-panel">
       <h2>ร้อยละการใช้ของทั้ง 5 หมวด</h2>
-      <div class="category-rate-wrap">
-        <div class="category-rate-list" id="donut"></div>
-      </div>
+      <div class="category-rate-list" id="donut"></div>
     </article>
   </section>
 
@@ -250,10 +218,10 @@ tr.total-row td{font-weight:900;background:#eef6ff}
             <th data-sort="SourceRow">ลำดับ</th>
             <th data-sort="Item">รายการ</th>
             <th data-sort="Plan">แผน 2570</th>
-            <th data-sort="Q1">Q1</th>
-            <th data-sort="Q2">Q2</th>
-            <th data-sort="Q3">Q3</th>
-            <th data-sort="Q4">Q4</th>
+            <th data-sort="Q1">ไตรมาส 1</th>
+            <th data-sort="Q2">ไตรมาส 2</th>
+            <th data-sort="Q3">ไตรมาส 3</th>
+            <th data-sort="Q4">ไตรมาส 4</th>
             <th data-sort="Used">ใช้ทั้งหมด</th>
             <th data-sort="Remaining">คงเหลือ</th>
             <th data-sort="Rate">ร้อยละ</th>
@@ -267,264 +235,271 @@ tr.total-row td{font-weight:900;background:#eef6ff}
     <div class="foot" id="foot"></div>
   </section>
 </div>
-<script id="expense-data" type="application/json">[{"SourceRow":4,"Order":"1","Item":"รายจ่ายบุคลากร","Level":"หมวดหลัก","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":true,"IsTotal":false,"Share":0},{"SourceRow":5,"Order":"2","Item":"รายจ่ายจากการดำเนินงาน","Level":"หมวดหลัก","Plan":38623400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":38623400.42,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.97983175391367139},{"SourceRow":6,"Order":"","Item":"2.1ค่าตอบแทน","Level":"รายการย่อย","Plan":23997680.82,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":23997680.82,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.60879387708041344},{"SourceRow":7,"Order":"","Item":"2.2 ค่าใช้สอย","Level":"รายการย่อย","Plan":5195544,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5195544,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.131805043955155},{"SourceRow":8,"Order":"","Item":"2.3 ค่าวัสดุ","Level":"รายการย่อย","Plan":4168000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":4168000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.10573742099096571},{"SourceRow":9,"Order":"","Item":"2.4 ค่าสาธารณูปโภค","Level":"รายการย่อย","Plan":5248175.6,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5248175.6,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.13314024780511374},{"SourceRow":10,"Order":"","Item":"2.5 ค่าใช้จ่ายงบดำเนินงานอื่น","Level":"รายการย่อย","Plan":14000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":14000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.00035516408202339734},{"SourceRow":11,"Order":"3","Item":"รายจ่ายลงทุน","Level":"หมวดหลัก","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":12,"Order":"","Item":"3.1 ค่าครุภัณฑ์","Level":"รายการย่อย","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":13,"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":14,"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":15,"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Level":"รายการย่อย","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":16,"Order":"","Item":"3.2 ค่าที่ดินและสิ่งก่อสร้าง","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":17,"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":18,"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":19,"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":20,"Order":"4","Item":"รายจ่ายสนับสนุน","Level":"หมวดหลัก","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":true,"IsTotal":false,"Share":0},{"SourceRow":21,"Order":"5","Item":"งบกลาง","Level":"หมวดหลัก","Plan":500000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":500000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.012684431500835619},{"SourceRow":22,"Order":"รวมทั้งหมด","Item":"รวมทั้งหมด","Level":"รวม","Plan":39418400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":39418400.42,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":true,"Share":1}]</script>
+
+<script id="expense-data" type="application/json">
+[
+  {"Order":"","Item":"รายจ่ายบุคลากร","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"2","Item":"รายจ่ายจากการดำเนินงาน","Plan":38623400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":38623400.42,"Rate":0},
+  {"Order":"","Item":"2.1ค่าตอบแทน","Plan":23997680.82,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":23997680.82,"Rate":0},
+  {"Order":"","Item":"2.2 ค่าใช้สอย","Plan":5195544,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5195544,"Rate":0},
+  {"Order":"","Item":"2.3 ค่าวัสดุ","Plan":4168000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":4168000,"Rate":0},
+  {"Order":"","Item":"2.4 ค่าสาธารณูปโภค","Plan":5248175.60,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5248175.60,"Rate":0},
+  {"Order":"","Item":"2.5 ค่าใช้จ่ายงบดำเนินงานอื่น","Plan":14000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":14000,"Rate":0},
+  {"Order":"3","Item":"รายจ่ายลงทุน","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0},
+  {"Order":"","Item":"3.1 ค่าครุภัณฑ์","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0},
+  {"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0},
+  {"Order":"","Item":"3.2 ค่าที่ดินและสิ่งก่อสร้าง","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"4","Item":"รายจ่ายสนับสนุน","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0},
+  {"Order":"5","Item":"งบกลาง","Plan":500000,"Q1":75000,"Q2":0,"Q3":0,"Q4":0,"Used":75000,"Remaining":425000,"Rate":0.15},
+  {"Order":"","Item":"รวมทั้งหมด","Plan":39418400.42,"Q1":75000,"Q2":0,"Q3":0,"Q4":0,"Used":75000,"Remaining":39343400.42,"Rate":0.001902664725125343}
+]
+</script>
 <script>
 const embeddedRows = JSON.parse(document.getElementById('expense-data').textContent);
-const verifiedFallbackUpdates = {
-  'งบกลาง': {Q1:75000, Used:75000, Remaining:425000, Rate:0.15},
-  'รวมทั้งหมด': {Q1:75000, Used:75000, Remaining:39343400.42, Rate:0.001902664725125343}
-};
-embeddedRows.forEach(row => {
-  if(verifiedFallbackUpdates[row.Item]) Object.assign(row, verifiedFallbackUpdates[row.Item]);
-});
-const colors = ['#2563eb','#14b8a6','#f59e0b','#ec4899','#8b5cf6','#22c55e','#06b6d4','#f97316'];
+const colors = ['#2f80ed','#20b9ac','#f59e0b','#38bdf8','#a78bfa'];
+const quarterColors = {Q1:'#3498db',Q2:'#a78bfa',Q3:'#fb923c',Q4:'#4ade80'};
 const money = new Intl.NumberFormat('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});
-const shortMoney = new Intl.NumberFormat('th-TH',{notation:'compact',maximumFractionDigits:2});
-const pct = n => `${(Number(n||0)*100).toFixed(2)}%`;
+const compact = new Intl.NumberFormat('th-TH',{maximumFractionDigits:2});
 const LIVE_SHEET_ID = '1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU';
 const LIVE_GID = '482273770';
 const LIVE_REFRESH_MS = 60000;
-const QUARTER_KEYS = ['Q1','Q2','Q3','Q4'];
-const MAIN_CATEGORIES = new Set(['รายจ่ายบุคลากร','รายจ่ายจากการดำเนินงาน','รายจ่ายลงทุน','รายจ่ายสนับสนุน','งบกลาง']);
-const MAIN_CATEGORY_ORDER = {'รายจ่ายบุคลากร':'1','รายจ่ายจากการดำเนินงาน':'2','รายจ่ายลงทุน':'3','รายจ่ายสนับสนุน':'4','งบกลาง':'5'};
-function asText(value){
-  return String(value ?? '').trim();
+const QUARTERS = [
+  {key:'Q1',label:'ไตรมาส 1',color:quarterColors.Q1},
+  {key:'Q2',label:'ไตรมาส 2',color:quarterColors.Q2},
+  {key:'Q3',label:'ไตรมาส 3',color:quarterColors.Q3},
+  {key:'Q4',label:'ไตรมาส 4',color:quarterColors.Q4}
+];
+const MAIN_CATEGORY_ORDER = ['รายจ่ายบุคลากร','รายจ่ายจากการดำเนินงาน','รายจ่ายลงทุน','รายจ่ายสนับสนุน','งบกลาง'];
+let state = {sort:'SourceRow',dir:1,quarterView:new URLSearchParams(location.search).get('quarter') || 'all'};
+let rows = normalizeRows(embeddedRows);
+
+function asNumber(v){
+  if(v == null || v === '-' || v === '') return 0;
+  if(typeof v === 'number') return Number.isFinite(v) ? v : 0;
+  const text = String(v).replace(/,/g,'').trim();
+  if(!text || text === '-') return 0;
+  if(text.endsWith('%')) return (Number.parseFloat(text) || 0) / 100;
+  return Number.parseFloat(text) || 0;
 }
-function asNumber(value){
-  if(typeof value === 'number') return Number.isFinite(value) ? value : 0;
-  const raw = String(value ?? '').trim();
-  const isPercent = /%$/.test(raw);
-  const cleaned = raw.replace(/,/g,'').replace('%','').trim();
-  const number = Number(cleaned);
-  if(!Number.isFinite(number)) return 0;
-  return isPercent ? number / 100 : number;
+function asText(v){return v == null ? '' : String(v).trim();}
+function pct(n){return `${(Number(n||0)*100).toFixed(2)}%`;}
+function moneyDash(n){return Number(n||0) === 0 ? '-' : money.format(Number(n));}
+function million(n){return Number(n||0) / 1000000;}
+function millionText(n){return `${compact.format(million(n))} ล้าน`;}
+function axisMillion(n){return `${compact.format(million(n))}ล.`;}
+function xmlEscape(s){return String(s ?? '').replace(/[<>&"']/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[m]));}
+function rateColor(rate){
+  const p = Number(rate || 0) * 100;
+  if(p < 49) return '#ef4444';
+  if(p < 75) return '#f59e0b';
+  return '#22c55e';
 }
-function orderText(value){
-  const text = asText(value);
-  if(!text) return '';
-  const number = Number(text);
-  return Number.isFinite(number) ? String(number).replace(/\.0$/,'') : text;
+function rateClass(rate){
+  const p = Number(rate || 0) * 100;
+  if(p < 49) return 'red';
+  if(p < 75) return 'yellow';
+  return 'green';
 }
-function inferMain(item){
-  const text = asText(item);
-  if(/^2\./.test(text)) return 'รายจ่ายจากการดำเนินงาน';
-  if(/^3\./.test(text)) return 'รายจ่ายลงทุน';
+function rateBadge(rate){return `<span class="pct-badge ${rateClass(rate)}">${pct(rate)}</span>`;}
+function statusFor(plan,used){
+  if(plan <= 0) return 'ไม่มีวงเงินแผน';
+  if(used <= 0) return 'ยังไม่มีการใช้จ่าย';
+  if(used > plan) return 'ใช้เกินแผน';
+  return 'มีการใช้จ่ายแล้ว';
+}
+function statusClass(status){
+  if(status === 'ยังไม่มีการใช้จ่าย') return 'warn';
+  if(status === 'ไม่มีวงเงินแผน') return 'zero';
   return '';
 }
-function statusFor(plan, used, rate){
-  if(plan <= 0) return 'ไม่มีวงเงินแผน';
-  const percent = rate * 100;
-  if(percent < 49) return 'ต่ำกว่า 49%';
-  if(percent < 75) return '50-74%';
-  return 'มากกว่า 75%';
+function rowClass(r){
+  if(r.IsTotal) return 'total-row';
+  if(r.IsMain) return 'main-row';
+  return '';
+}
+function inferMain(item, order, currentMain){
+  const clean = asText(item);
+  if(MAIN_CATEGORY_ORDER.includes(clean)) return clean;
+  if(/^2\./.test(clean)) return 'รายจ่ายจากการดำเนินงาน';
+  if(/^3\./.test(clean) || /ครุภัณฑ์|ที่ดิน|สิ่งก่อสร้าง/.test(clean)) return 'รายจ่ายลงทุน';
+  return currentMain || clean;
 }
 function normalizeRows(rawRows){
-  const normalized = [];
   let currentMain = '';
   let currentSub = '';
-  rawRows.forEach((row, index) => {
-    const numeric = {
-      Plan: asNumber(row.Plan),
-      Q1: asNumber(row.Q1),
-      Q2: asNumber(row.Q2),
-      Q3: asNumber(row.Q3),
-      Q4: asNumber(row.Q4),
-      Used: asNumber(row.Used),
-      Remaining: asNumber(row.Remaining),
-      Rate: asNumber(row.Rate)
-    };
-    const hasNumber = Object.values(numeric).some(v => Math.abs(v) > 0);
-    const sourceItem = asText(row.Item);
-    const totalLike = /รวมทั้งหมด/.test(sourceItem) || (!sourceItem && hasNumber && index >= rawRows.length - 1);
-    const item = totalLike ? 'รวมทั้งหมด' : sourceItem;
-    if(!item && !hasNumber) return;
-
+  const mapped = rawRows.map((r,index)=>{
+    let item = asText(r.Item ?? r.B ?? r[1]);
+    const order = asText(r.Order ?? r.A ?? r[0]);
+    const plan = asNumber(r.Plan ?? r.C ?? r[2]);
+    const q1 = asNumber(r.Q1 ?? r.D ?? r[3]);
+    const q2 = asNumber(r.Q2 ?? r.E ?? r[4]);
+    const q3 = asNumber(r.Q3 ?? r.F ?? r[5]);
+    const q4 = asNumber(r.Q4 ?? r.G ?? r[6]);
+    const qTotal = q1 + q2 + q3 + q4;
+    const used = qTotal || asNumber(r.Used ?? r.H ?? r[7]);
+    if(!item && (plan || used || asNumber(r.Remaining ?? r.I ?? r[8]))) item = 'รวมทั้งหมด';
+    const remaining = plan ? plan - used : 0;
+    const rate = plan ? used / plan : 0;
     const isTotal = /รวมทั้งหมด/.test(item);
-    const isMain = !isTotal && MAIN_CATEGORIES.has(item);
-    const isSub = !isTotal && /^\d+\.\d/.test(item);
+    const isMain = MAIN_CATEGORY_ORDER.includes(item);
     let level = 'รายการจำแนก';
-    let parent = '';
-
-    if(isTotal){
-      level = 'รวม';
-      currentSub = '';
-    }else if(isMain){
-      level = 'หมวดหลัก';
-      currentMain = item;
-      currentSub = '';
-    }else if(isSub){
-      level = 'หมวดย่อย';
-      const inferred = inferMain(item);
-      if(inferred && currentMain !== inferred) currentMain = inferred;
-      parent = currentMain || inferred;
-      currentSub = item;
-    }else{
-      parent = currentSub || currentMain || inferMain(item);
-    }
-
-    const qTotal = numeric.Q1 + numeric.Q2 + numeric.Q3 + numeric.Q4;
-    const used = qTotal || numeric.Used;
-    const remaining = numeric.Plan ? numeric.Plan - used : 0;
-    const rate = numeric.Plan ? used / numeric.Plan : 0;
-    const displayOrder = isMain ? (orderText(row.Order) || MAIN_CATEGORY_ORDER[item] || '') : '';
-    normalized.push({
-      ...row,
-      SourceRow: row.SourceRow || index + 1,
-      Order: displayOrder,
-      Item: item,
-      Level: level,
-      Parent: parent,
-      Plan: numeric.Plan,
-      Q1: numeric.Q1,
-      Q2: numeric.Q2,
-      Q3: numeric.Q3,
-      Q4: numeric.Q4,
-      Used: used,
-      Remaining: remaining,
-      Rate: rate,
-      IsMain: isMain,
-      IsTotal: isTotal,
-      Status: statusFor(numeric.Plan, used, rate)
-    });
-  });
-  const totalRow = normalized.find(r => r.IsTotal);
-  const mainRows = normalized.filter(r => r.IsMain);
-  const computedTotal = mainRows.reduce((sum,row) => {
-    sum.Plan += Number(row.Plan || 0);
-    sum.Q1 += Number(row.Q1 || 0);
-    sum.Q2 += Number(row.Q2 || 0);
-    sum.Q3 += Number(row.Q3 || 0);
-    sum.Q4 += Number(row.Q4 || 0);
-    sum.Used += Number(row.Used || 0);
-    sum.Remaining += Number(row.Remaining || 0);
-    return sum;
-  }, {Plan:0,Q1:0,Q2:0,Q3:0,Q4:0,Used:0,Remaining:0});
-  if(totalRow){
-    ['Plan','Q1','Q2','Q3','Q4','Used','Remaining'].forEach(key => totalRow[key] = computedTotal[key]);
-    totalRow.Rate = totalRow.Plan ? totalRow.Used / totalRow.Plan : 0;
-    totalRow.Status = statusFor(totalRow.Plan, totalRow.Used, totalRow.Rate);
+    if(isTotal) level = 'รวม';
+    else if(isMain) level = 'หมวดหลัก';
+    else if(/^\d+\.\d+/.test(item)) level = 'หมวดย่อย';
+    if(isMain) currentMain = item;
+    if(level === 'หมวดย่อย') currentSub = item;
+    const parent = isMain ? '' : inferMain(item,order,currentMain);
+    return {SourceRow:index+1,Order:order,Item:item,Plan:plan,Q1:q1,Q2:q2,Q3:q3,Q4:q4,Used:used,Remaining:remaining,Rate:rate,Level:level,Parent:parent,SubParent:level==='รายการจำแนก'?currentSub:'',IsMain:isMain,IsTotal:isTotal,Status:statusFor(plan,used)};
+  }).filter(r=>r.Item);
+  const total = mapped.find(r=>r.IsTotal);
+  const mains = mapped.filter(r=>r.IsMain);
+  if(total){
+    total.Plan = mains.reduce((s,r)=>s+r.Plan,0);
+    total.Q1 = mains.reduce((s,r)=>s+r.Q1,0);
+    total.Q2 = mains.reduce((s,r)=>s+r.Q2,0);
+    total.Q3 = mains.reduce((s,r)=>s+r.Q3,0);
+    total.Q4 = mains.reduce((s,r)=>s+r.Q4,0);
+    total.Used = total.Q1 + total.Q2 + total.Q3 + total.Q4;
+    total.Remaining = total.Plan - total.Used;
+    total.Rate = total.Plan ? total.Used / total.Plan : 0;
+    total.Status = statusFor(total.Plan,total.Used);
   }
-  const totalPlan = totalRow ? Number(totalRow.Plan || 0) : computedTotal.Plan;
-  normalized.forEach(row => {
-    row.Share = row.IsTotal ? 1 : (totalPlan ? Number(row.Plan || 0) / totalPlan : 0);
-  });
-  return normalized;
+  const totalPlan = (total && total.Plan) || mains.reduce((s,r)=>s+r.Plan,0) || 1;
+  mapped.forEach(r=>{r.Share = r.Plan ? r.Plan / totalPlan : 0;});
+  return mapped;
 }
-function getTotalRow(data){
-  return data.find(r => r.IsTotal) || data[data.length - 1] || {Plan:0,Q1:0,Q2:0,Q3:0,Q4:0,Used:0,Remaining:0,Rate:0,Share:0};
-}
-let rows = normalizeRows(embeddedRows);
-let total = getTotalRow(rows);
-const requestedQuarter = new URLSearchParams(location.search).get('quarter') || location.hash.replace('#','');
-const state = {sort:'SourceRow', dir:1, quarterView:QUARTER_KEYS.includes(requestedQuarter) ? requestedQuarter : 'all'};
-function chartColor(i){ return colors[i % colors.length]; }
-function chartFill(i){ return `linear-gradient(90deg, ${chartColor(i)}, ${colors[(i+1) % colors.length]})`; }
-function rateClass(n){
-  const p = Number(n || 0) * 100;
-  if(p < 49) return 'pct-red';
-  if(p < 75) return 'pct-yellow';
-  return 'pct-green';
-}
-function rateColor(n){
-  const p = Number(n || 0) * 100;
-  if(p < 49) return '#dc2626';
-  if(p < 75) return '#ca8a04';
-  return '#16a34a';
-}
-function rateBadge(n, big=false){
-  return `<span class="pct-badge ${big ? 'big ' : ''}${rateClass(n)}">${pct(n)}</span>`;
-}
-function xmlEscape(v){
-  return String(v ?? '').replace(/[<>&"']/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[ch]));
-}
-function downloadBlob(blob, filename){
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
-  setTimeout(()=>URL.revokeObjectURL(url), 1000);
-}
-
-function statusClass(s){
-  if(s === 'ต่ำกว่า 49%') return 'danger';
-  if(s === '50-74%') return 'warn';
-  if(s === 'มากกว่า 75%') return 'ok';
-  if(s === 'ยังไม่มีการใช้จ่าย') return 'warn';
-  if(s === 'ไม่มีวงเงินแผน') return 'zero';
-  return '';
-}
-function moneyDash(value){
-  const number = Number(value || 0);
-  return Math.abs(number) > 0 ? money.format(number) : '-';
-}
-function rowClass(row){
-  if(row.IsTotal) return 'total-row';
-  if(row.IsMain) return 'main-row';
-  if(row.Level === 'หมวดย่อย') return 'sub-row';
-  return 'detail-row';
-}
-function millionText(value){
-  return `${(Number(value || 0) / 1000000).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})} ล้าน`;
-}
-function axisMillion(value){
-  return `${(Number(value || 0) / 1000000).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})}ล.`;
-}
+function totalRow(){return rows.find(r=>r.IsTotal) || rows[rows.length-1] || {Plan:0,Used:0,Remaining:0,Rate:0,Q1:0,Q2:0,Q3:0,Q4:0};}
+function mainRows(){return MAIN_CATEGORY_ORDER.map(name=>rows.find(r=>r.IsMain && r.Item===name)).filter(Boolean);}
 function quarterMetrics(){
-  const palette = ['#3498db','#a879e8','#f08b3e','#44b97a'];
-  return QUARTER_KEYS.map((key,index) => {
-    const value = Number(total[key] || 0);
-    return {
-      key,
-      index,
-      name: `ไตรมาส ${index + 1}`,
-      value,
-      rate: total.Plan ? value / total.Plan : 0,
-      color: palette[index]
-    };
-  });
-}
-function filtered(){
-  return [...rows].sort((a,b)=>{
-    const av = a[state.sort], bv = b[state.sort];
-    if(typeof av === 'number' || typeof bv === 'number') return (Number(av||0)-Number(bv||0))*state.dir;
-    return String(av||'').localeCompare(String(bv||''),'th')*state.dir;
-  });
+  const total = totalRow();
+  return QUARTERS.map(q=>({key:q.key,label:q.label,color:q.color,value:Number(total[q.key]||0),rate:total.Plan ? Number(total[q.key]||0)/total.Plan : 0}));
 }
 function renderKpis(){
+  const total = totalRow();
   const data = [
-    ['งบประมาณทั้งหมด', total.Plan, 'บาท', 'วงเงินแผนรวม'],
-    ['ใช้จ่ายแล้ว', total.Used, 'บาท', 'ผลใช้จ่ายสะสม'],
-    ['คงเหลือ', total.Remaining, 'บาท', 'วงเงินที่ยังไม่ใช้'],
-    ['อัตราการใช้จ่าย', total.Rate, 'percent', 'เป้าหมาย >= 75%']
+    ['งบประมาณทั้งหมด',total.Plan,'วงเงินแผนรวม','#2f80ed'],
+    ['ใช้จ่ายแล้ว',total.Used,'ผลใช้จ่ายสะสม','#f59e0b'],
+    ['คงเหลือ',total.Remaining,'วงเงินที่ยังไม่ใช้','#22c55e'],
+    ['อัตราการใช้จ่าย',total.Rate,'เทียบกับแผนรวม',rateColor(total.Rate),'percent']
   ];
-  document.getElementById('kpis').innerHTML = data.map(([label,val,unit,note]) => `
-    <article class="kpi">
+  document.getElementById('kpis').innerHTML = data.map(([label,value,note,color,type])=>`
+    <article class="kpi" style="--accent:${color}">
       <div class="label">${label}</div>
-      <div class="value">${unit==='percent' ? rateBadge(val, true) : money.format(val)}</div>
+      <div class="value">${type==='percent'?pct(value):money.format(value)}</div>
       <div class="note">${note}</div>
     </article>`).join('');
 }
+function renderQuarterTabs(){
+  const tabs = [{key:'all',label:'ภาพรวม'},...QUARTERS];
+  document.getElementById('quarterTabs').innerHTML = tabs.map(t=>`
+    <button class="quarter-tab ${state.quarterView===t.key?'active':''}" type="button" data-quarter="${t.key}">${t.label}</button>`).join('');
+  document.querySelectorAll('[data-quarter]').forEach(btn=>btn.addEventListener('click',()=>{
+    state.quarterView = btn.dataset.quarter;
+    renderQuarters();
+  }));
+}
+function renderQuarters(){
+  renderQuarterTabs();
+  const total = totalRow();
+  const metrics = quarterMetrics();
+  const cards = document.getElementById('quarterCards');
+  const chart = document.getElementById('quarters');
+  if(state.quarterView !== 'all'){
+    const selected = QUARTERS.find(q=>q.key===state.quarterView) || QUARTERS[0];
+    const selectedUsed = Number(total[selected.key] || 0);
+    const selectedRate = total.Plan ? selectedUsed / total.Plan : 0;
+    cards.className = 'quarter-cards detail';
+    cards.innerHTML = [
+      ['งบรวม',total.Plan,money.format(total.Plan),'#3498db'],
+      [`ใช้ใน${selected.label}`,selectedUsed,money.format(selectedUsed),selected.color],
+      ['สัดส่วน',selectedRate,pct(selectedRate),'#a78bfa','percent']
+    ].map(([label,value,sub,color,type])=>`
+      <article class="quarter-card" style="--qcolor:${color}">
+        <b>${label}</b><strong>${type==='percent'?pct(value):millionText(value)}</strong><span>${sub} บ.</span>
+      </article>`).join('');
+    chart.className = 'quarter-detail-shell';
+    const main = mainRows();
+    const max = Math.max(...main.flatMap(r=>[Number(r.Plan||0),Number(r[selected.key]||0)]),1);
+    const ticks = [0,.25,.5,.75,1].map(x=>max*x);
+    chart.innerHTML = `
+      <div class="quarter-detail-head">
+        <span class="legend-pill"><span class="legend-box" style="background:#eef2f7;border-color:#cbd5e1"></span>แผน</span>
+        <span class="legend-pill"><span class="legend-box" style="background:${selected.color};border-color:${selected.color}"></span>${selected.label}</span>
+      </div>
+      <div class="quarter-detail-body">
+        ${main.map((r,i)=>{
+          const plan = Number(r.Plan||0);
+          const used = Number(r[selected.key]||0);
+          const planWidth = plan ? Math.max(1,plan/max*100) : 0;
+          const usedWidth = used ? Math.max(1,used/max*100) : 0;
+          const planShare = total.Plan ? plan / total.Plan : 0;
+          const usedShare = plan ? used / plan : 0;
+          return `<div class="detail-row-chart">
+            <div class="detail-name">${r.Item}</div>
+            <div class="detail-bars">
+              <div class="detail-track-row">
+                <div class="detail-bar detail-plan" style="width:${planWidth}%">${plan?`<span class="detail-value">${axisMillion(plan)}</span>`:''}</div>
+                <span class="detail-percent">${pct(planShare)}</span>
+              </div>
+              <div class="detail-track-row">
+                <div class="detail-bar detail-used" style="--selected:${selected.color};width:${usedWidth}%">${used?`<span class="detail-value">${axisMillion(used)}</span>`:`<span class="detail-value">0.00ล.</span>`}</div>
+                <span class="detail-percent ${rateClass(usedShare)}">${pct(usedShare)}</span>
+              </div>
+            </div>
+          </div>`;
+        }).join('')}
+        <div class="detail-axis"><span></span><div class="detail-ticks">${ticks.map(axisMillion).map(t=>`<span>${t}</span>`).join('')}</div></div>
+      </div>`;
+    return;
+  }
+  cards.className = 'quarter-cards';
+  cards.innerHTML = metrics.map(q=>`
+    <article class="quarter-card ${q.value?'':'dim'}" style="--qcolor:${q.color}">
+      <b>${q.label}</b><strong>${millionText(q.value)}</strong><span>${pct(q.rate)} ของแผน</span>
+    </article>`).join('');
+  chart.className = 'quarter-chart';
+  const max = Math.max(...metrics.map(q=>q.value),1);
+  const ticks = [max,max*.75,max*.5,max*.25,0];
+  chart.innerHTML = `
+    <div class="chart-y">${ticks.map(axisMillion).map(t=>`<span>${t}</span>`).join('')}</div>
+    <div class="chart-plot">
+      ${metrics.map(q=>{
+        const height = q.value ? Math.max(2,q.value/max*100) : 0;
+        return `<div class="quarter-col ${q.value?'':'dim'}">
+          <div class="quarter-rate ${rateClass(q.rate)}">${pct(q.rate)}</div>
+          <div class="quarter-bar" style="--qcolor:${q.color};height:${height}%;${q.value?'':'display:none'}"><span class="quarter-value">${axisMillion(q.value)}</span></div>
+          <div class="quarter-x">${q.label}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
 function renderBars(){
-  const main = rows.filter(r => r.IsMain && !r.IsTotal);
-  const max = Math.max(...main.flatMap(r => [Number(r.Plan || 0), Number(r.Used || 0)]), 1);
-  const ticks = [max, max * .75, max * .5, max * .25, 0];
+  const main = mainRows();
+  const max = Math.max(...main.flatMap(r=>[Number(r.Plan||0),Number(r.Used||0)]),1);
+  const ticks = [max,max*.75,max*.5,max*.25,0];
   document.getElementById('bars').innerHTML = `
     <div class="compare-head">
       <span class="legend-pill"><span class="legend-box" style="background:rgba(125,211,252,.45);border-color:#7dd3fc"></span>แผน</span>
       <span class="legend-pill"><span class="legend-box" style="background:rgba(251,191,36,.45);border-color:#f59e0b"></span>ใช้จ่ายแล้ว</span>
     </div>
     <div class="compare-inner">
-      <div class="chart-y">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div>
+      <div class="chart-y">${ticks.map(axisMillion).map(t=>`<span>${t}</span>`).join('')}</div>
       <div class="compare-plot">
-        ${main.map(r => {
-          const plan = Number(r.Plan || 0);
-          const used = Number(r.Used || 0);
-          const planHeight = plan > 0 ? Math.max(2, plan / max * 100) : 0;
-          const usedHeight = used > 0 ? Math.max(2, used / max * 100) : 0;
+        ${main.map(r=>{
+          const plan = Number(r.Plan||0);
+          const used = Number(r.Used||0);
+          const planHeight = plan ? Math.max(2,plan/max*100) : 0;
+          const usedHeight = used ? Math.max(2,used/max*100) : 0;
           return `<div class="compare-group">
-            <div class="compare-rate">${pct(r.Rate)}</div>
+            <div class="compare-rate ${rateClass(r.Rate)}">${pct(r.Rate)}</div>
             <div class="compare-bars">
-              <div class="compare-bar compare-plan" style="height:${planHeight}%;${plan ? '' : 'display:none'}"></div>
-              <div class="compare-bar compare-used" style="height:${usedHeight}%;${used ? '' : 'display:none'}"></div>
+              <div class="compare-bar compare-plan" style="height:${planHeight}%;${plan?'':'display:none'}"><span class="compare-value">${axisMillion(plan)}</span></div>
+              <div class="compare-bar compare-used" style="height:${usedHeight}%;${used?'':'min-height:2px'}"><span class="compare-value">${axisMillion(used)}</span></div>
             </div>
             <div class="compare-name">${r.Item}</div>
           </div>`;
@@ -533,10 +508,10 @@ function renderBars(){
     </div>`;
 }
 function renderDonut(){
-  const main = rows.filter(r => r.IsMain && !r.IsTotal);
+  const main = mainRows();
   document.getElementById('donut').innerHTML = main.map((r,i)=>{
-    const rate = Math.max(0, Math.min(1, Number(r.Rate || 0)));
-    const width = rate > 0 ? Math.max(1.5, rate * 100) : 0;
+    const rate = Math.max(0,Math.min(1,Number(r.Rate||0)));
+    const width = rate ? Math.max(1.5,rate*100) : 0;
     return `<article class="category-meter">
       <div class="category-meter-head">
         <div class="category-meter-name"><span class="swatch" style="background:${colors[i%colors.length]}"></span>${r.Item}</div>
@@ -547,347 +522,199 @@ function renderDonut(){
     </article>`;
   }).join('');
 }
-function renderQuarters(){
-  const qs = quarterMetrics();
-  const tabs = [{key:'all', label:'ภาพรวม'}, ...qs.map(q => ({key:q.key, label:q.name}))];
-  document.getElementById('quarterTabs').innerHTML = tabs.map(tab => `
-    <button class="quarter-tab ${state.quarterView === tab.key ? 'active' : ''}" type="button" data-quarter="${tab.key}">${tab.label}</button>`).join('');
-  document.querySelectorAll('.quarter-tab').forEach(button => button.addEventListener('click', () => {
-    state.quarterView = button.dataset.quarter;
-    renderQuarters();
-  }));
-  const selectedIndex = state.quarterView === 'all' ? -1 : qs.findIndex(q => q.key === state.quarterView);
-  const cards = document.getElementById('quarterCards');
-  const chart = document.getElementById('quarters');
-  const selected = selectedIndex >= 0 ? qs[selectedIndex] : null;
-  if(selected){
-    cards.className = 'quarter-cards detail';
-    chart.className = 'quarter-detail-shell';
-    cards.innerHTML = [
-      ['งบรวม', millionText(total.Plan), `${money.format(total.Plan)} บ.`, '#3498db'],
-      [`ใช้ใน${selected.name}`, millionText(selected.value), `${money.format(selected.value)} บ.`, selected.color],
-      ['สัดส่วน', pct(selected.rate), 'ของแผน', '#a879e8']
-    ].map(([label,value,note,color]) => `
-      <article class="quarter-card" style="--qcolor:${color}">
-        <b>${label}</b>
-        <strong>${value}</strong>
-        <span>${note}</span>
-      </article>`).join('');
-    const main = rows.filter(r => r.IsMain && !r.IsTotal);
-    const max = Math.max(...main.flatMap(r => [Number(r.Plan || 0), Number(r[selected.key] || 0)]), 1);
-    const ticks = [0, max * .25, max * .5, max * .75, max];
-    const quarterTotal = selected.value || 0;
-    chart.innerHTML = `
-      <div class="quarter-detail">
-        <div class="quarter-detail-head">
-          <span class="legend-pill"><span class="legend-box" style="background:#eef2f7;border-color:#cbd5e1"></span>แผน</span>
-          <span class="legend-pill"><span class="legend-box" style="background:${selected.color};border-color:${selected.color}"></span>${selected.name}</span>
-        </div>
-        <div class="quarter-detail-body">
-          ${main.map(r => {
-            const plan = Number(r.Plan || 0);
-            const used = Number(r[selected.key] || 0);
-            const planWidth = plan > 0 ? Math.max(1.5, plan / max * 100) : 0;
-            const usedWidth = used > 0 ? Math.max(1.5, used / max * 100) : 0;
-            const planShare = total.Plan ? plan / total.Plan : 0;
-            const quarterShare = quarterTotal ? used / quarterTotal : 0;
-            return `<div class="detail-row-chart">
-              <div class="detail-name">${r.Item}</div>
-              <div class="detail-bars">
-                <div class="detail-track-row">
-                  <div class="detail-bar detail-plan" style="width:${planWidth}%;${plan ? '' : 'display:none'}"></div>
-                  <span class="detail-percent">${pct(planShare)}</span>
-                </div>
-                <div class="detail-track-row">
-                  <div class="detail-bar detail-used" style="--selected:${selected.color};width:${usedWidth}%;${used ? '' : 'display:none'}"></div>
-                  <span class="detail-percent">${pct(quarterShare)}</span>
-                </div>
-              </div>
-            </div>`;
-          }).join('')}
-          <div class="detail-axis"><span></span><div class="detail-ticks">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div></div>
-        </div>
-      </div>`;
-    return;
-  }
-  cards.className = 'quarter-cards';
-  chart.className = 'quarter-chart';
-  cards.innerHTML = qs.map(q => `
-    <article class="quarter-card" style="--qcolor:${q.color}">
-      <b>${q.name}</b>
-      <strong>${millionText(q.value)}</strong>
-      <span>${pct(q.rate)} ของแผน</span>
-    </article>`).join('');
-  const max = Math.max(...qs.map(q => Number(q.value || 0)), 1);
-  const ticks = [max, max * .75, max * .5, max * .25, 0];
-  chart.innerHTML = `
-    <div class="chart-y">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div>
-    <div class="chart-plot">
-      ${qs.map(q => {
-        const height = q.value > 0 ? Math.max(2, Number(q.value || 0) / max * 100) : 0;
-        return `<div class="quarter-col">
-          <div class="quarter-rate">${pct(q.rate)}</div>
-          <div class="quarter-bar" style="--qcolor:${q.color};height:${height}%;${q.value ? '' : 'display:none'}"></div>
-          <div class="quarter-x">${q.name}</div>
-        </div>`;
-      }).join('')}
-    </div>`;
-}
 function renderTable(){
-  const data = filtered();
+  const data = [...rows].sort((a,b)=>{
+    const av = a[state.sort], bv = b[state.sort];
+    if(typeof av === 'number' || typeof bv === 'number') return (Number(av||0)-Number(bv||0))*state.dir;
+    return String(av||'').localeCompare(String(bv||''),'th')*state.dir;
+  });
   document.getElementById('tbody').innerHTML = data.map(r=>`
     <tr class="${rowClass(r)}">
-      <td class="order-cell">${r.Order || ''}</td>
-      <td class="item-cell"><span class="item-label">${r.Item}</span></td>
-      <td class="num">${moneyDash(r.Plan)}</td>
-      <td class="num">${moneyDash(r.Q1)}</td>
-      <td class="num">${moneyDash(r.Q2)}</td>
-      <td class="num">${moneyDash(r.Q3)}</td>
-      <td class="num">${moneyDash(r.Q4)}</td>
-      <td class="num">${moneyDash(r.Used)}</td>
-      <td class="num">${moneyDash(r.Remaining)}</td>
+      <td>${r.Order || ''}</td>
+      <td>${r.Item}</td>
+      <td class="num">${money.format(r.Plan)}</td>
+      <td class="num">${money.format(r.Q1)}</td>
+      <td class="num">${money.format(r.Q2)}</td>
+      <td class="num">${money.format(r.Q3)}</td>
+      <td class="num">${money.format(r.Q4)}</td>
+      <td class="num">${money.format(r.Used)}</td>
+      <td class="num">${money.format(r.Remaining)}</td>
       <td class="num">${rateBadge(r.Rate)}</td>
       <td class="num">${pct(r.Share)}</td>
       <td><span class="status ${statusClass(r.Status)}">${r.Status}</span></td>
     </tr>`).join('');
-  document.getElementById('foot').textContent = `แสดง ${data.length} รายการ จากข้อมูลทั้งหมด ${rows.length} รายการ`;
+  const total = totalRow();
+  document.getElementById('foot').textContent = `แสดงข้อมูล ${data.length} รายการ · งบรวม ${money.format(total.Plan)} บาท · ใช้แล้ว ${money.format(total.Used)} บาท · อัปเดตอัตโนมัติทุก ${LIVE_REFRESH_MS/1000} วินาที`;
 }
 function analysisData(){
-  const main = rows.filter(r => r.IsMain && !r.IsTotal);
-  const budgetRows = rows.filter(r => !r.IsTotal && Number(r.Plan) > 0);
-  const zeroProgress = budgetRows.filter(r => Number(r.Rate) === 0);
-  const largestMain = [...main].sort((a,b)=>b.Plan-a.Plan)[0] || {};
-  const largestItem = [...budgetRows].filter(r=>!r.IsMain).sort((a,b)=>b.Plan-a.Plan)[0] || {};
-  return {
-    main, budgetRows, zeroProgress, largestMain, largestItem,
-    points: [
-      `งบรายจ่ายรวม ${money.format(total.Plan)} บาท ใช้จ่ายแล้ว ${money.format(total.Used)} บาท คิดเป็น ${pct(total.Rate)}`,
-      `หมวดหลักที่มีวงเงินสูงสุดคือ ${largestMain.Item || '-'} จำนวน ${money.format(largestMain.Plan || 0)} บาท หรือ ${pct(largestMain.Share || 0)} ของงบรวม`,
-      `หมวดย่อย/รายการจำแนกที่มีวงเงินสูงสุดคือ ${largestItem.Item || '-'} จำนวน ${money.format(largestItem.Plan || 0)} บาท`,
-      `รายการที่มีวงเงินแผนแต่ยังไม่มีการใช้จ่ายมี ${zeroProgress.length} รายการ ควรติดตามรอบบันทึกผลใช้จ่ายรายเดือน`,
-      `อัตราใช้จ่ายรวมอยู่ในเกณฑ์สี${rateClass(total.Rate)==='pct-red'?'แดง':rateClass(total.Rate)==='pct-yellow'?'เหลือง':'เขียว'} ตามเกณฑ์ที่กำหนด`
-    ]
-  };
+  const total = totalRow();
+  const main = mainRows();
+  const highestBudget = [...main].sort((a,b)=>b.Plan-a.Plan)[0] || {};
+  const highestUse = [...main].sort((a,b)=>b.Rate-a.Rate)[0] || {};
+  const unused = main.filter(r=>r.Plan>0 && r.Used===0);
+  return {total,main,highestBudget,highestUse,unused};
 }
 function renderAnalysis(){
-  const a = analysisData();
+  const {total,main,highestBudget,highestUse,unused} = analysisData();
   document.getElementById('analysisContent').innerHTML = `
     <div class="analysis-grid">
-      <div class="analysis-card"><b>งบประมาณรวม</b><span>${money.format(total.Plan)}</span></div>
-      <div class="analysis-card"><b>อัตราใช้จ่าย</b><span>${rateBadge(total.Rate, true)}</span></div>
-      <div class="analysis-card"><b>รายการมีวงเงินแต่ยังไม่ใช้</b><span>${a.zeroProgress.length}</span></div>
+      <div class="analysis-box"><b>ภาพรวมงบประมาณ</b><strong>${millionText(total.Plan)}</strong></div>
+      <div class="analysis-box"><b>ใช้จ่ายแล้ว</b><strong>${millionText(total.Used)} · ${pct(total.Rate)}</strong></div>
+      <div class="analysis-box"><b>คงเหลือ</b><strong>${millionText(total.Remaining)}</strong></div>
     </div>
-    <ul class="analysis-list">${a.points.map(p=>`<li>${p}</li>`).join('')}</ul>`;
+    <div class="analysis-text">
+      <p>งบประมาณรวม ${money.format(total.Plan)} บาท ใช้จ่ายสะสม ${money.format(total.Used)} บาท คิดเป็น ${pct(total.Rate)} ของแผนรวม และคงเหลือ ${money.format(total.Remaining)} บาท</p>
+      <p>หมวดที่มีวงเงินสูงสุดคือ ${highestBudget.Item || '-'} วงเงิน ${moneyDash(highestBudget.Plan)} บาท คิดเป็น ${pct(highestBudget.Share)} ของงบรวม ส่วนหมวดที่มีอัตราใช้จ่ายสูงสุดคือ ${highestUse.Item || '-'} ที่ ${pct(highestUse.Rate || 0)}</p>
+      <p>ประเด็นติดตามสำคัญ: ${unused.length ? unused.map(r=>r.Item).join(', ') + ' ยังไม่มีการใช้จ่ายตามข้อมูลล่าสุด' : 'ทุกหมวดที่มีวงเงินเริ่มมีการใช้จ่ายแล้ว'} ควรติดตามแผนเบิกจ่ายรายไตรมาสให้สอดคล้องกับเป้าหมายและภารกิจบริการ</p>
+      <p>รายละเอียดรายหมวด: ${main.map(r=>`${r.Item} แผน ${moneyDash(r.Plan)} ใช้แล้ว ${moneyDash(r.Used)} (${pct(r.Rate)}) คงเหลือ ${moneyDash(r.Remaining)}`).join(' | ')}</p>
+    </div>`;
 }
-const encoder = new TextEncoder();
-const crcTable = (() => {
-  const table = [];
-  for(let n=0;n<256;n++){
-    let c = n;
-    for(let k=0;k<8;k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
-    table[n] = c >>> 0;
-  }
-  return table;
-})();
-function crc32(bytes){
-  let c = 0xffffffff;
-  for(const b of bytes) c = crcTable[(c ^ b) & 255] ^ (c >>> 8);
-  return (c ^ 0xffffffff) >>> 0;
+function renderAll(){
+  renderKpis();
+  renderAnalysis();
+  renderQuarters();
+  renderBars();
+  renderDonut();
+  renderTable();
 }
-function u16(n){ return [n & 255, (n >>> 8) & 255]; }
-function u32(n){ return [n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]; }
-function zipBlob(files, type){
-  const chunks = [], central = [];
-  let offset = 0;
-  for(const file of files){
-    const name = encoder.encode(file.name);
-    const data = typeof file.text === 'string' ? encoder.encode(file.text) : file.data;
-    const crc = crc32(data);
-    const local = new Uint8Array([
-      0x50,0x4b,0x03,0x04, ...u16(20), ...u16(0), ...u16(0), ...u16(0), ...u16(0),
-      ...u32(crc), ...u32(data.length), ...u32(data.length), ...u16(name.length), ...u16(0)
-    ]);
-    chunks.push(local, name, data);
-    const centralHeader = new Uint8Array([
-      0x50,0x4b,0x01,0x02, ...u16(20), ...u16(20), ...u16(0), ...u16(0), ...u16(0), ...u16(0),
-      ...u32(crc), ...u32(data.length), ...u32(data.length), ...u16(name.length), ...u16(0), ...u16(0),
-      ...u16(0), ...u16(0), ...u32(0), ...u32(offset)
-    ]);
-    central.push(centralHeader, name);
-    offset += local.length + name.length + data.length;
-  }
-  const centralOffset = offset;
-  const centralSize = central.reduce((sum, part)=>sum + part.length, 0);
-  const end = new Uint8Array([
-    0x50,0x4b,0x05,0x06, ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length),
-    ...u32(centralSize), ...u32(centralOffset), ...u16(0)
-  ]);
-  return new Blob([...chunks, ...central, end], {type});
+function rowsFromGviz(payload){
+  const tableRows = payload?.table?.rows || [];
+  return tableRows.map(row=>{
+    const cells = row.c || [];
+    const val = i => cells[i] ? (cells[i].v ?? cells[i].f ?? '') : '';
+    return {Order:val(0),Item:val(1),Plan:val(2),Q1:val(3),Q2:val(4),Q3:val(5),Q4:val(6),Used:val(7),Remaining:val(8),Rate:val(9)};
+  }).filter(r=>asText(r.Item) || asNumber(r.Plan) || asNumber(r.Used) || asNumber(r.Remaining));
 }
-function colName(n){
-  let s = '';
-  while(n > 0){ const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - m) / 26); }
-  return s;
+function setStatus(text,ok=true){
+  const el = document.getElementById('dataStatus');
+  el.textContent = text;
+  el.style.color = ok ? '#0f766e' : '#9a3412';
 }
-function exportExcel(){
-  const headers = ['ลำดับ','รายการ','หมวดรายจ่าย','อยู่ภายใต้','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'];
-  const data = rows.map(r => [r.Order || '',r.Item,r.Level,r.Parent || '',moneyDash(r.Plan),moneyDash(r.Q1),moneyDash(r.Q2),moneyDash(r.Q3),moneyDash(r.Q4),moneyDash(r.Used),moneyDash(r.Remaining),pct(r.Rate),pct(r.Share),r.Status]);
-  const all = [headers, ...data];
-  const sheetRows = all.map((row,ri)=>`<row r="${ri+1}">` + row.map((v,ci)=>`<c r="${colName(ci+1)}${ri+1}" t="inlineStr"><is><t>${xmlEscape(v)}</t></is></c>`).join('') + '</row>').join('');
-  const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${sheetRows}</sheetData></worksheet>`;
-  const workbook = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="รายจ่ายสรุป" sheetId="1" r:id="rId1"/></sheets></workbook>';
-  const rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>';
-  const wbRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>';
-  const content = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>';
-  const blob = zipBlob([
-    {name:'[Content_Types].xml', text:content},
-    {name:'_rels/.rels', text:rels},
-    {name:'xl/workbook.xml', text:workbook},
-    {name:'xl/_rels/workbook.xml.rels', text:wbRels},
-    {name:'xl/worksheets/sheet1.xml', text:sheet}
-  ], 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-  downloadBlob(blob, 'Expense_Dashboard_2570.xlsx');
-}
-function wRun(text, bold=false, size=24){
-  return `<w:r><w:rPr><w:rFonts w:ascii="TH Sarabun New" w:hAnsi="TH Sarabun New" w:eastAsia="TH Sarabun New" w:cs="TH Sarabun New"/><w:sz w:val="${size}"/>${bold?'<w:b/>':''}</w:rPr><w:t xml:space="preserve">${xmlEscape(text)}</w:t></w:r>`;
-}
-function wPara(text, size=24, bold=false){
-  return `<w:p><w:pPr><w:spacing w:after="120"/></w:pPr>${wRun(text,bold,size)}</w:p>`;
-}
-function wTable(headers, bodyRows){
-  const header = `<w:tr>${headers.map(h=>`<w:tc><w:tcPr><w:shd w:fill="D9EAF7"/></w:tcPr>${wPara(h,24,true)}</w:tc>`).join('')}</w:tr>`;
-  const body = bodyRows.map(row=>`<w:tr>${row.map(c=>`<w:tc>${wPara(c,24,false)}</w:tc>`).join('')}</w:tr>`).join('');
-  return `<w:tbl><w:tblPr><w:tblBorders><w:top w:val="single" w:sz="4" w:color="CBD5E1"/><w:left w:val="single" w:sz="4" w:color="CBD5E1"/><w:bottom w:val="single" w:sz="4" w:color="CBD5E1"/><w:right w:val="single" w:sz="4" w:color="CBD5E1"/><w:insideH w:val="single" w:sz="4" w:color="CBD5E1"/><w:insideV w:val="single" w:sz="4" w:color="CBD5E1"/></w:tblBorders></w:tblPr>${header}${body}</w:tbl>${wPara('')}`;
-}
-function exportDocx(){
-  const a = analysisData();
-  const kpiRows = [
-    ['งบประมาณรวม', money.format(total.Plan)],
-    ['ใช้จ่ายแล้ว', money.format(total.Used)],
-    ['คงเหลือ', money.format(total.Remaining)],
-    ['อัตราใช้จ่าย', pct(total.Rate)]
-  ];
-  const mainRows = a.main.map(r=>[r.Item, money.format(r.Plan), pct(r.Rate), pct(r.Share), r.Status]);
-  const topRows = a.budgetRows.filter(r=>!r.IsMain).sort((x,y)=>y.Plan-x.Plan).slice(0,8).map(r=>[r.Item, r.Parent || '-', money.format(r.Plan), pct(r.Rate), r.Status]);
-  const body = [
-    wPara('วิเคราะห์ข้อมูลสำหรับผู้บริหาร', 36, true),
-    wPara('Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570 โรงพยาบาลพรหมพิราม', 28, true),
-    wPara(`จัดทำจากข้อมูลใน HTML ณ ${new Date().toLocaleString('th-TH')}`),
-    wPara('ตัวชี้วัดภาพรวม', 28, true),
-    wTable(['ตัวชี้วัด','ค่า'], kpiRows),
-    wPara('ประเด็นวิเคราะห์', 28, true),
-    ...a.points.map(p=>wPara(`• ${p}`)),
-    wPara('โครงสร้างหมวดหลัก', 28, true),
-    wTable(['หมวด','แผน 2570','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'], mainRows),
-    wPara('หมวดย่อยและรายการจำแนกวงเงินสูง', 28, true),
-    wTable(['รายการ','อยู่ภายใต้','แผน 2570','ร้อยละใช้จ่าย','สถานะ'], topRows)
-  ].join('');
-  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
-  const content = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>';
-  const rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>';
-  const blob = zipBlob([
-    {name:'[Content_Types].xml', text:content},
-    {name:'_rels/.rels', text:rels},
-    {name:'word/document.xml', text:documentXml}
-  ], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-  downloadBlob(blob, 'Executive_Analysis_Expense_Dashboard_2570.docx');
-}
-function cellValue(row, index){
-  const cell = row.c && row.c[index];
-  return cell && cell.v !== null && cell.v !== undefined ? cell.v : '';
-}
-function rowsFromGviz(response){
-  if(!response || response.status !== 'ok' || !response.table) throw new Error('Google Sheet response ไม่พร้อม');
-  const out = [];
-  (response.table.rows || []).forEach((sheetRow, index) => {
-    const item = asText(cellValue(sheetRow, 1));
-    const row = {
-      SourceRow: index + 4,
-      Order: orderText(cellValue(sheetRow, 0)),
-      Item: item,
-      Plan: asNumber(cellValue(sheetRow, 2)),
-      Q1: asNumber(cellValue(sheetRow, 3)),
-      Q2: asNumber(cellValue(sheetRow, 4)),
-      Q3: asNumber(cellValue(sheetRow, 5)),
-      Q4: asNumber(cellValue(sheetRow, 6)),
-      Used: asNumber(cellValue(sheetRow, 7)),
-      Remaining: asNumber(cellValue(sheetRow, 8)),
-      Rate: asNumber(cellValue(sheetRow, 9))
-    };
-    const hasData = item || ['Plan','Q1','Q2','Q3','Q4','Used','Remaining','Rate'].some(key => Math.abs(row[key]) > 0);
-    if(hasData) out.push(row);
-  });
-  return out;
-}
-function setDataStatus(statusText, updatedText){
-  const status = document.getElementById('dataStatus');
-  const updated = document.getElementById('lastUpdated');
-  if(status) status.textContent = statusText;
-  if(updated && updatedText) updated.textContent = updatedText;
-}
-function applyRows(nextRows){
-  rows = normalizeRows(nextRows);
-  total = getTotalRow(rows);
-  renderAll();
+function updateTimestamp(){
+  document.getElementById('lastUpdated').textContent = `อัปเดตล่าสุด: ${new Date().toLocaleString('th-TH')}`;
 }
 function loadLiveData(){
-  const callback = `__expenseSheet_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-  return new Promise((resolve, reject) => {
+  const callback = `budgetGviz_${Date.now()}_${Math.round(Math.random()*100000)}`;
+  const url = `https://docs.google.com/spreadsheets/d/${LIVE_SHEET_ID}/gviz/tq?gid=${LIVE_GID}&tqx=out:json;responseHandler:${callback}&cachebust=${Date.now()}`;
+  return new Promise((resolve,reject)=>{
     const script = document.createElement('script');
-    const cleanup = () => {
-      clearTimeout(timer);
-      if(script.parentNode) script.parentNode.removeChild(script);
-      try{ delete window[callback]; }catch(err){ window[callback] = undefined; }
-    };
-    const timer = setTimeout(() => {
-      cleanup();
-      reject(new Error('หมดเวลารอข้อมูลสด'));
-    }, 15000);
-    window[callback] = response => {
+    const timer = setTimeout(()=>{cleanup(); reject(new Error('timeout'));},20000);
+    function cleanup(){clearTimeout(timer); delete window[callback]; script.remove();}
+    window[callback] = payload => {
       try{
-        const liveRows = rowsFromGviz(response);
+        const liveRows = normalizeRows(rowsFromGviz(payload));
+        if(liveRows.length) rows = liveRows;
+        setStatus('สถานะข้อมูล: สดจาก Google Sheet',true);
+        updateTimestamp();
+        renderAll();
         cleanup();
-        resolve(liveRows);
-      }catch(err){
-        cleanup();
-        reject(err);
-      }
+        resolve();
+      }catch(err){cleanup(); reject(err);}
     };
-    script.onerror = () => {
-      cleanup();
-      reject(new Error('โหลดข้อมูลสดไม่สำเร็จ'));
-    };
-    script.src = `https://docs.google.com/spreadsheets/d/${LIVE_SHEET_ID}/gviz/tq?gid=${LIVE_GID}&tqx=out:json;responseHandler:${callback}&cachebust=${Date.now()}`;
+    script.onerror = () => {cleanup(); reject(new Error('load error'));};
+    script.src = url;
     document.head.appendChild(script);
   });
 }
-async function refreshLiveData(){
-  setDataStatus('สถานะข้อมูล: กำลังอัปเดตข้อมูลสด', '');
-  try{
-    const liveRows = await loadLiveData();
-    applyRows(liveRows);
-    setDataStatus('สถานะข้อมูล: สดจาก Google Sheet', `อัปเดตล่าสุด: ${new Date().toLocaleString('th-TH')}`);
-  }catch(err){
-    console.warn('Live data unavailable:', err);
-    setDataStatus('สถานะข้อมูล: ใช้ข้อมูลสำรองในไฟล์', `อัปเดตล่าสุด: ${new Date().toLocaleString('th-TH')}`);
-  }
+function refreshLiveData(){
+  loadLiveData().catch(()=>{
+    setStatus('สถานะข้อมูล: ใช้ข้อมูลสำรองในไฟล์',false);
+    updateTimestamp();
+    renderAll();
+  });
 }
-function renderAll(){ renderKpis(); renderAnalysis(); renderQuarters(); renderDonut(); renderBars(); renderTable(); }
-document.getElementById('exportExcel').addEventListener('click', exportExcel);
-document.getElementById('exportDocx').addEventListener('click', exportDocx);
-document.getElementById('toggleAnalysis').addEventListener('click', ()=>{
+function downloadBlob(filename,mime,content){
+  const blob = content instanceof Blob ? content : new Blob([content],{type:mime});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+function crc32(buf){
+  let table = crc32.table;
+  if(!table){
+    table = crc32.table = new Uint32Array(256);
+    for(let i=0;i<256;i++){let c=i;for(let k=0;k<8;k++) c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);table[i]=c>>>0;}
+  }
+  let crc = -1;
+  for(const b of buf) crc = (crc>>>8) ^ table[(crc^b)&255];
+  return (crc ^ -1) >>> 0;
+}
+function u16(n){return [n&255,(n>>>8)&255];}
+function u32(n){return [n&255,(n>>>8)&255,(n>>>16)&255,(n>>>24)&255];}
+function zip(files){
+  const enc = new TextEncoder();
+  const local = [], central = [];
+  let offset = 0;
+  files.forEach(file=>{
+    const name = enc.encode(file.name);
+    const data = typeof file.data === 'string' ? enc.encode(file.data) : file.data;
+    const crc = crc32(data);
+    const header = new Uint8Array([0x50,0x4b,3,4,20,0,0,0,0,0,0,0,0,0,...u32(crc),...u32(data.length),...u32(data.length),...u16(name.length),0,0]);
+    const record = new Uint8Array(header.length + name.length + data.length);
+    record.set(header);record.set(name,header.length);record.set(data,header.length+name.length);
+    local.push(record);
+    const cent = new Uint8Array([0x50,0x4b,1,2,20,0,20,0,0,0,0,0,0,0,0,0,...u32(crc),...u32(data.length),...u32(data.length),...u16(name.length),0,0,0,0,0,0,0,0,0,0,0,0,...u32(offset)]);
+    const crec = new Uint8Array(cent.length + name.length);
+    crec.set(cent);crec.set(name,cent.length);
+    central.push(crec);
+    offset += record.length;
+  });
+  const centralSize = central.reduce((s,r)=>s+r.length,0);
+  const end = new Uint8Array([0x50,0x4b,5,6,0,0,0,0,...u16(files.length),...u16(files.length),...u32(centralSize),...u32(offset),0,0]);
+  return new Blob([...local,...central,end],{type:'application/zip'});
+}
+function exportExcel(){
+  const headers = ['ลำดับ','รายการ','ระดับ','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละ','สัดส่วน','สถานะ'];
+  const esc = xmlEscape;
+  const values = rows.map(r=>[r.Order,r.Item,r.Level,r.Plan,r.Q1,r.Q2,r.Q3,r.Q4,r.Used,r.Remaining,pct(r.Rate),pct(r.Share),r.Status]);
+  const sheetRows = [headers,...values].map((row,ri)=>`<row r="${ri+1}">${row.map((v,ci)=>{
+    const col = String.fromCharCode(65+ci);
+    if(typeof v === 'number') return `<c r="${col}${ri+1}"><v>${v}</v></c>`;
+    return `<c r="${col}${ri+1}" t="inlineStr"><is><t>${esc(v)}</t></is></c>`;
+  }).join('')}</row>`).join('');
+  const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${sheetRows}</sheetData></worksheet>`;
+  const workbook = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="รายจ่ายสรุป" sheetId="1" r:id="rId1"/></sheets></workbook>`;
+  const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>`;
+  const wbRels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>`;
+  const types = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>`;
+  downloadBlob('Budget_2570_Dashboard_Export.xlsx','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',zip([{name:'[Content_Types].xml',data:types},{name:'_rels/.rels',data:rels},{name:'xl/workbook.xml',data:workbook},{name:'xl/_rels/workbook.xml.rels',data:wbRels},{name:'xl/worksheets/sheet1.xml',data:sheet}]));
+}
+function exportDocx(){
+  const {total,main,highestBudget,highestUse,unused} = analysisData();
+  const paras = [
+    'บทสรุปสำหรับผู้บริหาร Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570',
+    `งบประมาณรวม ${money.format(total.Plan)} บาท ใช้จ่ายแล้ว ${money.format(total.Used)} บาท คิดเป็น ${pct(total.Rate)} และคงเหลือ ${money.format(total.Remaining)} บาท`,
+    `หมวดวงเงินสูงสุดคือ ${highestBudget.Item || '-'} วงเงิน ${moneyDash(highestBudget.Plan)} บาท (${pct(highestBudget.Share || 0)} ของงบรวม)`,
+    `หมวดที่ใช้งบประมาณสูงสุดตามอัตราร้อยละคือ ${highestUse.Item || '-'} ที่ ${pct(highestUse.Rate || 0)}`,
+    `${unused.length ? 'หมวดที่ยังไม่มีการใช้จ่าย: ' + unused.map(r=>r.Item).join(', ') : 'ทุกหมวดที่มีวงเงินมีการใช้จ่ายแล้ว'}`,
+    'รายละเอียดรายหมวด',
+    ...main.map(r=>`${r.Item}: แผน ${moneyDash(r.Plan)} บาท ใช้แล้ว ${moneyDash(r.Used)} บาท คงเหลือ ${moneyDash(r.Remaining)} บาท ร้อยละใช้จ่าย ${pct(r.Rate)} สัดส่วนงบ ${pct(r.Share)}`),
+    'รายละเอียดรายไตรมาส',
+    ...QUARTERS.map(q=>`${q.label}: ${money.format(total[q.key] || 0)} บาท คิดเป็น ${pct(total.Plan ? (total[q.key] || 0) / total.Plan : 0)} ของแผนรวม`)
+  ];
+  const body = paras.map(p=>`<w:p><w:r><w:t>${xmlEscape(p)}</w:t></w:r></w:p>`).join('');
+  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr></w:body></w:document>`;
+  const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  const types = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
+  downloadBlob('Executive_Analysis_Budget_2570.docx','application/vnd.openxmlformats-officedocument.wordprocessingml.document',zip([{name:'[Content_Types].xml',data:types},{name:'_rels/.rels',data:rels},{name:'word/document.xml',data:documentXml}]));
+}
+document.getElementById('exportExcel').addEventListener('click',exportExcel);
+document.getElementById('exportDocx').addEventListener('click',exportDocx);
+document.getElementById('toggleAnalysis').addEventListener('click',()=>{
   const panel = document.getElementById('analysisPanel');
   panel.hidden = !panel.hidden;
-  if(!panel.hidden) panel.scrollIntoView({behavior:'smooth', block:'start'});
+  if(!panel.hidden) panel.scrollIntoView({behavior:'smooth',block:'start'});
 });
 document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{
   const key = th.dataset.sort;
-  if(state.sort === key) state.dir *= -1; else { state.sort = key; state.dir = ['Item','Level','Parent','Status'].includes(key) ? 1 : -1; }
+  if(state.sort === key) state.dir *= -1; else {state.sort = key; state.dir = ['Item','Status'].includes(key) ? 1 : -1;}
   renderTable();
 }));
 renderAll();
 refreshLiveData();
-setInterval(refreshLiveData, LIVE_REFRESH_MS);
+setInterval(refreshLiveData,LIVE_REFRESH_MS);
 </script>
 </body>
 </html>
