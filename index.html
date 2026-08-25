@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570</title>
+<title>แผนการใช้เงินบำรุง ปีงบประมาณ พ.ศ.2570</title>
 <style>
 :root{
   --ink:#172033;--muted:#64748b;--line:#dbe6f3;--bg:#f5f8fc;--panel:#fff;
@@ -20,7 +20,7 @@ body{
 button{font:inherit}
 .shell{width:min(1320px,100%);margin:0 auto;padding:22px;min-width:0}
 .top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;margin-bottom:18px;min-width:0}
-.eyebrow{color:#0f766e;font-size:14px;font-weight:900;letter-spacing:0;margin-bottom:5px}
+.eyebrow{color:#0f766e;font-size:clamp(18px,2vw,24px);font-weight:900;letter-spacing:0;margin-bottom:8px;line-height:1.25}
 h1{font-size:clamp(30px,5vw,62px);line-height:1.04;margin:0 0 8px;letter-spacing:0;color:#172033;overflow-wrap:anywhere}
 .title-year{white-space:nowrap}
 .sub{margin:0;color:var(--muted);font-size:16px;line-height:1.5;overflow-wrap:anywhere;min-width:0}
@@ -153,7 +153,7 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   <header class="top">
     <div>
       <div class="eyebrow">โรงพยาบาลพรหมพิราม · ปีงบประมาณ 2570</div>
-      <h1>Dashboard เงินบำรุง <span class="title-year">ปีงบประมาณ พ.ศ.2570</span></h1>
+      <h1>แผนการใช้เงินบำรุง <span class="title-year">ปีงบประมาณ พ.ศ.2570</span></h1>
       <p class="sub">แหล่งข้อมูล: ชีต “รายจ่าย (สรุป)” จากไฟล์แผนรายรับ-รายจ่ายเงินบำรุง</p>
     </div>
     <div class="meta">
@@ -684,7 +684,7 @@ function exportExcel(){
 function exportDocx(){
   const {total,main,highestBudget,highestUse,unused} = analysisData();
   const paras = [
-    'บทสรุปสำหรับผู้บริหาร Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570',
+    'บทสรุปสำหรับผู้บริหาร แผนการใช้เงินบำรุง ปีงบประมาณ พ.ศ.2570',
     `งบประมาณรวม ${money.format(total.Plan)} บาท ใช้จ่ายแล้ว ${money.format(total.Used)} บาท คิดเป็น ${pct(total.Rate)} และคงเหลือ ${money.format(total.Remaining)} บาท`,
     `หมวดวงเงินสูงสุดคือ ${highestBudget.Item || '-'} วงเงิน ${moneyDash(highestBudget.Plan)} บาท (${pct(highestBudget.Share || 0)} ของงบรวม)`,
     `หมวดที่ใช้งบประมาณสูงสุดตามอัตราร้อยละคือ ${highestUse.Item || '-'} ที่ ${pct(highestUse.Rate || 0)}`,
