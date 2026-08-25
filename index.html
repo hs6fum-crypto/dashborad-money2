@@ -54,6 +54,9 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .kpi .value{font-size:clamp(21px,3vw,32px);font-weight:800;line-height:1.08;white-space:nowrap}
 .kpi .note{margin-top:8px;color:var(--muted);font-size:12px}
 .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:14px}
+.chart-grid{display:grid;grid-template-columns:minmax(0,2.35fr) minmax(250px,.85fr);gap:14px;margin-bottom:14px;align-items:stretch}
+.compare-panel,.category-panel{min-width:0}
+.category-panel h2{font-size:16px}
 .panel{background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:16px;min-width:0}
 .panel h2{font-size:18px;margin:0 0 12px}
 .chart-suite{margin-bottom:14px;overflow:hidden}
@@ -71,19 +74,19 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .quarter-chart,.compare-inner{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;min-height:205px}
 .quarter-detail-shell{display:block;min-height:205px}
 .chart-y{display:grid;grid-template-rows:repeat(5,1fr);align-items:start;color:#64748b;font-size:11px;text-align:right;padding-top:8px}
-.chart-plot,.compare-plot{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:end;padding:18px 18px 24px;background:repeating-linear-gradient(to bottom,#edf2f7 0,#edf2f7 1px,transparent 1px,transparent 34px);border-bottom:1px solid #cbd5e1;min-width:620px}
+.chart-plot,.compare-plot{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:end;padding:18px 18px 24px;background:repeating-linear-gradient(to bottom,#edf2f7 0,#edf2f7 1px,transparent 1px,transparent 34px);border-bottom:1px solid #cbd5e1;min-width:0}
 .quarter-col{height:170px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative;opacity:1}
 .quarter-col.dim{opacity:.38}
 .quarter-bar{width:min(82%,220px);min-height:2px;border:1px solid var(--qcolor);border-radius:8px 8px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0)),var(--qcolor);box-shadow:0 8px 18px rgba(15,23,42,.14)}
 .quarter-rate{position:absolute;top:0;font-size:12px;font-weight:900;color:#334155}
 .quarter-x{font-size:12px;font-weight:800;color:#64748b;margin-top:8px}
-.quarter-detail{overflow:auto}
+.quarter-detail{overflow:visible}
 .quarter-detail-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:0 0 12px}
-.quarter-detail-body{display:grid;gap:10px;min-width:720px}
+.quarter-detail-body{display:grid;gap:10px;min-width:0}
 .detail-row-chart{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;align-items:center}
 .detail-name{font-size:12px;font-weight:800;color:#475569;text-align:right;line-height:1.25}
 .detail-bars{display:grid;gap:5px;padding:3px 0;background:repeating-linear-gradient(to right,transparent 0,transparent calc(20% - 1px),#edf2f7 calc(20% - 1px),#edf2f7 20%)}
-.detail-track-row{height:15px;display:flex;align-items:center;gap:8px}
+.detail-track-row{height:15px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px}
 .detail-bar{height:10px;border-radius:999px;border:1px solid;min-width:2px}
 .detail-plan{background:#eef2f7;border-color:#cbd5e1}
 .detail-used{background:linear-gradient(90deg,var(--selected,#60a5fa),#3498db);border-color:var(--selected,#3498db)}
@@ -91,25 +94,26 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .detail-axis{display:grid;grid-template-columns:165px minmax(0,1fr);gap:12px;color:#64748b;font-size:11px}
 .detail-ticks{display:flex;justify-content:space-between;border-top:1px solid #cbd5e1;padding-top:5px}
 .category-rate-wrap{display:block}
-.category-rate-list{display:grid;gap:12px}
-.category-meter{border:1px solid #e6eef8;background:linear-gradient(180deg,#fff,#f8fbff);border-radius:8px;padding:12px;box-shadow:0 8px 18px rgba(15,23,42,.05)}
-.category-meter-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}
-.category-meter-name{display:flex;align-items:center;gap:8px;font-weight:900;color:#172033;line-height:1.25}
-.category-track{height:14px;background:#edf4fb;border:1px solid #d8e6f5;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
+.category-rate-list{display:grid;gap:8px}
+.category-meter{border:1px solid #e6eef8;background:linear-gradient(180deg,#fff,#f8fbff);border-radius:8px;padding:9px 10px;box-shadow:0 8px 18px rgba(15,23,42,.05)}
+.category-meter-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:6px}
+.category-meter-name{display:flex;align-items:center;gap:8px;font-weight:900;color:#172033;line-height:1.25;font-size:13px}
+.category-meter .pct-badge{padding:3px 7px;font-size:11px}
+.category-track{height:10px;background:#edf4fb;border:1px solid #d8e6f5;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
 .category-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--cat),#60a5fa);box-shadow:0 8px 18px rgba(37,99,235,.14)}
-.category-meter small{display:block;color:#64748b;font-size:11px;margin-top:7px;line-height:1.35}
-.compare-chart{overflow:auto}
+.category-meter small{display:block;color:#64748b;font-size:10.5px;margin-top:5px;line-height:1.28}
+.compare-chart{overflow:visible}
 .compare-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:-2px 0 8px}
 .legend-pill{display:inline-flex;align-items:center;gap:6px}
 .legend-box{width:34px;height:13px;border-radius:2px;border:2px solid}
-.compare-plot{grid-template-columns:repeat(5,minmax(92px,1fr));gap:18px;min-height:225px;padding-bottom:38px}
-.compare-group{height:175px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative}
-.compare-bars{height:145px;display:flex;gap:7px;align-items:end;justify-content:center}
-.compare-bar{width:31px;min-height:2px;border-radius:6px 6px 0 0;border:2px solid}
+.compare-plot{grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(6px,1vw,18px);min-height:255px;padding:20px 6px 42px}
+.compare-group{height:205px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative}
+.compare-bars{height:172px;display:flex;gap:clamp(3px,.5vw,7px);align-items:end;justify-content:center}
+.compare-bar{width:clamp(13px,1.9vw,28px);min-height:2px;border-radius:6px 6px 0 0;border:2px solid}
 .compare-plan{background:rgba(125,211,252,.45);border-color:#7dd3fc}
 .compare-used{background:rgba(251,191,36,.45);border-color:#f59e0b}
-.compare-rate{position:absolute;top:0;font-size:11px;font-weight:900;color:#334155}
-.compare-name{position:absolute;bottom:-31px;left:0;right:0;text-align:center;color:#64748b;font-size:11px;line-height:1.25;overflow-wrap:anywhere}
+.compare-rate{position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:900;color:#334155}
+.compare-name{position:absolute;bottom:-35px;left:0;right:0;text-align:center;color:#64748b;font-size:10.5px;line-height:1.22;overflow-wrap:anywhere}
 .bar-list{display:grid;gap:10px}
 .bar-row{display:grid;grid-template-columns:minmax(140px,1fr) 2.1fr auto;gap:12px;align-items:center}
 .bar-name{font-size:13px;line-height:1.3}
@@ -147,10 +151,10 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   .actions{display:grid;grid-template-columns:1fr;justify-content:stretch;width:100%}
   .tool-btn{justify-content:center;width:100%;white-space:normal}
   .kpis{grid-template-columns:repeat(2,1fr)}
-  .grid{grid-template-columns:1fr}
+  .grid,.chart-grid{grid-template-columns:1fr}
   .quarter-cards{grid-template-columns:repeat(2,1fr)}
   .quarter-cards.detail{grid-template-columns:1fr}
-  .quarter-chart,.compare-inner{overflow:auto}
+  .quarter-chart,.compare-inner{overflow:visible}
   .analysis-grid{grid-template-columns:1fr}
 }
 @media (max-width:560px){
@@ -159,9 +163,12 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   .sub{font-size:13px}
   .kpis{grid-template-columns:1fr}
   .quarter-cards{grid-template-columns:1fr}
-  .quarter-chart,.compare-inner{grid-template-columns:34px minmax(560px,1fr)}
-  .quarter-detail-body{min-width:620px}
-  .detail-row-chart,.detail-axis{grid-template-columns:120px minmax(0,1fr)}
+  .quarter-chart,.compare-inner{grid-template-columns:34px minmax(0,1fr)}
+  .detail-row-chart,.detail-axis{grid-template-columns:108px minmax(0,1fr)}
+  .chart-plot{gap:8px;padding-left:6px;padding-right:6px}
+  .compare-plot{gap:4px;padding-left:2px;padding-right:2px}
+  .compare-head{font-size:11px}
+  .compare-name{font-size:9.5px}
   .category-meter-head{align-items:flex-start}
   .bar-row{grid-template-columns:1fr;gap:6px}
   .bar-val{text-align:left;white-space:normal}
@@ -221,16 +228,16 @@ tr.total-row td{font-weight:900;background:#eef6ff}
     <div class="quarter-chart" id="quarters"></div>
   </section>
 
-  <section class="grid">
-    <article class="panel">
+  <section class="chart-grid">
+    <article class="panel compare-panel">
+      <h2>เปรียบเทียบ แผน vs ใช้จ่ายจริง (ล้านบาท)</h2>
+      <div class="compare-chart" id="bars"></div>
+    </article>
+    <article class="panel category-panel">
       <h2>ร้อยละการใช้ของทั้ง 5 หมวด</h2>
       <div class="category-rate-wrap">
         <div class="category-rate-list" id="donut"></div>
       </div>
-    </article>
-    <article class="panel">
-      <h2>เปรียบเทียบ แผน vs ใช้จ่ายจริง (ล้านบาท)</h2>
-      <div class="compare-chart" id="bars"></div>
     </article>
   </section>
 
@@ -356,9 +363,9 @@ function normalizeRows(rawRows){
     }
 
     const qTotal = numeric.Q1 + numeric.Q2 + numeric.Q3 + numeric.Q4;
-    const used = numeric.Used || qTotal;
-    const remaining = numeric.Remaining || (numeric.Plan ? numeric.Plan - used : 0);
-    const rate = numeric.Rate || (numeric.Plan ? used / numeric.Plan : 0);
+    const used = qTotal || numeric.Used;
+    const remaining = numeric.Plan ? numeric.Plan - used : 0;
+    const rate = numeric.Plan ? used / numeric.Plan : 0;
     const displayOrder = isMain ? (orderText(row.Order) || MAIN_CATEGORY_ORDER[item] || '') : '';
     normalized.push({
       ...row,
@@ -381,7 +388,23 @@ function normalizeRows(rawRows){
     });
   });
   const totalRow = normalized.find(r => r.IsTotal);
-  const totalPlan = totalRow ? Number(totalRow.Plan || 0) : normalized.filter(r => r.IsMain).reduce((sum,r)=>sum + Number(r.Plan || 0),0);
+  const mainRows = normalized.filter(r => r.IsMain);
+  const computedTotal = mainRows.reduce((sum,row) => {
+    sum.Plan += Number(row.Plan || 0);
+    sum.Q1 += Number(row.Q1 || 0);
+    sum.Q2 += Number(row.Q2 || 0);
+    sum.Q3 += Number(row.Q3 || 0);
+    sum.Q4 += Number(row.Q4 || 0);
+    sum.Used += Number(row.Used || 0);
+    sum.Remaining += Number(row.Remaining || 0);
+    return sum;
+  }, {Plan:0,Q1:0,Q2:0,Q3:0,Q4:0,Used:0,Remaining:0});
+  if(totalRow){
+    ['Plan','Q1','Q2','Q3','Q4','Used','Remaining'].forEach(key => totalRow[key] = computedTotal[key]);
+    totalRow.Rate = totalRow.Plan ? totalRow.Used / totalRow.Plan : 0;
+    totalRow.Status = statusFor(totalRow.Plan, totalRow.Used, totalRow.Rate);
+  }
+  const totalPlan = totalRow ? Number(totalRow.Plan || 0) : computedTotal.Plan;
   normalized.forEach(row => {
     row.Share = row.IsTotal ? 1 : (totalPlan ? Number(row.Plan || 0) / totalPlan : 0);
   });
