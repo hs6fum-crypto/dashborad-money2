@@ -52,16 +52,48 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:14px}
 .panel{background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:16px;min-width:0}
 .panel h2{font-size:18px;margin:0 0 12px}
+.chart-suite{margin-bottom:14px;overflow:hidden}
+.chart-title{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.chart-tabs{display:flex;gap:8px;overflow:auto;padding:0 0 10px;scrollbar-width:thin}
+.quarter-tab{border:1px solid var(--line);background:#f8fafc;color:#64748b;border-radius:999px;padding:9px 18px;font-weight:800;font-size:13px;box-shadow:inset 0 -1px 0 rgba(15,23,42,.06);cursor:pointer;white-space:nowrap}
+.quarter-tab.active{background:#3498db;color:#fff;border-color:#3498db;box-shadow:0 8px 18px rgba(52,152,219,.24)}
+.quarter-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 14px}
+.quarter-card{border:1px solid #e6eef8;background:#f8fbff;border-radius:8px;padding:14px;text-align:center;box-shadow:0 8px 18px rgba(15,23,42,.05);border-top:3px solid var(--qcolor)}
+.quarter-card.dim{opacity:.46}
+.quarter-card b{display:block;color:#94a3b8;font-size:12px;margin-bottom:5px}
+.quarter-card strong{display:block;color:var(--qcolor);font-size:18px;line-height:1.2}
+.quarter-card span{display:block;color:#94a3b8;font-size:11px;margin-top:3px}
+.quarter-chart,.compare-inner{display:grid;grid-template-columns:42px minmax(0,1fr);gap:8px;min-height:205px}
+.chart-y{display:grid;grid-template-rows:repeat(5,1fr);align-items:start;color:#64748b;font-size:11px;text-align:right;padding-top:8px}
+.chart-plot,.compare-plot{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:end;padding:18px 18px 24px;background:repeating-linear-gradient(to bottom,#edf2f7 0,#edf2f7 1px,transparent 1px,transparent 34px);border-bottom:1px solid #cbd5e1;min-width:620px}
+.quarter-col{height:170px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative;opacity:1}
+.quarter-col.dim{opacity:.38}
+.quarter-bar{width:min(82%,220px);min-height:2px;border:1px solid var(--qcolor);border-radius:8px 8px 0 0;background:linear-gradient(180deg,rgba(255,255,255,.28),rgba(255,255,255,0)),var(--qcolor);box-shadow:0 8px 18px rgba(15,23,42,.14)}
+.quarter-rate{position:absolute;top:0;font-size:12px;font-weight:900;color:#334155}
+.quarter-x{font-size:12px;font-weight:800;color:#64748b;margin-top:8px}
+.donut-wrap{display:grid;grid-template-columns:240px 1fr;gap:18px;align-items:center}
+svg.donut{width:240px;height:240px;filter:drop-shadow(0 12px 18px rgba(37,99,235,.12));overflow:visible}
+.legend{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:8px}
+.legend-item{display:inline-flex;gap:7px;align-items:center;font-size:12px;color:#475569}
+.legend-item b{font-weight:900;color:#172033}
+.compare-chart{overflow:auto}
+.compare-head{display:flex;justify-content:center;gap:18px;align-items:center;color:#475569;font-size:12px;margin:-2px 0 8px}
+.legend-pill{display:inline-flex;align-items:center;gap:6px}
+.legend-box{width:34px;height:13px;border-radius:2px;border:2px solid}
+.compare-plot{grid-template-columns:repeat(5,minmax(92px,1fr));gap:18px;min-height:225px;padding-bottom:38px}
+.compare-group{height:175px;display:grid;grid-template-rows:1fr auto;align-items:end;justify-items:center;position:relative}
+.compare-bars{height:145px;display:flex;gap:7px;align-items:end;justify-content:center}
+.compare-bar{width:31px;min-height:2px;border-radius:6px 6px 0 0;border:2px solid}
+.compare-plan{background:rgba(125,211,252,.45);border-color:#7dd3fc}
+.compare-used{background:rgba(251,191,36,.45);border-color:#f59e0b}
+.compare-rate{position:absolute;top:0;font-size:11px;font-weight:900;color:#334155}
+.compare-name{position:absolute;bottom:-31px;left:0;right:0;text-align:center;color:#64748b;font-size:11px;line-height:1.25;overflow-wrap:anywhere}
 .bar-list{display:grid;gap:10px}
 .bar-row{display:grid;grid-template-columns:minmax(140px,1fr) 2.1fr auto;gap:12px;align-items:center}
 .bar-name{font-size:13px;line-height:1.3}
 .track{height:16px;background:linear-gradient(180deg,#eef4fb,#e4edf8);border:1px solid #d9e5f2;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
 .fill{height:100%;border-radius:999px;background:var(--blue);min-width:3px;box-shadow:0 5px 14px rgba(37,99,235,.28)}
 .bar-val{font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
-.donut-wrap{display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:center}
-svg.donut{width:210px;height:210px;transform:rotate(-90deg);filter:drop-shadow(0 12px 18px rgba(37,99,235,.14))}
-.legend{display:grid;gap:8px}
-.legend-item{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px}
 .swatch{width:12px;height:12px;border-radius:999px}
 .quarter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;height:210px;align-items:end;padding-top:16px}
 .q{display:grid;gap:8px;text-align:center;color:var(--muted);font-size:12px}
@@ -94,6 +126,8 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   .tool-btn{justify-content:center;width:100%;white-space:normal}
   .kpis{grid-template-columns:repeat(2,1fr)}
   .grid{grid-template-columns:1fr}
+  .quarter-cards{grid-template-columns:repeat(2,1fr)}
+  .quarter-chart,.compare-inner{overflow:auto}
   .analysis-grid{grid-template-columns:1fr}
   .donut-wrap{grid-template-columns:1fr;justify-items:center}
 }
@@ -102,6 +136,8 @@ tr.total-row td{font-weight:900;background:#eef6ff}
   .title-year{display:block}
   .sub{font-size:13px}
   .kpis{grid-template-columns:1fr}
+  .quarter-cards{grid-template-columns:1fr}
+  .quarter-chart,.compare-inner{grid-template-columns:34px minmax(560px,1fr)}
   .bar-row{grid-template-columns:1fr;gap:6px}
   .bar-val{text-align:left;white-space:normal}
   .bar-name{overflow-wrap:anywhere}
@@ -153,28 +189,24 @@ tr.total-row td{font-weight:900;background:#eef6ff}
     <div id="analysisContent"></div>
   </section>
 
+  <section class="panel chart-suite">
+    <h2 class="chart-title">สรุปการใช้จ่ายรายไตรมาส</h2>
+    <div class="chart-tabs" id="quarterTabs"></div>
+    <div class="quarter-cards" id="quarterCards"></div>
+    <div class="quarter-chart" id="quarters"></div>
+  </section>
+
   <section class="grid">
     <article class="panel">
-      <h2>โครงสร้างงบตามหมวดหลัก</h2>
-      <div class="bar-list" id="bars"></div>
-    </article>
-    <article class="panel">
-      <h2>อัตราการใช้งบประมาณ</h2>
+      <h2>สัดส่วนงบประมาณแต่ละหมวด</h2>
       <div class="donut-wrap">
         <svg class="donut" id="donut" viewBox="0 0 200 200"></svg>
         <div class="legend" id="legend"></div>
       </div>
     </article>
-  </section>
-
-  <section class="grid">
     <article class="panel">
-      <h2>แผนและผลใช้จ่ายรายไตรมาส</h2>
-      <div class="quarter" id="quarters"></div>
-    </article>
-    <article class="panel">
-      <h2>รายการที่มีวงเงินสูงสุด</h2>
-      <div class="bar-list" id="topItems"></div>
+      <h2>เปรียบเทียบ แผน vs ใช้จ่ายจริง (ล้านบาท)</h2>
+      <div class="compare-chart" id="bars"></div>
     </article>
   </section>
 
@@ -335,7 +367,7 @@ function getTotalRow(data){
 }
 let rows = normalizeRows(embeddedRows);
 let total = getTotalRow(rows);
-const state = {sort:'SourceRow', dir:1};
+const state = {sort:'SourceRow', dir:1, quarterView:'all'};
 function chartColor(i){ return colors[i % colors.length]; }
 function chartFill(i){ return `linear-gradient(90deg, ${chartColor(i)}, ${colors[(i+1) % colors.length]})`; }
 function rateClass(n){
@@ -381,6 +413,26 @@ function rowClass(row){
   if(row.Level === 'หมวดย่อย') return 'sub-row';
   return 'detail-row';
 }
+function millionText(value){
+  return `${(Number(value || 0) / 1000000).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})} ล้าน`;
+}
+function axisMillion(value){
+  return `${(Number(value || 0) / 1000000).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2})}ล.`;
+}
+function quarterMetrics(){
+  const palette = ['#3498db','#a879e8','#f08b3e','#44b97a'];
+  return ['Q1','Q2','Q3','Q4'].map((key,index) => {
+    const value = Number(total[key] || 0);
+    return {
+      key,
+      index,
+      name: `ไตรมาส ${index + 1}`,
+      value,
+      rate: total.Plan ? value / total.Plan : 0,
+      color: palette[index]
+    };
+  });
+}
 function filtered(){
   return [...rows].sort((a,b)=>{
     const av = a[state.sort], bv = b[state.sort];
@@ -404,51 +456,84 @@ function renderKpis(){
 }
 function renderBars(){
   const main = rows.filter(r => r.IsMain && !r.IsTotal);
-  const max = Math.max(...main.map(r=>Number(r.Plan)||0),1);
-  document.getElementById('bars').innerHTML = main.map((r,i)=>`
-    <div class="bar-row">
-      <div class="bar-name">${r.Item}</div>
-      <div class="track"><div class="fill" style="width:${Math.max(1,(Number(r.Plan)||0)/max*100)}%;background:${chartFill(i)}"></div></div>
-      <div class="bar-val">${shortMoney.format(r.Plan)} · ใช้จ่าย ${rateBadge(r.Rate)} · สัดส่วน ${pct(r.Share)}</div>
-    </div>`).join('');
+  const max = Math.max(...main.flatMap(r => [Number(r.Plan || 0), Number(r.Used || 0)]), 1);
+  const ticks = [max, max * .75, max * .5, max * .25, 0];
+  document.getElementById('bars').innerHTML = `
+    <div class="compare-head">
+      <span class="legend-pill"><span class="legend-box" style="background:rgba(125,211,252,.45);border-color:#7dd3fc"></span>แผน</span>
+      <span class="legend-pill"><span class="legend-box" style="background:rgba(251,191,36,.45);border-color:#f59e0b"></span>ใช้จ่ายแล้ว</span>
+    </div>
+    <div class="compare-inner">
+      <div class="chart-y">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div>
+      <div class="compare-plot">
+        ${main.map(r => {
+          const plan = Number(r.Plan || 0);
+          const used = Number(r.Used || 0);
+          const planHeight = plan > 0 ? Math.max(2, plan / max * 100) : 0;
+          const usedHeight = used > 0 ? Math.max(2, used / max * 100) : 0;
+          return `<div class="compare-group">
+            <div class="compare-rate">${pct(r.Rate)}</div>
+            <div class="compare-bars">
+              <div class="compare-bar compare-plan" style="height:${planHeight}%;${plan ? '' : 'display:none'}"></div>
+              <div class="compare-bar compare-used" style="height:${usedHeight}%;${used ? '' : 'display:none'}"></div>
+            </div>
+            <div class="compare-name">${r.Item}</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
 }
 function renderDonut(){
   const main = rows.filter(r => r.IsMain && !r.IsTotal && Number(r.Plan)>0);
   const svg = document.getElementById('donut');
-  const rate = Math.max(0, Math.min(1, Number(total.Rate || 0)));
-  const displayRate = total.Used > 0 ? Math.max(rate, 0.012) : 0;
-  const circumference = 465;
-  const usedDash = `${displayRate * circumference} ${circumference - (displayRate * circumference)}`;
-  const remaining = Math.max(0, 1 - rate);
-  svg.innerHTML = `
-    <circle cx="100" cy="100" r="74" fill="none" stroke="#e8edf5" stroke-width="26"></circle>
-    <circle cx="100" cy="100" r="74" fill="none" stroke="${rateColor(rate)}" stroke-width="26" stroke-dasharray="${usedDash}" stroke-linecap="round"></circle>
-    <text x="100" y="84" text-anchor="middle" transform="rotate(90 100 100)" style="font:800 24px Tahoma;fill:${rateColor(rate)}">${pct(rate)}</text>
-    <text x="100" y="107" text-anchor="middle" transform="rotate(90 100 100)" style="font:12px Tahoma;fill:#64748b">ใช้จ่ายแล้ว</text>
-    <text x="100" y="128" text-anchor="middle" transform="rotate(90 100 100)" style="font:700 11px Tahoma;fill:#475569">คงเหลือ ${pct(remaining)}</text>`;
+  const sum = main.reduce((acc,row) => acc + Number(row.Plan || 0), 0) || 1;
+  const circumference = 439.82;
+  let offset = 0;
+  svg.innerHTML = `<circle cx="100" cy="100" r="70" fill="none" stroke="#e8edf5" stroke-width="28"></circle>`;
+  main.forEach((row,index) => {
+    const frac = Number(row.Plan || 0) / sum;
+    const dash = `${frac * circumference} ${circumference - (frac * circumference)}`;
+    const angle = (offset + frac / 2) * Math.PI * 2 - Math.PI / 2;
+    const labelX = 100 + Math.cos(angle) * 63;
+    const labelY = 100 + Math.sin(angle) * 63;
+    svg.innerHTML += `<circle cx="100" cy="100" r="70" fill="none" stroke="${colors[index % colors.length]}" stroke-width="28" stroke-dasharray="${dash}" stroke-dashoffset="${-offset * circumference}" transform="rotate(-90 100 100)"></circle>`;
+    if(frac > 0.02) svg.innerHTML += `<text x="${labelX}" y="${labelY}" text-anchor="middle" dominant-baseline="middle" style="font:800 10px Tahoma;fill:#fff">${pct(frac)}</text>`;
+    offset += frac;
+  });
+  svg.innerHTML += `<circle cx="100" cy="100" r="41" fill="#fff"></circle>`;
   document.getElementById('legend').innerHTML = main.map((r,i)=>`
-    <div class="legend-item"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${r.Item}<br><small>ใช้จ่าย ${moneyDash(r.Used)} จากแผน ${moneyDash(r.Plan)}</small></span>${rateBadge(r.Rate)}</div>`).join('');
+    <div class="legend-item"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${r.Item}</span><b>${pct(r.Share)}</b></div>`).join('');
 }
 function renderQuarters(){
-  const qs = [
-    ['ไตรมาส 1', total.Q1, total.Plan ? total.Q1 / total.Plan : 0],
-    ['ไตรมาส 2', total.Q2, total.Plan ? total.Q2 / total.Plan : 0],
-    ['ไตรมาส 3', total.Q3, total.Plan ? total.Q3 / total.Plan : 0],
-    ['ไตรมาส 4', total.Q4, total.Plan ? total.Q4 / total.Plan : 0]
-  ];
-  const max = Math.max(...qs.map(q=>Number(q[1])||0),1);
-  document.getElementById('quarters').innerHTML = qs.map(([name,val,rate],i)=>`
-    <div class="q"><div class="qbar"><div class="qfill" style="height:${Math.max(1,Number(val||0)/max*100)}%;background:${chartFill(i)}"></div></div><b>${name}</b><span>${money.format(val)}</span>${rateBadge(rate)}</div>`).join('');
-}
-function renderTop(){
-  const items = rows.filter(r => !r.IsTotal && !r.IsMain && Number(r.Plan)>0).sort((a,b)=>b.Plan-a.Plan).slice(0,7);
-  const max = Math.max(...items.map(r=>Number(r.Plan)||0),1);
-  document.getElementById('topItems').innerHTML = items.map((r,i)=>`
-    <div class="bar-row">
-      <div class="bar-name">${r.Item}</div>
-      <div class="track"><div class="fill" style="width:${Math.max(1,(Number(r.Plan)||0)/max*100)}%;background:${chartFill(i+2)}"></div></div>
-      <div class="bar-val">${money.format(r.Plan)} · ${rateBadge(r.Rate)}</div>
-    </div>`).join('');
+  const qs = quarterMetrics();
+  const tabs = [{key:'all', label:'ภาพรวม'}, ...qs.map(q => ({key:q.key, label:q.name}))];
+  document.getElementById('quarterTabs').innerHTML = tabs.map(tab => `
+    <button class="quarter-tab ${state.quarterView === tab.key ? 'active' : ''}" type="button" data-quarter="${tab.key}">${tab.label}</button>`).join('');
+  document.querySelectorAll('.quarter-tab').forEach(button => button.addEventListener('click', () => {
+    state.quarterView = button.dataset.quarter;
+    renderQuarters();
+  }));
+  const selectedIndex = state.quarterView === 'all' ? -1 : qs.findIndex(q => q.key === state.quarterView);
+  document.getElementById('quarterCards').innerHTML = qs.map(q => `
+    <article class="quarter-card ${selectedIndex >= 0 && selectedIndex !== q.index ? 'dim' : ''}" style="--qcolor:${q.color}">
+      <b>${q.name}</b>
+      <strong>${millionText(q.value)}</strong>
+      <span>${pct(q.rate)} ของแผน</span>
+    </article>`).join('');
+  const max = Math.max(...qs.map(q => Number(q.value || 0)), 1);
+  const ticks = [max, max * .75, max * .5, max * .25, 0];
+  document.getElementById('quarters').innerHTML = `
+    <div class="chart-y">${ticks.map(t => `<span>${axisMillion(t)}</span>`).join('')}</div>
+    <div class="chart-plot">
+      ${qs.map(q => {
+        const height = q.value > 0 ? Math.max(2, Number(q.value || 0) / max * 100) : 0;
+        return `<div class="quarter-col ${selectedIndex >= 0 && selectedIndex !== q.index ? 'dim' : ''}">
+          <div class="quarter-rate">${pct(q.rate)}</div>
+          <div class="quarter-bar" style="--qcolor:${q.color};height:${height}%;${q.value ? '' : 'display:none'}"></div>
+          <div class="quarter-x">${q.name}</div>
+        </div>`;
+      }).join('')}
+    </div>`;
 }
 function renderTable(){
   const data = filtered();
@@ -689,7 +774,7 @@ async function refreshLiveData(){
     setDataStatus('สถานะข้อมูล: ใช้ข้อมูลสำรองในไฟล์', `อัปเดตล่าสุด: ${new Date().toLocaleString('th-TH')}`);
   }
 }
-function renderAll(){ renderKpis(); renderAnalysis(); renderBars(); renderDonut(); renderQuarters(); renderTop(); renderTable(); }
+function renderAll(){ renderKpis(); renderAnalysis(); renderQuarters(); renderDonut(); renderBars(); renderTable(); }
 document.getElementById('exportExcel').addEventListener('click', exportExcel);
 document.getElementById('exportDocx').addEventListener('click', exportDocx);
 document.getElementById('toggleAnalysis').addEventListener('click', ()=>{
