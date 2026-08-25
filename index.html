@@ -1,0 +1,476 @@
+﻿<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570</title>
+<style>
+:root{
+  --ink:#172033; --muted:#64748b; --line:#d7e4f2; --panel:#ffffff; --bg:#f5f8fc;
+  --teal:#0f766e; --blue:#2563eb; --amber:#f59e0b; --rose:#e11d48; --green:#16a34a; --violet:#7c3aed;
+  --red:#dc2626; --yellow:#ca8a04; --ok:#16a34a;
+  --shadow:0 16px 42px rgba(20,31,55,.11);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;color:var(--ink);background:
+  linear-gradient(180deg,#edf7ff 0,#f7fbff 260px,#f5f8fc 100%);overflow-x:hidden}
+button,input,select{font:inherit}
+.shell{width:min(1240px,100%);margin:0 auto;padding:22px}
+.top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end;margin-bottom:18px}
+.eyebrow{font-size:13px;color:var(--teal);font-weight:700;letter-spacing:0}
+h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spacing:0;overflow-wrap:anywhere;word-break:break-word}
+.title-year{display:inline}
+.sub{margin:0;color:var(--muted);font-size:15px;line-height:1.55;max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+.meta{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:#334155;font-size:13px;box-shadow:0 8px 24px rgba(30,41,59,.06)}
+.controls{position:sticky;top:0;z-index:5;background:rgba(247,251,255,.9);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px}
+.tool-btn{border:1px solid var(--line);background:#fff;color:#243044;border-radius:8px;padding:11px 12px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.tool-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap}
+.tool-btn svg{width:17px;height:17px}
+.tool-btn.primary{background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;border-color:#1d77a8}
+.pct-badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 8px;font-weight:800;font-size:12px;white-space:nowrap}
+.pct-badge.big{font-size:clamp(20px,3vw,30px);padding:2px 0;background:transparent}
+.pct-red{background:#fee2e2;color:#991b1b}
+.pct-yellow{background:#fef3c7;color:#92400e}
+.pct-green{background:#dcfce7;color:#166534}
+.pct-badge.big.pct-red,.pct-badge.big.pct-yellow,.pct-badge.big.pct-green{background:transparent}
+.analysis-panel[hidden]{display:none}
+.analysis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.analysis-card{border:1px solid var(--line);border-radius:8px;padding:12px;background:linear-gradient(180deg,#ffffff,#f7fbff)}
+.analysis-card b{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+.analysis-card span{font-size:20px;font-weight:800}
+.analysis-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.analysis-list li{border-left:4px solid var(--blue);background:#f8fafc;border-radius:8px;padding:10px 12px;line-height:1.55}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.kpi{position:relative;background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--line);border-radius:8px;padding:16px;box-shadow:var(--shadow);min-width:0;overflow:hidden}
+.kpi::before{content:"";position:absolute;inset:0 0 auto;height:4px;background:linear-gradient(90deg,#14b8a6,#60a5fa,#f59e0b,#f472b6)}
+.kpi .label{font-size:13px;color:var(--muted);margin-bottom:8px}
+.kpi .value{font-size:clamp(21px,3vw,32px);font-weight:800;line-height:1.08;white-space:nowrap}
+.kpi .note{margin-top:8px;color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-bottom:14px}
+.panel{background:linear-gradient(180deg,#ffffff,#fbfdff);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:16px;min-width:0}
+.panel h2{font-size:18px;margin:0 0 12px}
+.bar-list{display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:minmax(140px,1fr) 2.1fr auto;gap:12px;align-items:center}
+.bar-name{font-size:13px;line-height:1.3}
+.track{height:16px;background:linear-gradient(180deg,#eef4fb,#e4edf8);border:1px solid #d9e5f2;border-radius:999px;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.08)}
+.fill{height:100%;border-radius:999px;background:var(--blue);min-width:3px;box-shadow:0 5px 14px rgba(37,99,235,.28)}
+.bar-val{font-size:13px;font-weight:700;text-align:right;white-space:nowrap}
+.donut-wrap{display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:center}
+svg.donut{width:210px;height:210px;transform:rotate(-90deg);filter:drop-shadow(0 12px 18px rgba(37,99,235,.14))}
+.legend{display:grid;gap:8px}
+.legend-item{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;font-size:13px}
+.swatch{width:12px;height:12px;border-radius:999px}
+.quarter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;height:210px;align-items:end;padding-top:16px}
+.q{display:grid;gap:8px;text-align:center;color:var(--muted);font-size:12px}
+.qbar{height:150px;background:linear-gradient(180deg,#f8fbff,#edf4fb);border:1px solid #d8e6f5;border-radius:8px;display:flex;align-items:end;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.06)}
+.qfill{width:100%;background:var(--teal);min-height:2px}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+table{width:100%;border-collapse:collapse;min-width:920px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:middle}
+th{position:sticky;top:0;background:#f8fafc;color:#334155;font-weight:800;cursor:pointer;z-index:1}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;background:#f1f5f9;color:#334155;white-space:nowrap}
+.status.warn{background:#fff7ed;color:#9a3412}
+.status.zero{background:#eef2ff;color:#3730a3}
+.foot{color:var(--muted);font-size:12px;margin-top:10px;line-height:1.5}
+@media (max-width:900px){
+  .shell{padding:14px}
+  .top{grid-template-columns:1fr}
+  .meta{justify-content:flex-start}
+  .controls{display:block}
+  .actions{display:grid;grid-template-columns:1fr;justify-content:stretch;width:100%}
+  .tool-btn{justify-content:center;width:100%;white-space:normal}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+  .analysis-grid{grid-template-columns:1fr}
+  .donut-wrap{grid-template-columns:1fr;justify-items:center}
+}
+@media (max-width:560px){
+  h1{font-size:24px}
+  .title-year{display:block}
+  .sub{font-size:13px}
+  .kpis{grid-template-columns:1fr}
+  .bar-row{grid-template-columns:1fr;gap:6px}
+  .bar-val{text-align:left;white-space:normal}
+  .bar-name{overflow-wrap:anywhere}
+  .quarter{height:170px}
+  .qbar{height:110px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="top">
+    <div>
+      <div class="eyebrow">โรงพยาบาลพรหมพิราม · ปีงบประมาณ 2570</div>
+      <h1>Dashboard เงินบำรุง <span class="title-year">ปีงบประมาณ พ.ศ.2570</span></h1>
+      <p class="sub">แหล่งข้อมูล: ชีต “รายจ่าย (สรุป)”</p>
+    </div>
+    <div class="meta">
+      <span class="pill">สถานะข้อมูล: พร้อมวิเคราะห์</span>
+      <span class="pill">Standalone HTML</span>
+    </div>
+  </header>
+
+  <section class="controls">
+    <div class="actions">
+      <button class="tool-btn primary" id="exportExcel" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
+        ส่งออก Excel
+      </button>
+      <button class="tool-btn" id="toggleAnalysis" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m7 16 4-4 3 3 5-8"/></svg>
+        วิเคราะห์ข้อมูลผู้บริหาร
+      </button>
+      <button class="tool-btn" id="exportDocx" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        ส่งออก Docx
+      </button>
+    </div>
+  </section>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="panel analysis-panel" id="analysisPanel" hidden>
+    <h2>วิเคราะห์ข้อมูลสำหรับผู้บริหาร</h2>
+    <div id="analysisContent"></div>
+  </section>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>โครงสร้างงบตามหมวดหลัก</h2>
+      <div class="bar-list" id="bars"></div>
+    </article>
+    <article class="panel">
+      <h2>สัดส่วนงบประมาณ</h2>
+      <div class="donut-wrap">
+        <svg class="donut" id="donut" viewBox="0 0 200 200"></svg>
+        <div class="legend" id="legend"></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="grid">
+    <article class="panel">
+      <h2>แผนและผลใช้จ่ายรายไตรมาส</h2>
+      <div class="quarter" id="quarters"></div>
+    </article>
+    <article class="panel">
+      <h2>รายการที่มีวงเงินสูงสุด</h2>
+      <div class="bar-list" id="topItems"></div>
+    </article>
+  </section>
+
+  <section class="panel">
+    <h2>ตารางข้อมูลครบถ้วนจากชีต รายจ่าย (สรุป)</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="Item">รายการ</th>
+            <th data-sort="Level">ระดับ</th>
+            <th data-sort="Plan">แผน 2570</th>
+            <th data-sort="Q1">Q1</th>
+            <th data-sort="Q2">Q2</th>
+            <th data-sort="Q3">Q3</th>
+            <th data-sort="Q4">Q4</th>
+            <th data-sort="Used">ใช้ทั้งหมด</th>
+            <th data-sort="Remaining">คงเหลือ</th>
+            <th data-sort="Rate">ร้อยละ</th>
+            <th data-sort="Share">สัดส่วน</th>
+            <th data-sort="Status">สถานะ</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="foot" id="foot"></div>
+  </section>
+</div>
+<script id="expense-data" type="application/json">[{"SourceRow":4,"Order":"1","Item":"รายจ่ายบุคลากร","Level":"หมวดหลัก","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":true,"IsTotal":false,"Share":0},{"SourceRow":5,"Order":"2","Item":"รายจ่ายจากการดำเนินงาน","Level":"หมวดหลัก","Plan":38623400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":38623400.42,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.97983175391367139},{"SourceRow":6,"Order":"","Item":"2.1ค่าตอบแทน","Level":"รายการย่อย","Plan":23997680.82,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":23997680.82,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.60879387708041344},{"SourceRow":7,"Order":"","Item":"2.2 ค่าใช้สอย","Level":"รายการย่อย","Plan":5195544,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5195544,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.131805043955155},{"SourceRow":8,"Order":"","Item":"2.3 ค่าวัสดุ","Level":"รายการย่อย","Plan":4168000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":4168000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.10573742099096571},{"SourceRow":9,"Order":"","Item":"2.4 ค่าสาธารณูปโภค","Level":"รายการย่อย","Plan":5248175.6,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":5248175.6,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.13314024780511374},{"SourceRow":10,"Order":"","Item":"2.5 ค่าใช้จ่ายงบดำเนินงานอื่น","Level":"รายการย่อย","Plan":14000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":14000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.00035516408202339734},{"SourceRow":11,"Order":"3","Item":"รายจ่ายลงทุน","Level":"หมวดหลัก","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":12,"Order":"","Item":"3.1 ค่าครุภัณฑ์","Level":"รายการย่อย","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":13,"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":14,"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":15,"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Level":"รายการย่อย","Plan":295000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":295000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":false,"Share":0.0074838145854930153},{"SourceRow":16,"Order":"","Item":"3.2 ค่าที่ดินและสิ่งก่อสร้าง","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":17,"Order":"","Item":"1 ค่าครุภัณฑ์งบค่าเสื่อม","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":18,"Order":"","Item":"2 ค่าครุภัณฑ์เงินบริจาค","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":19,"Order":"","Item":"3 ค่าครุภัณฑ์เงินบำรุง","Level":"รายการย่อย","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":false,"IsTotal":false,"Share":0},{"SourceRow":20,"Order":"4","Item":"รายจ่ายสนับสนุน","Level":"หมวดหลัก","Plan":0,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":0,"Rate":0,"Status":"ไม่มีวงเงินแผน","IsMain":true,"IsTotal":false,"Share":0},{"SourceRow":21,"Order":"5","Item":"งบกลาง","Level":"หมวดหลัก","Plan":500000,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":500000,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":true,"IsTotal":false,"Share":0.012684431500835619},{"SourceRow":22,"Order":"รวมทั้งหมด","Item":"รวมทั้งหมด","Level":"รวม","Plan":39418400.42,"Q1":0,"Q2":0,"Q3":0,"Q4":0,"Used":0,"Remaining":39418400.42,"Rate":0,"Status":"ยังไม่มีการใช้จ่าย","IsMain":false,"IsTotal":true,"Share":1}]</script>
+<script>
+const rows = JSON.parse(document.getElementById('expense-data').textContent);
+const colors = ['#2563eb','#14b8a6','#f59e0b','#ec4899','#8b5cf6','#22c55e','#06b6d4','#f97316'];
+const money = new Intl.NumberFormat('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});
+const shortMoney = new Intl.NumberFormat('th-TH',{notation:'compact',maximumFractionDigits:2});
+const pct = n => `${(Number(n||0)*100).toFixed(2)}%`;
+const total = rows.find(r => r.IsTotal) || rows[rows.length-1];
+const state = {sort:'Plan', dir:-1};
+function chartColor(i){ return colors[i % colors.length]; }
+function chartFill(i){ return `linear-gradient(90deg, ${chartColor(i)}, ${colors[(i+1) % colors.length]})`; }
+function rateClass(n){
+  const p = Number(n || 0) * 100;
+  if(p < 49) return 'pct-red';
+  if(p < 75) return 'pct-yellow';
+  return 'pct-green';
+}
+function rateColor(n){
+  const p = Number(n || 0) * 100;
+  if(p < 49) return '#dc2626';
+  if(p < 75) return '#ca8a04';
+  return '#16a34a';
+}
+function rateBadge(n, big=false){
+  return `<span class="pct-badge ${big ? 'big ' : ''}${rateClass(n)}">${pct(n)}</span>`;
+}
+function xmlEscape(v){
+  return String(v ?? '').replace(/[<>&"']/g, ch => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;',"'":'&apos;'}[ch]));
+}
+function downloadBlob(blob, filename){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+function statusClass(s){
+  if(s === 'ยังไม่มีการใช้จ่าย') return 'warn';
+  if(s === 'ไม่มีวงเงินแผน') return 'zero';
+  return '';
+}
+function filtered(){
+  return [...rows].sort((a,b)=>{
+    const av = a[state.sort], bv = b[state.sort];
+    if(typeof av === 'number' || typeof bv === 'number') return (Number(av||0)-Number(bv||0))*state.dir;
+    return String(av||'').localeCompare(String(bv||''),'th')*state.dir;
+  });
+}
+function renderKpis(){
+  const data = [
+    ['งบประมาณทั้งหมด', total.Plan, 'บาท', 'วงเงินแผนรวม'],
+    ['ใช้จ่ายแล้ว', total.Used, 'บาท', 'ผลใช้จ่ายสะสม'],
+    ['คงเหลือ', total.Remaining, 'บาท', 'วงเงินที่ยังไม่ใช้'],
+    ['อัตราการใช้จ่าย', total.Rate, 'percent', 'เป้าหมาย >= 75%']
+  ];
+  document.getElementById('kpis').innerHTML = data.map(([label,val,unit,note]) => `
+    <article class="kpi">
+      <div class="label">${label}</div>
+      <div class="value">${unit==='percent' ? rateBadge(val, true) : money.format(val)}</div>
+      <div class="note">${note}</div>
+    </article>`).join('');
+}
+function renderBars(){
+  const main = rows.filter(r => r.IsMain && !r.IsTotal);
+  const max = Math.max(...main.map(r=>Number(r.Plan)||0),1);
+  document.getElementById('bars').innerHTML = main.map((r,i)=>`
+    <div class="bar-row">
+      <div class="bar-name">${r.Item}</div>
+      <div class="track"><div class="fill" style="width:${Math.max(1,(Number(r.Plan)||0)/max*100)}%;background:${chartFill(i)}"></div></div>
+      <div class="bar-val">${shortMoney.format(r.Plan)} · ใช้จ่าย ${rateBadge(r.Rate)} · สัดส่วน ${pct(r.Share)}</div>
+    </div>`).join('');
+}
+function renderDonut(){
+  const main = rows.filter(r => r.IsMain && !r.IsTotal && Number(r.Plan)>0);
+  const sum = main.reduce((a,r)=>a+Number(r.Plan||0),0) || 1;
+  const svg = document.getElementById('donut');
+  let offset = 0;
+  svg.innerHTML = `<circle cx="100" cy="100" r="74" fill="none" stroke="#e8edf5" stroke-width="26"></circle>`;
+  main.forEach((r,i)=>{
+    const frac = Number(r.Plan||0)/sum;
+    const dash = `${frac*465} ${465-frac*465}`;
+    svg.innerHTML += `<circle cx="100" cy="100" r="74" fill="none" stroke="${colors[i%colors.length]}" stroke-width="26" stroke-dasharray="${dash}" stroke-dashoffset="${-offset}" stroke-linecap="butt"></circle>`;
+    offset += frac*465;
+  });
+  svg.innerHTML += `<text x="100" y="96" text-anchor="middle" transform="rotate(90 100 100)" style="font:800 24px Tahoma;fill:${rateColor(total.Rate)}">${pct(total.Rate)}</text><text x="100" y="122" text-anchor="middle" transform="rotate(90 100 100)" style="font:12px Tahoma;fill:#64748b">ใช้จ่ายแล้ว</text>`;
+  document.getElementById('legend').innerHTML = main.map((r,i)=>`
+    <div class="legend-item"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${r.Item}<br><small>ใช้จ่าย ${pct(r.Rate)}</small></span><b>${pct(r.Share)}</b></div>`).join('');
+}
+function renderQuarters(){
+  const qs = [
+    ['ไตรมาส 1', total.Q1, total.Plan ? total.Q1 / total.Plan : 0],
+    ['ไตรมาส 2', total.Q2, total.Plan ? total.Q2 / total.Plan : 0],
+    ['ไตรมาส 3', total.Q3, total.Plan ? total.Q3 / total.Plan : 0],
+    ['ไตรมาส 4', total.Q4, total.Plan ? total.Q4 / total.Plan : 0]
+  ];
+  const max = Math.max(...qs.map(q=>Number(q[1])||0),1);
+  document.getElementById('quarters').innerHTML = qs.map(([name,val,rate],i)=>`
+    <div class="q"><div class="qbar"><div class="qfill" style="height:${Math.max(1,Number(val||0)/max*100)}%;background:${chartFill(i)}"></div></div><b>${name}</b><span>${money.format(val)}</span>${rateBadge(rate)}</div>`).join('');
+}
+function renderTop(){
+  const items = rows.filter(r => !r.IsTotal && !r.IsMain && Number(r.Plan)>0).sort((a,b)=>b.Plan-a.Plan).slice(0,7);
+  const max = Math.max(...items.map(r=>Number(r.Plan)||0),1);
+  document.getElementById('topItems').innerHTML = items.map((r,i)=>`
+    <div class="bar-row">
+      <div class="bar-name">${r.Item}</div>
+      <div class="track"><div class="fill" style="width:${Math.max(1,(Number(r.Plan)||0)/max*100)}%;background:${chartFill(i+2)}"></div></div>
+      <div class="bar-val">${money.format(r.Plan)} · ${rateBadge(r.Rate)}</div>
+    </div>`).join('');
+}
+function renderTable(){
+  const data = filtered();
+  document.getElementById('tbody').innerHTML = data.map(r=>`
+    <tr>
+      <td>${r.Item}</td><td>${r.Level}</td>
+      <td class="num">${money.format(r.Plan)}</td>
+      <td class="num">${money.format(r.Q1)}</td>
+      <td class="num">${money.format(r.Q2)}</td>
+      <td class="num">${money.format(r.Q3)}</td>
+      <td class="num">${money.format(r.Q4)}</td>
+      <td class="num">${money.format(r.Used)}</td>
+      <td class="num">${money.format(r.Remaining)}</td>
+      <td class="num">${rateBadge(r.Rate)}</td>
+      <td class="num">${pct(r.Share)}</td>
+      <td><span class="status ${statusClass(r.Status)}">${r.Status}</span></td>
+    </tr>`).join('');
+  document.getElementById('foot').textContent = `แสดง ${data.length} รายการ จากข้อมูลทั้งหมด ${rows.length} รายการ`;
+}
+function analysisData(){
+  const main = rows.filter(r => r.IsMain && !r.IsTotal);
+  const budgetRows = rows.filter(r => !r.IsTotal && Number(r.Plan) > 0);
+  const zeroProgress = budgetRows.filter(r => Number(r.Rate) === 0);
+  const largestMain = [...main].sort((a,b)=>b.Plan-a.Plan)[0] || {};
+  const largestItem = [...budgetRows].filter(r=>!r.IsMain).sort((a,b)=>b.Plan-a.Plan)[0] || {};
+  return {
+    main, budgetRows, zeroProgress, largestMain, largestItem,
+    points: [
+      `งบรายจ่ายรวม ${money.format(total.Plan)} บาท ใช้จ่ายแล้ว ${money.format(total.Used)} บาท คิดเป็น ${pct(total.Rate)}`,
+      `หมวดหลักที่มีวงเงินสูงสุดคือ ${largestMain.Item || '-'} จำนวน ${money.format(largestMain.Plan || 0)} บาท หรือ ${pct(largestMain.Share || 0)} ของงบรวม`,
+      `รายการย่อยที่มีวงเงินสูงสุดคือ ${largestItem.Item || '-'} จำนวน ${money.format(largestItem.Plan || 0)} บาท`,
+      `รายการที่มีวงเงินแผนแต่ยังไม่มีการใช้จ่ายมี ${zeroProgress.length} รายการ ควรติดตามรอบบันทึกผลใช้จ่ายรายเดือน`,
+      `อัตราใช้จ่ายรวมอยู่ในเกณฑ์สี${rateClass(total.Rate)==='pct-red'?'แดง':rateClass(total.Rate)==='pct-yellow'?'เหลือง':'เขียว'} ตามเกณฑ์ที่กำหนด`
+    ]
+  };
+}
+function renderAnalysis(){
+  const a = analysisData();
+  document.getElementById('analysisContent').innerHTML = `
+    <div class="analysis-grid">
+      <div class="analysis-card"><b>งบประมาณรวม</b><span>${money.format(total.Plan)}</span></div>
+      <div class="analysis-card"><b>อัตราใช้จ่าย</b><span>${rateBadge(total.Rate, true)}</span></div>
+      <div class="analysis-card"><b>รายการมีวงเงินแต่ยังไม่ใช้</b><span>${a.zeroProgress.length}</span></div>
+    </div>
+    <ul class="analysis-list">${a.points.map(p=>`<li>${p}</li>`).join('')}</ul>`;
+}
+const encoder = new TextEncoder();
+const crcTable = (() => {
+  const table = [];
+  for(let n=0;n<256;n++){
+    let c = n;
+    for(let k=0;k<8;k++) c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+    table[n] = c >>> 0;
+  }
+  return table;
+})();
+function crc32(bytes){
+  let c = 0xffffffff;
+  for(const b of bytes) c = crcTable[(c ^ b) & 255] ^ (c >>> 8);
+  return (c ^ 0xffffffff) >>> 0;
+}
+function u16(n){ return [n & 255, (n >>> 8) & 255]; }
+function u32(n){ return [n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]; }
+function zipBlob(files, type){
+  const chunks = [], central = [];
+  let offset = 0;
+  for(const file of files){
+    const name = encoder.encode(file.name);
+    const data = typeof file.text === 'string' ? encoder.encode(file.text) : file.data;
+    const crc = crc32(data);
+    const local = new Uint8Array([
+      0x50,0x4b,0x03,0x04, ...u16(20), ...u16(0), ...u16(0), ...u16(0), ...u16(0),
+      ...u32(crc), ...u32(data.length), ...u32(data.length), ...u16(name.length), ...u16(0)
+    ]);
+    chunks.push(local, name, data);
+    const centralHeader = new Uint8Array([
+      0x50,0x4b,0x01,0x02, ...u16(20), ...u16(20), ...u16(0), ...u16(0), ...u16(0), ...u16(0),
+      ...u32(crc), ...u32(data.length), ...u32(data.length), ...u16(name.length), ...u16(0), ...u16(0),
+      ...u16(0), ...u16(0), ...u32(0), ...u32(offset)
+    ]);
+    central.push(centralHeader, name);
+    offset += local.length + name.length + data.length;
+  }
+  const centralOffset = offset;
+  const centralSize = central.reduce((sum, part)=>sum + part.length, 0);
+  const end = new Uint8Array([
+    0x50,0x4b,0x05,0x06, ...u16(0), ...u16(0), ...u16(files.length), ...u16(files.length),
+    ...u32(centralSize), ...u32(centralOffset), ...u16(0)
+  ]);
+  return new Blob([...chunks, ...central, end], {type});
+}
+function colName(n){
+  let s = '';
+  while(n > 0){ const m = (n - 1) % 26; s = String.fromCharCode(65 + m) + s; n = Math.floor((n - m) / 26); }
+  return s;
+}
+function exportExcel(){
+  const headers = ['รายการ','ระดับ','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'];
+  const data = rows.map(r => [r.Item,r.Level,money.format(r.Plan),money.format(r.Q1),money.format(r.Q2),money.format(r.Q3),money.format(r.Q4),money.format(r.Used),money.format(r.Remaining),pct(r.Rate),pct(r.Share),r.Status]);
+  const all = [headers, ...data];
+  const sheetRows = all.map((row,ri)=>`<row r="${ri+1}">` + row.map((v,ci)=>`<c r="${colName(ci+1)}${ri+1}" t="inlineStr"><is><t>${xmlEscape(v)}</t></is></c>`).join('') + '</row>').join('');
+  const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${sheetRows}</sheetData></worksheet>`;
+  const workbook = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="รายจ่ายสรุป" sheetId="1" r:id="rId1"/></sheets></workbook>';
+  const rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>';
+  const wbRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>';
+  const content = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>';
+  const blob = zipBlob([
+    {name:'[Content_Types].xml', text:content},
+    {name:'_rels/.rels', text:rels},
+    {name:'xl/workbook.xml', text:workbook},
+    {name:'xl/_rels/workbook.xml.rels', text:wbRels},
+    {name:'xl/worksheets/sheet1.xml', text:sheet}
+  ], 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+  downloadBlob(blob, 'Expense_Dashboard_2570.xlsx');
+}
+function wRun(text, bold=false, size=24){
+  return `<w:r><w:rPr><w:rFonts w:ascii="TH Sarabun New" w:hAnsi="TH Sarabun New" w:eastAsia="TH Sarabun New" w:cs="TH Sarabun New"/><w:sz w:val="${size}"/>${bold?'<w:b/>':''}</w:rPr><w:t xml:space="preserve">${xmlEscape(text)}</w:t></w:r>`;
+}
+function wPara(text, size=24, bold=false){
+  return `<w:p><w:pPr><w:spacing w:after="120"/></w:pPr>${wRun(text,bold,size)}</w:p>`;
+}
+function wTable(headers, bodyRows){
+  const header = `<w:tr>${headers.map(h=>`<w:tc><w:tcPr><w:shd w:fill="D9EAF7"/></w:tcPr>${wPara(h,24,true)}</w:tc>`).join('')}</w:tr>`;
+  const body = bodyRows.map(row=>`<w:tr>${row.map(c=>`<w:tc>${wPara(c,24,false)}</w:tc>`).join('')}</w:tr>`).join('');
+  return `<w:tbl><w:tblPr><w:tblBorders><w:top w:val="single" w:sz="4" w:color="CBD5E1"/><w:left w:val="single" w:sz="4" w:color="CBD5E1"/><w:bottom w:val="single" w:sz="4" w:color="CBD5E1"/><w:right w:val="single" w:sz="4" w:color="CBD5E1"/><w:insideH w:val="single" w:sz="4" w:color="CBD5E1"/><w:insideV w:val="single" w:sz="4" w:color="CBD5E1"/></w:tblBorders></w:tblPr>${header}${body}</w:tbl>${wPara('')}`;
+}
+function exportDocx(){
+  const a = analysisData();
+  const kpiRows = [
+    ['งบประมาณรวม', money.format(total.Plan)],
+    ['ใช้จ่ายแล้ว', money.format(total.Used)],
+    ['คงเหลือ', money.format(total.Remaining)],
+    ['อัตราใช้จ่าย', pct(total.Rate)]
+  ];
+  const mainRows = a.main.map(r=>[r.Item, money.format(r.Plan), pct(r.Rate), pct(r.Share), r.Status]);
+  const topRows = a.budgetRows.filter(r=>!r.IsMain).sort((x,y)=>y.Plan-x.Plan).slice(0,8).map(r=>[r.Item, money.format(r.Plan), pct(r.Rate), r.Status]);
+  const body = [
+    wPara('วิเคราะห์ข้อมูลสำหรับผู้บริหาร', 36, true),
+    wPara('Dashboard เงินบำรุง ปีงบประมาณ พ.ศ.2570 โรงพยาบาลพรหมพิราม', 28, true),
+    wPara(`จัดทำจากข้อมูลใน HTML ณ ${new Date().toLocaleString('th-TH')}`),
+    wPara('ตัวชี้วัดภาพรวม', 28, true),
+    wTable(['ตัวชี้วัด','ค่า'], kpiRows),
+    wPara('ประเด็นวิเคราะห์', 28, true),
+    ...a.points.map(p=>wPara(`• ${p}`)),
+    wPara('โครงสร้างหมวดหลัก', 28, true),
+    wTable(['หมวด','แผน 2570','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'], mainRows),
+    wPara('รายการย่อยวงเงินสูง', 28, true),
+    wTable(['รายการ','แผน 2570','ร้อยละใช้จ่าย','สถานะ'], topRows)
+  ].join('');
+  const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${body}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134"/></w:sectPr></w:body></w:document>`;
+  const content = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>';
+  const rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>';
+  const blob = zipBlob([
+    {name:'[Content_Types].xml', text:content},
+    {name:'_rels/.rels', text:rels},
+    {name:'word/document.xml', text:documentXml}
+  ], 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+  downloadBlob(blob, 'Executive_Analysis_Expense_Dashboard_2570.docx');
+}
+function renderAll(){ renderKpis(); renderAnalysis(); renderBars(); renderDonut(); renderQuarters(); renderTop(); renderTable(); }
+document.getElementById('exportExcel').addEventListener('click', exportExcel);
+document.getElementById('exportDocx').addEventListener('click', exportDocx);
+document.getElementById('toggleAnalysis').addEventListener('click', ()=>{
+  const panel = document.getElementById('analysisPanel');
+  panel.hidden = !panel.hidden;
+  if(!panel.hidden) panel.scrollIntoView({behavior:'smooth', block:'start'});
+});
+document.querySelectorAll('th[data-sort]').forEach(th=>th.addEventListener('click',()=>{
+  const key = th.dataset.sort;
+  if(state.sort === key) state.dir *= -1; else { state.sort = key; state.dir = ['Item','Level','Status'].includes(key) ? 1 : -1; }
+  renderTable();
+}));
+renderAll();
+</script>
+</body>
+</html>
