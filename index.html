@@ -15,7 +15,7 @@
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Tahoma,"Noto Sans Thai",Arial,sans-serif;color:var(--ink);background:
   linear-gradient(180deg,#edf7ff 0,#f7fbff 260px,#f5f8fc 100%);overflow-x:hidden}
-button,input,select{font:inherit}
+button,input,select,a{font:inherit}
 .shell{width:min(1240px,100%);margin:0 auto;padding:22px}
 .top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:end;margin-bottom:18px}
 .eyebrow{font-size:13px;color:var(--teal);font-weight:700;letter-spacing:0}
@@ -27,7 +27,7 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .controls{position:sticky;top:0;z-index:5;background:rgba(247,251,255,.9);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:8px;padding:10px;display:flex;justify-content:flex-end;gap:10px;margin-bottom:16px}
 .tool-btn{border:1px solid var(--line);background:#fff;color:#243044;border-radius:8px;padding:11px 12px}
 .actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.tool-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap}
+.tool-btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;white-space:nowrap;text-decoration:none}
 .tool-btn svg{width:17px;height:17px}
 .tool-btn.primary{background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;border-color:#1d77a8}
 .pct-badge{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:4px 8px;font-weight:800;font-size:12px;white-space:nowrap}
@@ -61,17 +61,24 @@ h1{margin:4px 0 6px;font-size:clamp(25px,3.3vw,40px);line-height:1.08;letter-spa
 .donut-wrap{display:grid;grid-template-columns:210px 1fr;gap:18px;align-items:center}
 svg.donut{width:210px;height:210px;transform:rotate(-90deg);filter:drop-shadow(0 12px 18px rgba(37,99,235,.14))}
 .legend{display:grid;gap:8px}
-.legend-item{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;font-size:13px}
+.legend-item{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:8px;align-items:center;font-size:13px}
 .swatch{width:12px;height:12px;border-radius:999px}
 .quarter{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;height:210px;align-items:end;padding-top:16px}
 .q{display:grid;gap:8px;text-align:center;color:var(--muted);font-size:12px}
 .qbar{height:150px;background:linear-gradient(180deg,#f8fbff,#edf4fb);border:1px solid #d8e6f5;border-radius:8px;display:flex;align-items:end;overflow:hidden;box-shadow:inset 0 1px 3px rgba(15,23,42,.06)}
 .qfill{width:100%;background:var(--teal);min-height:2px}
 .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
-table{width:100%;border-collapse:collapse;min-width:920px}
+table{width:100%;border-collapse:collapse;min-width:1040px}
 th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;vertical-align:middle}
 th{position:sticky;top:0;background:#f8fafc;color:#334155;font-weight:800;cursor:pointer;z-index:1}
 td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.order-cell{text-align:center;font-weight:800;white-space:nowrap}
+td.item-cell{min-width:230px}
+.item-label{display:inline-block;line-height:1.35}
+tr.main-row td{font-weight:800;background:#f8fbff}
+tr.sub-row .item-label{padding-left:16px}
+tr.detail-row .item-label{padding-left:32px;color:#334155}
+tr.total-row td{font-weight:900;background:#eef6ff}
 .status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700;background:#f1f5f9;color:#334155;white-space:nowrap}
 .status.danger{background:#fee2e2;color:#991b1b}
 .status.warn{background:#fff7ed;color:#9a3412}
@@ -120,6 +127,10 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 
   <section class="controls">
     <div class="actions">
+      <a class="tool-btn" id="openSheet" href="https://docs.google.com/spreadsheets/d/1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU/edit?gid=482273770#gid=482273770" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+        เปิด Google Sheet
+      </a>
       <button class="tool-btn primary" id="exportExcel" type="button">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/></svg>
         ส่งออก Excel
@@ -148,7 +159,7 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
       <div class="bar-list" id="bars"></div>
     </article>
     <article class="panel">
-      <h2>สัดส่วนงบประมาณ</h2>
+      <h2>อัตราการใช้งบประมาณ</h2>
       <div class="donut-wrap">
         <svg class="donut" id="donut" viewBox="0 0 200 200"></svg>
         <div class="legend" id="legend"></div>
@@ -168,14 +179,13 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
   </section>
 
   <section class="panel">
-    <h2>ตารางข้อมูลสดจากชีต รายจ่าย (สรุป)</h2>
+    <h2>ตารางข้อมูลสดตามหมวดรายจ่าย</h2>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
+            <th data-sort="SourceRow">ลำดับ</th>
             <th data-sort="Item">รายการ</th>
-            <th data-sort="Level">หมวดรายจ่าย</th>
-            <th data-sort="Parent">อยู่ภายใต้</th>
             <th data-sort="Plan">แผน 2570</th>
             <th data-sort="Q1">Q1</th>
             <th data-sort="Q2">Q2</th>
@@ -212,6 +222,7 @@ const LIVE_SHEET_ID = '1SNuFUkU4kKB_LgVtaFPmReINln4JkzstMhx2x_vW4VU';
 const LIVE_GID = '482273770';
 const LIVE_REFRESH_MS = 60000;
 const MAIN_CATEGORIES = new Set(['รายจ่ายบุคลากร','รายจ่ายจากการดำเนินงาน','รายจ่ายลงทุน','รายจ่ายสนับสนุน','งบกลาง']);
+const MAIN_CATEGORY_ORDER = {'รายจ่ายบุคลากร':'1','รายจ่ายจากการดำเนินงาน':'2','รายจ่ายลงทุน':'3','รายจ่ายสนับสนุน':'4','งบกลาง':'5'};
 function asText(value){
   return String(value ?? '').trim();
 }
@@ -291,10 +302,11 @@ function normalizeRows(rawRows){
     const used = numeric.Used || qTotal;
     const remaining = numeric.Remaining || (numeric.Plan ? numeric.Plan - used : 0);
     const rate = numeric.Rate || (numeric.Plan ? used / numeric.Plan : 0);
+    const displayOrder = isMain ? (orderText(row.Order) || MAIN_CATEGORY_ORDER[item] || '') : '';
     normalized.push({
       ...row,
       SourceRow: row.SourceRow || index + 1,
-      Order: orderText(row.Order),
+      Order: displayOrder,
       Item: item,
       Level: level,
       Parent: parent,
@@ -359,6 +371,16 @@ function statusClass(s){
   if(s === 'ไม่มีวงเงินแผน') return 'zero';
   return '';
 }
+function moneyDash(value){
+  const number = Number(value || 0);
+  return Math.abs(number) > 0 ? money.format(number) : '-';
+}
+function rowClass(row){
+  if(row.IsTotal) return 'total-row';
+  if(row.IsMain) return 'main-row';
+  if(row.Level === 'หมวดย่อย') return 'sub-row';
+  return 'detail-row';
+}
 function filtered(){
   return [...rows].sort((a,b)=>{
     const av = a[state.sort], bv = b[state.sort];
@@ -392,19 +414,20 @@ function renderBars(){
 }
 function renderDonut(){
   const main = rows.filter(r => r.IsMain && !r.IsTotal && Number(r.Plan)>0);
-  const sum = main.reduce((a,r)=>a+Number(r.Plan||0),0) || 1;
   const svg = document.getElementById('donut');
-  let offset = 0;
-  svg.innerHTML = `<circle cx="100" cy="100" r="74" fill="none" stroke="#e8edf5" stroke-width="26"></circle>`;
-  main.forEach((r,i)=>{
-    const frac = Number(r.Plan||0)/sum;
-    const dash = `${frac*465} ${465-frac*465}`;
-    svg.innerHTML += `<circle cx="100" cy="100" r="74" fill="none" stroke="${colors[i%colors.length]}" stroke-width="26" stroke-dasharray="${dash}" stroke-dashoffset="${-offset}" stroke-linecap="butt"></circle>`;
-    offset += frac*465;
-  });
-  svg.innerHTML += `<text x="100" y="96" text-anchor="middle" transform="rotate(90 100 100)" style="font:800 24px Tahoma;fill:${rateColor(total.Rate)}">${pct(total.Rate)}</text><text x="100" y="122" text-anchor="middle" transform="rotate(90 100 100)" style="font:12px Tahoma;fill:#64748b">ใช้จ่ายแล้ว</text>`;
+  const rate = Math.max(0, Math.min(1, Number(total.Rate || 0)));
+  const displayRate = total.Used > 0 ? Math.max(rate, 0.012) : 0;
+  const circumference = 465;
+  const usedDash = `${displayRate * circumference} ${circumference - (displayRate * circumference)}`;
+  const remaining = Math.max(0, 1 - rate);
+  svg.innerHTML = `
+    <circle cx="100" cy="100" r="74" fill="none" stroke="#e8edf5" stroke-width="26"></circle>
+    <circle cx="100" cy="100" r="74" fill="none" stroke="${rateColor(rate)}" stroke-width="26" stroke-dasharray="${usedDash}" stroke-linecap="round"></circle>
+    <text x="100" y="84" text-anchor="middle" transform="rotate(90 100 100)" style="font:800 24px Tahoma;fill:${rateColor(rate)}">${pct(rate)}</text>
+    <text x="100" y="107" text-anchor="middle" transform="rotate(90 100 100)" style="font:12px Tahoma;fill:#64748b">ใช้จ่ายแล้ว</text>
+    <text x="100" y="128" text-anchor="middle" transform="rotate(90 100 100)" style="font:700 11px Tahoma;fill:#475569">คงเหลือ ${pct(remaining)}</text>`;
   document.getElementById('legend').innerHTML = main.map((r,i)=>`
-    <div class="legend-item"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${r.Item}<br><small>ใช้จ่าย ${pct(r.Rate)}</small></span><b>${pct(r.Share)}</b></div>`).join('');
+    <div class="legend-item"><span class="swatch" style="background:${colors[i%colors.length]}"></span><span>${r.Item}<br><small>ใช้จ่าย ${moneyDash(r.Used)} จากแผน ${moneyDash(r.Plan)}</small></span>${rateBadge(r.Rate)}</div>`).join('');
 }
 function renderQuarters(){
   const qs = [
@@ -430,15 +453,16 @@ function renderTop(){
 function renderTable(){
   const data = filtered();
   document.getElementById('tbody').innerHTML = data.map(r=>`
-    <tr>
-      <td>${r.Item}</td><td>${r.Level}</td><td>${r.Parent || '-'}</td>
-      <td class="num">${money.format(r.Plan)}</td>
-      <td class="num">${money.format(r.Q1)}</td>
-      <td class="num">${money.format(r.Q2)}</td>
-      <td class="num">${money.format(r.Q3)}</td>
-      <td class="num">${money.format(r.Q4)}</td>
-      <td class="num">${money.format(r.Used)}</td>
-      <td class="num">${money.format(r.Remaining)}</td>
+    <tr class="${rowClass(r)}">
+      <td class="order-cell">${r.Order || ''}</td>
+      <td class="item-cell"><span class="item-label">${r.Item}</span></td>
+      <td class="num">${moneyDash(r.Plan)}</td>
+      <td class="num">${moneyDash(r.Q1)}</td>
+      <td class="num">${moneyDash(r.Q2)}</td>
+      <td class="num">${moneyDash(r.Q3)}</td>
+      <td class="num">${moneyDash(r.Q4)}</td>
+      <td class="num">${moneyDash(r.Used)}</td>
+      <td class="num">${moneyDash(r.Remaining)}</td>
       <td class="num">${rateBadge(r.Rate)}</td>
       <td class="num">${pct(r.Share)}</td>
       <td><span class="status ${statusClass(r.Status)}">${r.Status}</span></td>
@@ -523,8 +547,8 @@ function colName(n){
   return s;
 }
 function exportExcel(){
-  const headers = ['รายการ','หมวดรายจ่าย','อยู่ภายใต้','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'];
-  const data = rows.map(r => [r.Item,r.Level,r.Parent || '',money.format(r.Plan),money.format(r.Q1),money.format(r.Q2),money.format(r.Q3),money.format(r.Q4),money.format(r.Used),money.format(r.Remaining),pct(r.Rate),pct(r.Share),r.Status]);
+  const headers = ['ลำดับ','รายการ','หมวดรายจ่าย','อยู่ภายใต้','แผน 2570','ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4','ใช้ทั้งหมด','คงเหลือ','ร้อยละใช้จ่าย','สัดส่วนงบ','สถานะ'];
+  const data = rows.map(r => [r.Order || '',r.Item,r.Level,r.Parent || '',moneyDash(r.Plan),moneyDash(r.Q1),moneyDash(r.Q2),moneyDash(r.Q3),moneyDash(r.Q4),moneyDash(r.Used),moneyDash(r.Remaining),pct(r.Rate),pct(r.Share),r.Status]);
   const all = [headers, ...data];
   const sheetRows = all.map((row,ri)=>`<row r="${ri+1}">` + row.map((v,ci)=>`<c r="${colName(ci+1)}${ri+1}" t="inlineStr"><is><t>${xmlEscape(v)}</t></is></c>`).join('') + '</row>').join('');
   const sheet = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${sheetRows}</sheetData></worksheet>`;
